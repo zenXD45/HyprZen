@@ -42,6 +42,9 @@
 
   <h3>SwayNC Control Center</h3>
   <img src="assets/notifications.png" alt="Notifications" width="800"/>
+
+  <h3>Impala Network Manager</h3>
+  <img src="assets/network.png" alt="Network Manager" width="800"/>
 </div>
 
 ---
