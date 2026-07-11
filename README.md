@@ -112,6 +112,7 @@ HyprZen/
 │   └── waybar/       # Status bar and modular styles
 ├── scripts/
 │   ├── keybinds-cheat.sh   # Generates the live rofi cheatsheet
+│   ├── power-profile.sh    # Rofi-based performance mode switcher
 │   ├── wallpaper-random.sh # Handles background rotation
 │   └── waybar-switcher.sh  # Live theme toggler
 ├── install.sh        # Core symlink installer and backup utility
