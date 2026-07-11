@@ -1,0 +1,105 @@
+<div align="center">
+  <img src="https://raw.githubusercontent.com/catppuccin/catppuccin/main/assets/palette/macchiato.png" width="400" alt="palette" />
+  
+  <h1>🌸 HyprZen</h1>
+  <p><b>An ultra-minimal, zen-inspired dotfiles setup for Hyprland on Arch Linux.</b></p>
+  
+  <p>
+    <a href="#-features">Features</a> •
+    <a href="#-showcase">Showcase</a> •
+    <a href="#-installation">Installation</a> •
+    <a href="#%EF%B8%8F-keybindings">Keybinds</a>
+  </p>
+</div>
+
+---
+
+## ✨ Features
+
+- **Minimalist Aesthetic**: Pure, dark, and distraction-free workspace. No bloated UI, no cartoonish shadows—just clean lines and solid colors.
+- **Dynamic Waybar**: Comes with a built-in Rofi-based theme switcher to instantly swap between three custom sleek bar layouts: `minimal`, `pill`, and `solid`.
+- **Advanced Screenshots**: Fully integrated `hyprshot` and `satty`. Instantly capture regions, annotate them in a centered floating window, or copy them straight to your clipboard.
+- **Smart Workspaces**: Workspaces 1-4 are always visible for consistency, while 5-10 generate dynamically only when you need them.
+- **Interactive Cheatsheet**: Never forget a shortcut again. Press `SUPER + ,` to pull up a searchable, dynamically generated Rofi menu of all your keybindings.
+- **Automated Setup**: A bulletproof `setup.sh` script that automatically installs dependencies via `pacman` and `yay`/`paru`, followed by an installer that safely backs up your old configs.
+
+---
+
+## 📸 Showcase
+
+> **Note to self:** *Replace these placeholder URLs with your actual screenshots once you upload them to an `assets` folder!*
+
+### The Desktop
+![Desktop Preview](https://via.placeholder.com/1000x500.png?text=Your+Clean+Desktop+Screenshot+Here)
+
+### Dynamic Waybar & Rofi Switcher
+![Theme Switcher](https://via.placeholder.com/1000x500.png?text=Screenshot+of+your+Waybar+Switcher+Here)
+
+### Fastfetch & Terminal
+![Fastfetch](https://via.placeholder.com/1000x500.png?text=Screenshot+of+your+Minimal+Fastfetch+Here)
+
+---
+
+## 🚀 Installation
+
+HyprZen was designed with Arch Linux and CachyOS in mind. It uses standard packages and a few AUR essentials.
+
+**1. Clone the repository:**
+```bash
+git clone https://github.com/zenXD45/HyprZen.git
+cd HyprZen
+```
+
+**2. Run the automated setup:**
+```bash
+# This will install missing dependencies and run the config installer
+./setup.sh
+```
+
+**3. Reload Hyprland:**
+Press `SUPER + CTRL + R` to reload Hyprland and apply all the new configurations.
+
+---
+
+## ⌨️ Keybindings
+
+HyprZen uses an ultra-minimal keybind configuration. For a full, searchable list of your live keybinds, simply press `SUPER + ,` inside Hyprland.
+
+| Action | Shortcut |
+| :--- | :--- |
+| **Terminal (Kitty)** | `SUPER + ENTER` |
+| **App Launcher (Rofi)** | `SUPER + SPACE` |
+| **Keybinds Cheatsheet** | `SUPER + ,` (Comma) |
+| **Waybar Theme Switcher** | `SUPER + W` |
+| **Close Window** | `SUPER + Q` |
+| **Toggle Fullscreen** | `SUPER + F` |
+| **Toggle Floating** | `SUPER + SHIFT + F` |
+| **Region Screenshot (Annotate)** | `SUPER + Print` |
+| **Region Screenshot (Clipboard)** | `SUPER + CTRL + Print` |
+| **Dismiss Notifications** | `SUPER + SHIFT + N` |
+
+---
+
+## 🛠️ Structure
+
+```text
+HyprZen/
+├── .config/
+│   ├── dunst/        # Notification daemon theming
+│   ├── fastfetch/    # Custom minimal tree-style fetch
+│   ├── hypr/         # Core Hyprland configuration & rules
+│   ├── kitty/        # Terminal emulator themes
+│   ├── rofi/         # App launcher, clipboard, and cheatsheet menus
+│   └── waybar/       # Status bar and modular styles
+├── scripts/
+│   ├── keybinds-cheat.sh   # Generates the live rofi cheatsheet
+│   ├── wallpaper-random.sh # Handles background rotation
+│   └── waybar-switcher.sh  # Live theme toggler
+├── install.sh        # Core symlink installer and backup utility
+└── setup.sh          # Dependency wrapper for Arch Linux
+```
+
+---
+<div align="center">
+  <i>Stay Minimal. Stay Zen.</i>
+</div>
