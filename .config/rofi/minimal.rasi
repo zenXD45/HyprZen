@@ -1,0 +1,122 @@
+/* ════════════════════════════════════════════════════════════════
+   HyprZen — Rofi Glassmorphism Theme
+   ════════════════════════════════════════════════════════════════ */
+
+configuration {
+    show-icons:         true;
+    icon-theme:         "Papirus-Dark";
+    display-drun:       "󰀻 ";
+    display-run:        " ";
+    display-window:     " ";
+    drun-display-format: "{name}";
+    window-format:      "{w}  {t}";
+    font:               "JetBrainsMono Nerd Font 13";
+    kb-cancel:          "Escape,Super+d";
+}
+
+* {
+    bg:          rgba(0, 0, 0, 0.7);
+    bg-sel:      rgba(122, 162, 247, 0.20);
+    fg:          #a9b1d6;
+    fg-sel:      #7aa2f7;
+    border-col:  rgba(255, 255, 255, 0.08);
+
+    background-color: transparent;
+    text-color:       @fg;
+    border:           0;
+    margin:           0;
+    padding:          0;
+    spacing:          0;
+}
+
+window {
+    background-color: @bg;
+    border:           1px;
+    border-color:     @border-col;
+    border-radius:    16px;
+    width:            600px;
+    padding:          32px;
+    x-offset:         0px;
+    y-offset:         -60px;
+}
+
+mainbox {
+    spacing: 24px;
+    children: [ inputbar, listview ];
+}
+
+/* ── Search bar ─────────────────────────────────────────────── */
+inputbar {
+    background-color: rgba(30, 30, 35, 0.5);
+    border:           1px;
+    border-radius:    12px;
+    border-color:     rgba(255, 255, 255, 0.05);
+    padding:          14px 18px;
+    children:         [ prompt, entry ];
+    spacing:          12px;
+}
+
+prompt {
+    color:            #7aa2f7;
+    text-color:       #7aa2f7;
+    font:             "JetBrainsMono Nerd Font 15";
+    vertical-align:   0.5;
+}
+
+entry {
+    text-color:       #ffffff;
+    placeholder:      "Search apps...";
+    placeholder-color: #565f89;
+    cursor:           text;
+    blink:            true;
+    vertical-align:   0.5;
+}
+
+/* ── Results ─────────────────────────────────────────────────── */
+listview {
+    border:           0;
+    padding:          0;
+    spacing:          6px;
+    scrollbar:        false;
+    lines:            7;
+    columns:          1;
+    fixed-height:     false;
+}
+
+element {
+    border-radius:    10px;
+    padding:          10px 14px;
+    spacing:          16px;
+    orientation:      horizontal;
+    cursor:           pointer;
+}
+
+element-icon {
+    size:             28px;
+    vertical-align:   0.5;
+}
+
+element-text {
+    text-color:       @fg;
+    vertical-align:   0.5;
+    highlight:        bold #ffffff;
+}
+
+element.selected.normal {
+    background-color: @bg-sel;
+    border:           1px;
+    border-color:     rgba(122, 162, 247, 0.4);
+}
+
+element.selected.normal element-text {
+    text-color: @fg-sel;
+    font-weight: bold;
+}
+
+element.urgent element-text {
+    text-color: #f7768e;
+}
+
+element.active element-text {
+    text-color: #9ece6a;
+}

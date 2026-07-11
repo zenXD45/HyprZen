@@ -1,0 +1,101 @@
+/* HyprZen — Rofi Launcher Theme (anime.rasi)
+   Works with: rofi -show drun -theme ~/.config/rofi/anime.rasi
+*/
+
+* {
+    font:             "JetBrainsMono Nerd Font 13";
+    background-color: transparent;
+    text-color:       #c0caf5;
+}
+
+window {
+    background-color: rgba(10, 10, 16, 0.94);
+    border:           2px;
+    border-color:     rgba(122, 162, 247, 0.40);
+    border-radius:    16px;
+    width:            520px;
+    padding:          20px;
+}
+
+mainbox {
+    spacing: 10px;
+}
+
+/* ── Search bar ───────────────────────────────────────────── */
+inputbar {
+    background-color: rgba(30, 30, 42, 0.80);
+    border-radius:    10px;
+    padding:          10px 14px;
+    border:           1px;
+    border-color:     rgba(122, 162, 247, 0.20);
+    children:         [ prompt, entry ];
+    spacing:          8px;
+}
+
+prompt {
+    color:      #7aa2f7;
+    padding:    0px;
+}
+
+entry {
+    color:        #c0caf5;
+    placeholder:  "Search...";
+    placeholder-color: #565f89;
+}
+
+/* ── Results list ─────────────────────────────────────────── */
+listview {
+    border:       0px;
+    padding:      4px 0px 0px;
+    spacing:      4px;
+    scrollbar:    false;
+    lines:        8;
+}
+
+element {
+    background-color: transparent;
+    border-radius:    8px;
+    padding:          8px 12px;
+    spacing:          10px;
+    orientation:      horizontal;
+}
+
+element-icon {
+    size:       28px;
+    vertical-align: 0.5;
+}
+
+element-text {
+    vertical-align: 0.5;
+    color:          #c0caf5;
+}
+
+element.selected.normal {
+    background-color: rgba(122, 162, 247, 0.15);
+    border:           1px;
+    border-color:     rgba(122, 162, 247, 0.35);
+    text-color:       #7aa2f7;
+}
+
+element.selected.normal element-text {
+    color: #7aa2f7;
+}
+
+element.urgent {
+    text-color: #f7768e;
+}
+
+element.active {
+    text-color: #9ece6a;
+}
+
+/* ── Message / No results ─────────────────────────────────── */
+message {
+    padding:    10px 14px;
+    background-color: rgba(30, 30, 42, 0.60);
+    border-radius: 8px;
+}
+
+textbox {
+    text-color: #565f89;
+}

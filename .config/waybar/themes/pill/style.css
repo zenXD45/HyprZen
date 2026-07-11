@@ -1,0 +1,52 @@
+* {
+    font-family: "JetBrainsMono Nerd Font", monospace;
+    font-size: 14px;
+    border: none;
+    border-radius: 20px;
+    min-height: 0;
+}
+
+window#waybar {
+    background: transparent;
+    color: #c0c0c0;
+}
+
+.modules-left, .modules-center, .modules-right {
+    background: rgba(10, 10, 12, 0.90);
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    border-radius: 24px;
+    padding: 2px 10px;
+    margin: 6px 10px;
+}
+
+#custom-launcher, #window, #clock, #pulseaudio, #network, #battery, #cpu, #memory, #temperature, #tray, #custom-notif, #custom-power, #cava, #mpris {
+    padding: 0 10px;
+    color: #a9b1d6;
+    transition: color 0.2s ease;
+}
+
+#workspaces {
+    padding: 0 6px;
+}
+
+#workspaces button {
+    padding: 2px 14px;
+    color: #565f89;
+    border-radius: 14px;
+    margin: 4px 2px;
+    background: transparent;
+    transition: all 0.2s ease;
+}
+
+#workspaces button:hover {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+#workspaces button.active {
+    background: rgba(122, 162, 247, 0.2);
+    color: #7aa2f7;
+}
+
+#custom-launcher { color: #7aa2f7; font-size: 18px; }
+#custom-power { color: #f7768e; font-size: 16px; padding-left: 14px; }
+#clock { color: #ffffff; font-weight: bold; }

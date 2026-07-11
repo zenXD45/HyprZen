@@ -1,0 +1,12 @@
+/* Dusk Gradient — Waybar Theme Variables */
+@define-color bg_base       #1c1b33;
+@define-color bg_surface    rgba(38, 37, 58, 0.88);
+@define-color bg_overlay    rgba(49, 47, 71, 0.75);
+@define-color accent        #f97316;
+@define-color accent_soft   rgba(249, 115, 22, 0.18);
+@define-color accent_glow   transparent;
+@define-color secondary     #ec4899;
+@define-color text          #f1f5f9;
+@define-color subtext       #94a3b8;
+@define-color border_color  rgba(249, 115, 22, 0.22);
+@define-color urgent        #fb7185;

@@ -1,0 +1,182 @@
+/* ════════════════════════════════════════════════════════════════
+   HyprZen — Waybar Ultra Minimal Black Style
+   Pure black · monospace · no gradients · no noise
+   ════════════════════════════════════════════════════════════════ */
+
+/* ── Reset ───────────────────────────────────────────────────── */
+* {
+    font-family: "JetBrainsMono Nerd Font", monospace;
+    font-size:   13px;
+    border:      none;
+    border-radius: 0;
+    min-height:  0;
+    padding:     0;
+    margin:      0;
+}
+
+/* ── Bar Window ──────────────────────────────────────────────── */
+window#waybar {
+    background: rgba(10, 10, 12, 0.88);
+    color:      #c0c0c0;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+/* ── Section Groups ──────────────────────────────────────────── */
+.modules-left {
+    padding-left: 14px;
+}
+.modules-right {
+    padding-right: 14px;
+}
+
+#custom-launcher {
+    color: #89b4fa;
+    font-size: 16px;
+    padding: 0 14px 0 0;
+}
+
+#window {
+    color: #a9b1d6;
+    font-size: 13px;
+    padding: 0 16px;
+}
+
+/* ── Workspaces ──────────────────────────────────────────────── */
+#workspaces {
+    background: transparent;
+    margin: 0 1px;
+}
+
+#workspaces button {
+    background: transparent;
+    color:      #444444;
+    padding:    0 10px;
+    font-size:  13px;
+    transition: color 0.15s ease;
+    border-bottom: 2px solid transparent;
+}
+
+#workspaces button:hover {
+    background: transparent;
+    color:      #888888;
+    box-shadow: none;
+}
+
+#workspaces button.active {
+    color:       #ffffff;
+    border-bottom: 2px solid #ffffff;
+}
+
+#workspaces button.urgent {
+    color: #f7768e;
+    border-bottom: 2px solid #f7768e;
+}
+
+/* ── Clock (center — slightly brighter) ──────────────────────── */
+#clock {
+    color:       #e0e0e0;
+    font-weight: 600;
+    font-size:   13px;
+    letter-spacing: 0.5px;
+    padding: 0 16px;
+}
+
+/* ── Generic right-side modules ──────────────────────────────── */
+#pulseaudio,
+#network,
+#battery,
+#mpris,
+#cava,
+#cpu,
+#memory,
+#temperature,
+#tray,
+#custom-trayicon,
+#custom-notif {
+    color:   #a9b1d6;
+    padding: 0 10px;
+    transition: color 0.15s ease;
+}
+
+#pulseaudio:hover,
+#network:hover,
+#battery:hover,
+#mpris:hover,
+#cava:hover,
+#cpu:hover,
+#memory:hover,
+#temperature:hover,
+#custom-trayicon:hover,
+#custom-notif:hover {
+    color: #ffffff;
+}
+
+/* ── Audio ────────────────────────────────────────────────────── */
+#pulseaudio.muted {
+    color: #3a3a3a;
+}
+
+/* ── Battery States ──────────────────────────────────────────── */
+#battery.charging {
+    color: #9ece6a;
+}
+
+#battery.warning:not(.charging) {
+    color: #e0af68;
+}
+
+#battery.critical:not(.charging) {
+    color: #f7768e;
+    opacity: 0.7;
+}
+
+
+
+
+/* ── MPRIS (media) ────────────────────────────────────────────── */
+#mpris {
+    color:     #555555;
+    font-size: 12px;
+}
+
+/* ── Audio Visualizer ─────────────────────────────────────────── */
+#cava {
+    color: #7aa2f7;
+}
+
+/* ── Notification Bell ────────────────────────────────────────── */
+#custom-notif {
+    font-size: 14px;
+    padding: 0 10px;
+}
+
+/* ── Tray ─────────────────────────────────────────────────────── */
+#tray {
+    padding: 0 8px;
+}
+
+#tray > .passive {
+    -gtk-icon-effect: dim;
+}
+
+#tray > .needs-attention {
+    -gtk-icon-effect: highlight;
+    background-color: rgba(247, 118, 142, 0.2);
+    border-radius: 4px;
+}
+
+/* ── Power Menu ───────────────────────────────────────────────── */
+#custom-power {
+    color: #f7768e;
+    font-size: 15px;
+    padding: 0 14px;
+    margin-left: 8px;
+    border-left: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* ── Separator ────────────────────────────────────────────────── */
+.separator {
+    color:   rgba(255, 255, 255, 0.06);
+    padding: 0 4px;
+}

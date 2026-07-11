@@ -1,0 +1,12 @@
+/* Moonlit Teal — Waybar Theme Variables */
+@define-color bg_base       #0d1117;
+@define-color bg_surface    rgba(22, 27, 34, 0.88);
+@define-color bg_overlay    rgba(33, 38, 45, 0.75);
+@define-color accent        #38bdf8;
+@define-color accent_soft   rgba(56, 189, 248, 0.18);
+@define-color accent_glow   transparent;
+@define-color secondary     #818cf8;
+@define-color text          #e6edf3;
+@define-color subtext       #7d8590;
+@define-color border_color  rgba(56, 189, 248, 0.22);
+@define-color urgent        #ff7b72;
