@@ -27,22 +27,38 @@
 
 ## 📸 Showcase
 
-> **Note to self:** *Replace these placeholder URLs with your actual screenshots once you upload them to an `assets` folder!*
+<div align="center">
+  <h3>The Desktop & App Launcher</h3>
+  <img src="assets/desktop.png" alt="Desktop and Rofi" width="800"/>
 
-### The Desktop
-![Desktop Preview](https://via.placeholder.com/1000x500.png?text=Your+Clean+Desktop+Screenshot+Here)
+  <h3>Live Keybinds Cheatsheet</h3>
+  <img src="assets/keybinds.png" alt="Keybinds Cheatsheet" width="800"/>
 
-### Dynamic Waybar & Rofi Switcher
-![Theme Switcher](https://via.placeholder.com/1000x500.png?text=Screenshot+of+your+Waybar+Switcher+Here)
+  <h3>Custom Fastfetch (Marin)</h3>
+  <img src="assets/fastfetch.png" alt="Fastfetch" width="800"/>
 
-### Fastfetch & Terminal
-![Fastfetch](https://via.placeholder.com/1000x500.png?text=Screenshot+of+your+Minimal+Fastfetch+Here)
+  <h3>Dynamic Waybar Theme Switcher</h3>
+  <img src="assets/waybar-switcher.png" alt="Waybar Switcher" width="800"/>
+
+  <h3>SwayNC Control Center</h3>
+  <img src="assets/notifications.png" alt="Notifications" width="800"/>
+</div>
 
 ---
 
 ## 🚀 Installation
 
-HyprZen was designed with Arch Linux and CachyOS in mind. It uses standard packages and a few AUR essentials.
+### Supported Distributions
+HyprZen is heavily optimized for **Arch Linux** and Arch-based distributions. It has been tested and works flawlessly on:
+- Arch Linux
+- CachyOS
+- EndeavourOS
+- Manjaro / Garuda
+
+### How to Install
+The installation process is split into two scripts that work together automatically:
+* **`setup.sh`**: Downloads and installs all the required programs (Hyprland, Waybar, etc.) using `pacman` and an AUR helper (`yay`/`paru`).
+* **`install.sh`**: Safely backs up your old configuration files and symlinks the HyprZen aesthetic into your `~/.config` folder.
 
 **1. Clone the repository:**
 ```bash
@@ -52,7 +68,7 @@ cd HyprZen
 
 **2. Run the automated setup:**
 ```bash
-# This will install missing dependencies and run the config installer
+# This handles both dependencies (via setup.sh) and symlinking (via install.sh)
 ./setup.sh
 ```
 
