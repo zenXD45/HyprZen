@@ -29,28 +29,15 @@ if [ -d "$CONFIG_DIR/caelestia" ]; then
     echo "  removed: ~/.config/caelestia"
 fi
 
-# ── Step 3: Purge Caelestia remnants from ~/.config/hypr ─────
-# The old Caelestia setup left these loose files alongside our symlink.
+# ── Step 3: (Removed) ────────────────────────────────────────
+# We no longer delete individual files here because it could resolve our
+# own symlink and delete files inside the git repository.
+# Step 5 will cleanly replace the entire ~/.config/hypr directory anyway.
 HYPR_DIR="$CONFIG_DIR/hypr"
 
-# Remove the dangling symlink or old real directory first
-if [ -L "$HYPR_DIR/hypr" ]; then
-    rm -f "$HYPR_DIR/hypr"
-    echo "  removed broken symlink: ~/.config/hypr/hypr"
-fi
-
-# Caelestia-specific files/dirs to nuke
-for item in hyprland.conf variables.conf dms hyprland scheme scripts current_theme; do
-    target="$HYPR_DIR/$item"
-    if [ -e "$target" ] || [ -L "$target" ]; then
-        rm -rf "$target"
-        echo "  removed: ~/.config/hypr/$item"
-    fi
-done
-
-# ── Step 4: Remove old waybar / dunst / rofi / kitty dirs ────
+# ── Step 4: Remove old waybar / swaync / rofi / kitty dirs ────
 # (could be real dirs from old setups, or broken symlinks)
-for app in waybar dunst rofi kitty; do
+for app in waybar swaync rofi kitty; do
     target="$CONFIG_DIR/$app"
     if [ -L "$target" ]; then
         rm -f "$target"
@@ -92,7 +79,7 @@ fi
 link "$DOTFILES_DIR/.config/hypr"    "$CONFIG_DIR/hypr"
 link "$DOTFILES_DIR/.config/waybar"  "$CONFIG_DIR/waybar"
 link "$DOTFILES_DIR/.config/kitty"   "$CONFIG_DIR/kitty"
-link "$DOTFILES_DIR/.config/dunst"   "$CONFIG_DIR/dunst"
+link "$DOTFILES_DIR/.config/swaync"  "$CONFIG_DIR/swaync"
 link "$DOTFILES_DIR/.config/rofi"    "$CONFIG_DIR/rofi"
 
 # ── Step 6: Install scripts ───────────────────────────────────
@@ -112,20 +99,11 @@ echo "  created: ~/wallpapers/anime/  ~/screenshots/"
 echo ""
 echo "🎨 Applying default theme: $DEFAULT_THEME"
 
-# Hyprland stores the active theme name (for theme-switch.sh)
-echo "$DEFAULT_THEME" > "$CONFIG_DIR/hypr/current_theme"
-
-# Waybar theme
-ln -sfn "$CONFIG_DIR/waybar/themes/$DEFAULT_THEME.css" \
-        "$CONFIG_DIR/waybar/themes/current.css"
-
-# Kitty theme
-ln -sfn "$CONFIG_DIR/kitty/themes/$DEFAULT_THEME.conf" \
-        "$CONFIG_DIR/kitty/themes/current.conf"
-
-# Dunst theme
-ln -sfn "$CONFIG_DIR/dunst/themes/$DEFAULT_THEME.conf" \
-        "$CONFIG_DIR/dunst/themes/current.conf"
+if [ -f "$HOME/scripts/theme-switch.sh" ]; then
+    "$HOME/scripts/theme-switch.sh" "$DEFAULT_THEME"
+else
+    echo "⚠️  theme-switch.sh not found, skipping default theme setup."
+fi
 
 echo ""
 echo "✅ Done! Next steps:"

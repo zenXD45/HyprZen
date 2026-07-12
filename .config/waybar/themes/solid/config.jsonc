@@ -85,7 +85,7 @@
         "on-click": "kitty -e btop"
     },
     "memory": {
-        "format": "  {}%",
+        "format": "  {percentage}%",
         "tooltip": "false"
     },
     "temperature": {
@@ -146,7 +146,7 @@
     // ── Notification Bell ─────────────────────────────────────────
     "custom/notif": {
         "tooltip": false,
-        "format": "{icon} {}",
+        "format": "{icon} {text}",
         "format-icons": {
             "notification": "<span foreground='red'><sup></sup></span>",
             "none": "",

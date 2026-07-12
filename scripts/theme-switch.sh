@@ -17,7 +17,6 @@ DISPLAY_NAMES=(
 HYPR_DIR="$HOME/.config/hypr"
 WAYBAR_THEME_DIR="$HOME/.config/waybar/themes"
 KITTY_THEME_DIR="$HOME/.config/kitty/themes"
-DUNST_THEME_DIR="$HOME/.config/dunst/themes"
 THEME_FILE="$HYPR_DIR/current_theme"
 ROFI_THEME="$HOME/.config/rofi/anime.rasi"
 
@@ -64,9 +63,6 @@ ln -sf "$WAYBAR_THEME_DIR/$SELECTED.css" "$WAYBAR_THEME_DIR/current.css"
 # 3. Kitty theme symlink
 ln -sf "$KITTY_THEME_DIR/$SELECTED.conf" "$KITTY_THEME_DIR/current.conf"
 
-# 4. Dunst theme symlink
-ln -sf "$DUNST_THEME_DIR/$SELECTED.conf" "$DUNST_THEME_DIR/current.conf"
-
 # 5. Reload Hyprland (re-reads current_theme via Lua)
 hyprctl reload
 
@@ -76,10 +72,8 @@ pkill -SIGUSR2 waybar 2>/dev/null
 # 7. Reload Kitty (sends SIGUSR1 to all kitty instances)
 pkill -SIGUSR1 kitty 2>/dev/null
 
-# 8. Reload Dunst
-pkill dunst 2>/dev/null
-sleep 0.2
-dunst &
+# 8. Reload SwayNC
+swaync-client -rs 2>/dev/null || true
 
 # 9. Notify user
 notify-send "󰟡 HyprZen" "Theme: $SELECTED" \
