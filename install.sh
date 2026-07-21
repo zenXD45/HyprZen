@@ -85,6 +85,7 @@ link "$DOTFILES_DIR/.config/eww"     "$CONFIG_DIR/eww"
 link "$DOTFILES_DIR/.config/wlogout" "$CONFIG_DIR/wlogout"
 link "$DOTFILES_DIR/.config/swayosd" "$CONFIG_DIR/swayosd"
 link "$DOTFILES_DIR/.config/fastfetch" "$CONFIG_DIR/fastfetch"
+link "$DOTFILES_DIR/.config/wal"     "$CONFIG_DIR/wal"
 
 # ── Step 6: Install scripts ───────────────────────────────────
 echo ""
