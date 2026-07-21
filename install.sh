@@ -86,6 +86,7 @@ link "$DOTFILES_DIR/.config/wlogout" "$CONFIG_DIR/wlogout"
 link "$DOTFILES_DIR/.config/swayosd" "$CONFIG_DIR/swayosd"
 link "$DOTFILES_DIR/.config/fastfetch" "$CONFIG_DIR/fastfetch"
 link "$DOTFILES_DIR/.config/wal"     "$CONFIG_DIR/wal"
+link "$DOTFILES_DIR/.config/nvim"    "$CONFIG_DIR/nvim"
 
 # ── Step 6: Install scripts ───────────────────────────────────
 echo ""
