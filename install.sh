@@ -9,7 +9,7 @@ set -e
 
 DOTFILES_DIR="$HOME/Desktop/hyprzen"
 CONFIG_DIR="$HOME/.config"
-DEFAULT_THEME="void-black"
+DEFAULT_THEME="catppuccin"
 
 echo "🌸 HyprZen Install"
 echo "══════════════════"
@@ -117,7 +117,7 @@ fi
 echo ""
 echo "✅ Done! Next steps:"
 echo "   1. Ensure required packages are installed: (see README.md)"
-echo "      e.g., rofi, waybar, hyprland, python-requests, swww, matugen"
+echo "      e.g., rofi, waybar, hyprland, python-requests, hyprpaper, python-pywal"
 echo "   2. Log in to Hyprland (or restart: hyprctl reload)"
 echo "   3. Switch themes: Super+Shift+T  or  ~/scripts/theme-switch.sh <theme>"
 echo "   4. Switch Waybar layout: Super+Shift+W  or  ~/scripts/waybar-switcher.sh"

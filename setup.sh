@@ -21,7 +21,7 @@ echo "📦 Installing dependencies..."
 PKGS="hyprland hyprlock waybar rofi-wayland kitty swaync wlogout waypaper"
 
 # ── 2. Utilities (Screenshots, Audio, Info, File Manager, Power) ──
-PKGS="$PKGS hyprshot cliphist wl-clipboard playerctl btop pavucontrol fastfetch cava thunar power-profiles-daemon"
+PKGS="$PKGS hyprshot cliphist wl-clipboard playerctl btop pavucontrol fastfetch cava thunar power-profiles-daemon python-pywal hyprswitch"
 
 # ── 3. Fonts ──
 PKGS="$PKGS ttf-jetbrains-mono-nerd"
