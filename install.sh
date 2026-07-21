@@ -82,6 +82,9 @@ link "$DOTFILES_DIR/.config/kitty"   "$CONFIG_DIR/kitty"
 link "$DOTFILES_DIR/.config/swaync"  "$CONFIG_DIR/swaync"
 link "$DOTFILES_DIR/.config/rofi"    "$CONFIG_DIR/rofi"
 link "$DOTFILES_DIR/.config/eww"     "$CONFIG_DIR/eww"
+link "$DOTFILES_DIR/.config/wlogout" "$CONFIG_DIR/wlogout"
+link "$DOTFILES_DIR/.config/swayosd" "$CONFIG_DIR/swayosd"
+link "$DOTFILES_DIR/.config/fastfetch" "$CONFIG_DIR/fastfetch"
 
 # ── Step 6: Install scripts ───────────────────────────────────
 echo ""
