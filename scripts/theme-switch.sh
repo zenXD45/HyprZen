@@ -8,7 +8,7 @@
 
 THEMES=(
     "catppuccin" "tokyo-night" "gruvbox" "nord" "osaka-jade"
-    "aetheria" "akane" "alabaster" "lavender" "eva-theme"
+    "aetheria" "akane" "alabaster" "lavender" "eva-theme" "noir"
 )
 DISPLAY_NAMES=(
     "☕ Catppuccin     — soothing pastel"
@@ -21,6 +21,7 @@ DISPLAY_NAMES=(
     "🤍 Alabaster      — clean minimalist"
     "🪻 Lavender       — purple dark"
     "🤖 Eva Theme      — neon evangelion"
+    "🌑 Noir           — soothing dark"
 )
 
 HYPR_DIR="$HOME/.config/hypr"
