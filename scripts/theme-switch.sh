@@ -88,6 +88,10 @@ pkill -SIGUSR2 waybar 2>/dev/null
 # 8. Reload Kitty (sends SIGUSR1 to all kitty instances)
 pkill -SIGUSR1 kitty 2>/dev/null
 
+# 9. Reload SwayOSD to pick up the new CSS
+killall swayosd-server 2>/dev/null || true
+swayosd-server >/dev/null 2>&1 &
+
 # 9. Reload SwayNC
 swaync-client -rs 2>/dev/null || true
 
