@@ -59,6 +59,16 @@
       <img src="assets/6.png" alt="Control Center" width="400"/>
     </td>
   </tr>
+  <tr>
+    <td align="center">
+      <b>Live Keybinds Cheatsheet</b><br>
+      <img src="assets/7.png" alt="Keybinds Cheatsheet" width="400"/>
+    </td>
+    <td align="center">
+      <b>Dynamic Theme Switcher</b><br>
+      <img src="assets/8.png" alt="Theme Switcher" width="400"/>
+    </td>
+  </tr>
 </table>
 
 ---
