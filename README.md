@@ -30,22 +30,22 @@
 
 <div align="center">
   <h3>The Desktop & App Launcher</h3>
-  <img src="assets/desktop.png" alt="Desktop and Rofi" width="800"/>
+  <img src="assets/1.png" alt="Desktop and Rofi" width="800"/>
 
   <h3>Live Keybinds Cheatsheet</h3>
-  <img src="assets/keybinds.png" alt="Keybinds Cheatsheet" width="800"/>
+  <img src="assets/2.png" alt="Keybinds Cheatsheet" width="800"/>
 
   <h3>Custom Fastfetch (Marin)</h3>
-  <img src="assets/fastfetch.png" alt="Fastfetch" width="800"/>
+  <img src="assets/3.png" alt="Fastfetch" width="800"/>
 
   <h3>Dynamic Waybar Theme Switcher</h3>
-  <img src="assets/waybar-switcher.png" alt="Waybar Switcher" width="800"/>
+  <img src="assets/4.png" alt="Waybar Switcher" width="800"/>
 
   <h3>SwayNC Control Center</h3>
-  <img src="assets/notifications.png" alt="Notifications" width="800"/>
+  <img src="assets/5.png" alt="Notifications" width="800"/>
 
   <h3>Impala Network Manager</h3>
-  <img src="assets/network.png" alt="Network Manager" width="800"/>
+  <img src="assets/6.png" alt="Network Manager" width="800"/>
 </div>
 
 ---
