@@ -35,4 +35,4 @@ awk '
     # Format beautifully
     printf "%-25s │ %s\n", mod " + " key, cmd
 }
-' "$CONF" | rofi -dmenu -i -p "⌨️ Search Keybinds" -theme ~/.config/rofi/minimal.rasi
+' "$CONF" | rofi -dmenu -i -p "⌨️ Search Keybinds" -theme ~/.config/rofi/cheat.rasi

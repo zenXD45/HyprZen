@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 300" width="100%" height="100%">
+    <g transform="translate(58, 80) scale(3.5)" fill="none" stroke="#f38ba8" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M18.36 6.64a9 9 0 1 1-12.73 0"></path><line x1="12" y1="2" x2="12" y2="12"></line>
+    </g>
+    <text x="100" y="230" font-family="'JetBrainsMono Nerd Font', 'Inter', sans-serif" font-weight="900" font-size="26" fill="#f38ba8" text-anchor="middle" dominant-baseline="middle" letter-spacing="1">
+        SHUTDOWN
+    </text>
+</svg>

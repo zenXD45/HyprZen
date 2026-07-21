@@ -6,12 +6,21 @@
 #    theme-switch.sh <theme-name>  → Apply directly
 # =============================================================
 
-THEMES=("void-black" "sakura-night" "moonlit-teal" "dusk-gradient")
+THEMES=(
+    "catppuccin" "tokyo-night" "gruvbox" "nord" "osaka-jade"
+    "aetheria" "akane" "alabaster" "lavender" "eva-theme"
+)
 DISPLAY_NAMES=(
-    "⬛ Void Black     — dark anime minimal"
-    "🌸 Sakura Night   — navy + pink + violet"
-    "🌊 Moonlit Teal   — dark + teal + indigo"
-    "🌅 Dusk Gradient  — orange + pink sunset"
+    "☕ Catppuccin     — soothing pastel"
+    "🌃 Tokyo Night    — clean dark blue"
+    "📦 Gruvbox        — retro groove"
+    "❄️ Nord           — arctic ice"
+    "🪨 Osaka Jade     — deep green"
+    "☁️ Aetheria      — light ethereal"
+    "🏮 Akane          — japanese red"
+    "🤍 Alabaster      — clean minimalist"
+    "🪻 Lavender       — purple dark"
+    "🤖 Eva Theme      — neon evangelion"
 )
 
 HYPR_DIR="$HOME/.config/hypr"
@@ -63,19 +72,25 @@ ln -sf "$WAYBAR_THEME_DIR/$SELECTED.css" "$WAYBAR_THEME_DIR/current.css"
 # 3. Kitty theme symlink
 ln -sf "$KITTY_THEME_DIR/$SELECTED.conf" "$KITTY_THEME_DIR/current.conf"
 
-# 5. Reload Hyprland (re-reads current_theme via Lua)
+# 4. Rofi theme symlink
+ln -sf "$HOME/.config/rofi/themes/$SELECTED.rasi" "$HOME/.config/rofi/colors.rasi"
+
+# 5. Update Waypaper wallpaper folder to match theme
+sed -i "s|^folder = .*|folder = ~/wallpapers/$SELECTED|" "$HOME/.config/waypaper/config.ini"
+
+# 6. Reload Hyprland (re-reads current_theme via Lua)
 hyprctl reload
 
-# 6. Reload Waybar (picks up new CSS symlink)
+# 7. Reload Waybar (picks up new CSS symlink)
 pkill -SIGUSR2 waybar 2>/dev/null
 
-# 7. Reload Kitty (sends SIGUSR1 to all kitty instances)
+# 8. Reload Kitty (sends SIGUSR1 to all kitty instances)
 pkill -SIGUSR1 kitty 2>/dev/null
 
-# 8. Reload SwayNC
+# 9. Reload SwayNC
 swaync-client -rs 2>/dev/null || true
 
-# 9. Notify user
+# 10. Notify user
 notify-send "󰟡 HyprZen" "Theme: $SELECTED" \
     --icon=preferences-desktop-theme \
     --urgency=low \

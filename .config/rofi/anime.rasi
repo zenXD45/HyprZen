@@ -2,16 +2,18 @@
    Works with: rofi -show drun -theme ~/.config/rofi/anime.rasi
 */
 
+@import "colors.rasi"
+
 * {
     font:             "JetBrainsMono Nerd Font 13";
     background-color: transparent;
-    text-color:       #c0caf5;
+    text-color: @on-surface;
 }
 
 window {
-    background-color: rgba(10, 10, 16, 0.94);
+    background-color: @surface;
     border:           2px;
-    border-color:     rgba(122, 162, 247, 0.40);
+    border-color: @primary;
     border-radius:    16px;
     width:            520px;
     padding:          20px;
@@ -23,24 +25,24 @@ mainbox {
 
 /* ── Search bar ───────────────────────────────────────────── */
 inputbar {
-    background-color: rgba(30, 30, 42, 0.80);
+    background-color: @surface-container-high;
     border-radius:    10px;
     padding:          10px 14px;
     border:           1px;
-    border-color:     rgba(122, 162, 247, 0.20);
+    border-color: @outline;
     children:         [ prompt, entry ];
     spacing:          8px;
 }
 
 prompt {
-    color:      #7aa2f7;
+    color: @primary;
     padding:    0px;
 }
 
 entry {
-    color:        #c0caf5;
+    color: @on-surface;
     placeholder:  "Search...";
-    placeholder-color: #565f89;
+    placeholder-color: @outline;
 }
 
 /* ── Results list ─────────────────────────────────────────── */
@@ -67,35 +69,35 @@ element-icon {
 
 element-text {
     vertical-align: 0.5;
-    color:          #c0caf5;
+    color: @on-surface;
 }
 
 element.selected.normal {
-    background-color: rgba(122, 162, 247, 0.15);
+    background-color: @secondary-container;
     border:           1px;
-    border-color:     rgba(122, 162, 247, 0.35);
-    text-color:       #7aa2f7;
+    border-color: @primary;
+    text-color: @primary;
 }
 
 element.selected.normal element-text {
-    color: #7aa2f7;
+    color: @primary;
 }
 
 element.urgent {
-    text-color: #f7768e;
+    text-color: @error;
 }
 
 element.active {
-    text-color: #9ece6a;
+    text-color: @tertiary;
 }
 
 /* ── Message / No results ─────────────────────────────────── */
 message {
     padding:    10px 14px;
-    background-color: rgba(30, 30, 42, 0.60);
+    background-color: @surface-container-high;
     border-radius: 8px;
 }
 
 textbox {
-    text-color: #565f89;
+    text-color: @outline;
 }

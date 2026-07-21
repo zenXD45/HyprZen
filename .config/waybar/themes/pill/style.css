@@ -1,3 +1,5 @@
+@import "themes/current.css";
+
 * {
     font-family: "JetBrainsMono Nerd Font", monospace;
     font-size: 14px;
@@ -8,12 +10,12 @@
 
 window#waybar {
     background: transparent;
-    color: #c0c0c0;
+    color: @text;
 }
 
 .modules-left, .modules-center, .modules-right {
-    background: rgba(10, 10, 12, 0.90);
-    border: 1px solid rgba(255, 255, 255, 0.04);
+    background: @bg_surface;
+    border: 1px solid @border_color;
     border-radius: 24px;
     padding: 2px 10px;
     margin: 6px 10px;
@@ -21,7 +23,7 @@ window#waybar {
 
 #custom-launcher, #window, #clock, #pulseaudio, #network, #battery, #cpu, #memory, #temperature, #tray, #custom-notif, #custom-power, #cava, #mpris {
     padding: 0 10px;
-    color: #a9b1d6;
+    color: @subtext;
     transition: color 0.2s ease;
 }
 
@@ -31,7 +33,7 @@ window#waybar {
 
 #workspaces button {
     padding: 2px 14px;
-    color: #565f89;
+    color: @subtext;
     border-radius: 14px;
     margin: 4px 2px;
     background: transparent;
@@ -43,10 +45,10 @@ window#waybar {
 }
 
 #workspaces button.active {
-    background: rgba(122, 162, 247, 0.2);
-    color: #7aa2f7;
+    background: @accent_soft;
+    color: @accent;
 }
 
-#custom-launcher { color: #7aa2f7; font-size: 18px; }
-#custom-power { color: #f7768e; font-size: 16px; padding-left: 14px; }
-#clock { color: #ffffff; font-weight: bold; }
+#custom-launcher { color: @accent; font-size: 18px; }
+#custom-power { color: @urgent; font-size: 16px; padding-left: 14px; }
+#clock { color: @text; font-weight: bold; }

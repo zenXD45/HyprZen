@@ -1,0 +1,112 @@
+/*
+ * HyprZen - Windows 11 Alt+Tab Style Overview
+ */
+
+@import "colors.rasi"
+
+configuration {
+    show-icons: true;
+    icon-theme: "Papirus-Dark";
+    display-window: "Search windows";
+    window-format: "{w} {c} {t}";
+}
+
+* {
+    /* Windows 11 Alt-Tab Style Colors */
+    bg: @surface;
+    bg-sel: @secondary-container;
+    fg: @on-surface;
+    fg-alt: @outline;
+    border-col: @outline;
+    border-sel: @primary;
+
+    background-color: transparent;
+    text-color: @fg;
+    margin: 0;
+    padding: 0;
+    spacing: 0;
+}
+
+window {
+    width: 900px;
+    background-color: @bg;
+    border: 1px;
+    border-color: @border-col;
+    border-radius: 16px;
+    padding: 20px;
+}
+
+mainbox {
+    children: [ inputbar, listview ];
+    spacing: 30px;
+}
+
+inputbar {
+    background-color: @surface-container-high;
+    border: 1px;
+    border-color: @outline;
+    border-radius: 8px;
+    padding: 12px 20px;
+    children: [ prompt, entry ];
+    spacing: 15px;
+    margin: 0px 10% 0px 10%;
+}
+
+prompt {
+    text-color: @fg-alt;
+    font: "JetBrainsMono Nerd Font 13";
+    vertical-align: 0.5;
+}
+
+entry {
+    text-color: @fg;
+    placeholder: "Type to search...";
+    placeholder-color: @fg-alt;
+    font: "JetBrainsMono Nerd Font 13";
+    vertical-align: 0.5;
+    blink: true;
+}
+
+listview {
+    columns: 4;
+    lines: 3;
+    spacing: 15px;
+    fixed-height: false;
+    fixed-columns: false;
+    cycle: true;
+    scrollbar: false;
+}
+
+element {
+    orientation: vertical;
+    padding: 20px 10px;
+    border-radius: 12px;
+    spacing: 15px;
+}
+
+element-icon {
+    size: 64px;
+    horizontal-align: 0.5;
+}
+
+element-text {
+    horizontal-align: 0.5;
+    vertical-align: 0.5;
+    font: "JetBrainsMono Nerd Font 12";
+    text-color: @fg;
+    highlight: bold;
+}
+
+element selected.normal {
+    background-color: @bg-sel;
+    border: 1px;
+    border-color: @border-sel;
+}
+
+element.urgent element-text {
+    text-color: @error;
+}
+
+element.active element-text {
+    text-color: @tertiary;
+}

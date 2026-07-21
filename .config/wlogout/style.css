@@ -1,0 +1,72 @@
+* {
+    background-image: none;
+    box-shadow: none;
+}
+
+window {
+    background-color: rgba(10, 10, 15, 0.7);
+}
+
+button {
+    border-radius: 30px; /* Apple-style squircle */
+    border: 2px solid rgba(255, 255, 255, 0.03);
+    background-color: rgba(30, 30, 46, 0.5);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 35%; /* Scale SVG */
+    margin: 15px; 
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+button:hover {
+    border-radius: 20px;
+    background-size: 40%;
+    outline-style: none;
+    border-width: 2px;
+}
+
+/* Backgrounds - USING ABSOLUTE PATHS TO FIX GTK RESOLUTION */
+#lock { background-image: image(url("/home/zen/.config/wlogout/icons/lock.svg")); }
+#logout { background-image: image(url("/home/zen/.config/wlogout/icons/logout.svg")); }
+#suspend { background-image: image(url("/home/zen/.config/wlogout/icons/suspend.svg")); }
+#hibernate { background-image: image(url("/home/zen/.config/wlogout/icons/hibernate.svg")); }
+#reboot { background-image: image(url("/home/zen/.config/wlogout/icons/reboot.svg")); }
+#shutdown { background-image: image(url("/home/zen/.config/wlogout/icons/shutdown.svg")); }
+
+/* Hover states */
+#lock:hover {
+    background-color: rgba(249, 226, 175, 0.2);
+    border-color: #f9e2af;
+    box-shadow: 0 0 30px rgba(249, 226, 175, 0.3);
+}
+
+#logout:hover {
+    background-color: rgba(203, 166, 247, 0.2);
+    border-color: #cba6f7;
+    box-shadow: 0 0 30px rgba(203, 166, 247, 0.3);
+}
+
+#suspend:hover {
+    background-color: rgba(137, 180, 250, 0.2);
+    border-color: #89b4fa;
+    box-shadow: 0 0 30px rgba(137, 180, 250, 0.3);
+}
+
+#hibernate:hover {
+    background-color: rgba(148, 226, 213, 0.2);
+    border-color: #94e2d5;
+    box-shadow: 0 0 30px rgba(148, 226, 213, 0.3);
+}
+
+#reboot:hover {
+    background-color: rgba(250, 179, 135, 0.2);
+    border-color: #fab387;
+    box-shadow: 0 0 30px rgba(250, 179, 135, 0.3);
+}
+
+#shutdown:hover {
+    background-color: rgba(243, 139, 168, 0.2);
+    border-color: #f38ba8;
+    box-shadow: 0 0 30px rgba(243, 139, 168, 0.3);
+}

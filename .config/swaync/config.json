@@ -1,6 +1,5 @@
 {
     "$schema": "/etc/xdg/swaync/configSchema.json",
-
     "positionX": "right",
     "positionY": "top",
     "layer": "overlay",
@@ -8,77 +7,73 @@
     "layer-shell": true,
     "cssPriority": "user",
     "ignore-gtk-theme": true,
-
-    "control-center-width": 340,
-    "control-center-margin-top": 54,
-    "control-center-margin-bottom": 14,
-    "control-center-margin-right": 14,
-    "control-center-margin-left": 0,
-
-    "notification-window-width": 320,
+    "control-center-width": 400,
+    "control-center-margin-top": 15,
+    "control-center-margin-bottom": 15,
+    "control-center-margin-right": 15,
+    "control-center-margin-left": 15,
+    "notification-window-width": 350,
     "notification-icon-size": 48,
     "notification-body-image-height": 100,
     "notification-body-image-width": 100,
-
     "timeout": 8,
     "timeout-low": 5,
     "timeout-critical": 0,
-
     "fit-to-screen": true,
     "keyboard-shortcuts": true,
     "image-visibility": "when-available",
-    "transition-time": 150,
-    "hide-on-clear": true,
-    "hide-on-action": true,
-    "script-fail-notify": false,
-    "notification-2fa-action": true,
-    "notification-inline-replies": false,
-
+    "transition-time": 200,
+    "hide-on-clear": false,
+    "hide-on-action": false,
+    "script-fail-notify": true,
     "widgets": [
         "title",
         "dnd",
-        "notifications",
-        "buttons-grid"
+        "mpris",
+        "volume",
+        "backlight",
+        "menubar#actions",
+        "notifications"
     ],
-
     "widget-config": {
         "title": {
-            "text": "Notifications",
+            "text": "Control Center",
             "clear-all-button": true,
-            "button-text": "󰆴 clear"
+            "button-text": "󰆴 Clear"
         },
-
+        "dnd": {
+            "text": "Do Not Disturb"
+        },
         "mpris": {
-            "image-size": 60,
-            "image-radius": 0
+            "image-size": 90,
+            "image-radius": 12
         },
-
-        "buttons-grid": {
-            "actions": [
+        "volume": {
+            "label": "󰕾"
+        },
+        "backlight": {
+            "label": "󰃠"
+        },
+        "menubar#actions": {
+            "menu-actions": [
                 {
-                    "label": "󰝟",
-                    "command": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
-                    "type": "toggle"
+                    "label": "󰤨  Wi-Fi",
+                    "command": "kitty --class impala -e nmtui"
                 },
                 {
-                    "label": "󰍭",
-                    "command": "pactl set-source-mute @DEFAULT_SOURCE@ toggle",
-                    "type": "toggle"
-                },
-                {
-                    "label": "󰤨",
-                    "command": "kitty --class impala -e impala"
-                },
-                {
-                    "label": "󰂯",
+                    "label": "󰂯  Bluetooth",
                     "command": "blueman-manager"
                 },
                 {
-                    "label": "󰌾",
+                    "label": "󰒲  Sleep",
+                    "command": "systemctl suspend"
+                },
+                {
+                    "label": "󰌾  Lock",
                     "command": "hyprlock"
                 },
                 {
-                    "label": "󰐥",
+                    "label": "󰐥  Power",
                     "command": "wlogout -b 2"
                 }
             ]

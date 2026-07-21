@@ -16,12 +16,13 @@
 
 ## ✨ Features
 
-- **Minimalist Aesthetic**: Pure, dark, and distraction-free workspace. No bloated UI, no cartoonish shadows—just clean lines and solid colors.
-- **Dynamic Waybar**: Comes with a built-in Rofi-based theme switcher to instantly swap between three custom sleek bar layouts: `minimal`, `pill`, and `solid`.
+- **Dynamic Island Waybar**: Completely replaces a boring static bar with a sleek, floating, expanding "dynamic island" pill in the top-center. You can also instantly swap between `minimal`, `pill`, and `dynamic-island` using `Super+Shift+W`.
+- **Aesthetic Glassmorphism**: Stunning Kawase blur (3 passes), minimal 1px borders, and transparent background glass effects across all applications including Rofi, VS Code, and terminal windows.
+- **Automated Wallpaper Downloader & Switcher**: Includes a custom `fetch_wallpapers.py` script that downloads 100+ high-res, aesthetic PC wallpapers (anime, cars, scenery) directly from Wallhaven! Pick them effortlessly through an immersive transparent Rofi grid GUI.
 - **Advanced Screenshots**: Fully integrated `hyprshot` and `satty`. Instantly capture regions, annotate them in a centered floating window, or copy them straight to your clipboard.
 - **Smart Workspaces**: Workspaces 1-4 are always visible for consistency, while 5-10 generate dynamically only when you need them.
 - **Interactive Cheatsheet**: Never forget a shortcut again. Press `SUPER + ,` to pull up a searchable, dynamically generated Rofi menu of all your keybindings.
-- **Automated Setup**: A bulletproof `setup.sh` script that automatically installs dependencies via `pacman` and `yay`/`paru`, followed by an installer that safely backs up your old configs.
+- **Automated Setup**: A bulletproof `setup.sh` script that automatically installs dependencies via `pacman` and `yay`/`paru`, followed by an installer that safely backups old configs and initializes dynamic themes.
 
 ---
 

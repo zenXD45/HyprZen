@@ -2,6 +2,8 @@
    HyprZen — Rofi Glassmorphism Theme
    ════════════════════════════════════════════════════════════════ */
 
+@import "colors.rasi"
+
 configuration {
     show-icons:         true;
     icon-theme:         "Papirus-Dark";
@@ -15,11 +17,11 @@ configuration {
 }
 
 * {
-    bg:          rgba(0, 0, 0, 0.7);
-    bg-sel:      rgba(122, 162, 247, 0.20);
-    fg:          #a9b1d6;
-    fg-sel:      #7aa2f7;
-    border-col:  rgba(255, 255, 255, 0.08);
+    bg: @surface;
+    bg-sel: @secondary-container;
+    fg: @on-surface;
+    fg-sel: @primary;
+    border-col: @outline;
 
     background-color: transparent;
     text-color:       @fg;
@@ -47,26 +49,26 @@ mainbox {
 
 /* ── Search bar ─────────────────────────────────────────────── */
 inputbar {
-    background-color: rgba(30, 30, 35, 0.5);
+    background-color: @surface-container-high;
     border:           1px;
     border-radius:    12px;
-    border-color:     rgba(255, 255, 255, 0.05);
+    border-color: @outline;
     padding:          14px 18px;
     children:         [ prompt, entry ];
     spacing:          12px;
 }
 
 prompt {
-    color:            #7aa2f7;
-    text-color:       #7aa2f7;
+    color: @primary;
+    text-color: @primary;
     font:             "JetBrainsMono Nerd Font 15";
     vertical-align:   0.5;
 }
 
 entry {
-    text-color:       #ffffff;
+    text-color: @on-surface;
     placeholder:      "Search apps...";
-    placeholder-color: #565f89;
+    placeholder-color: @outline;
     cursor:           text;
     blink:            true;
     vertical-align:   0.5;
@@ -99,13 +101,13 @@ element-icon {
 element-text {
     text-color:       @fg;
     vertical-align:   0.5;
-    highlight:        bold #ffffff;
+    highlight: bold;
 }
 
 element.selected.normal {
     background-color: @bg-sel;
     border:           1px;
-    border-color:     rgba(122, 162, 247, 0.4);
+    border-color: @primary;
 }
 
 element.selected.normal element-text {
@@ -114,9 +116,9 @@ element.selected.normal element-text {
 }
 
 element.urgent element-text {
-    text-color: #f7768e;
+    text-color: @error;
 }
 
 element.active element-text {
-    text-color: #9ece6a;
+    text-color: @tertiary;
 }

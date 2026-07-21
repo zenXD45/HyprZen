@@ -1,6 +1,7 @@
+@import "themes/current.css";
+
 /* ════════════════════════════════════════════════════════════════
    HyprZen — Waybar Ultra Minimal Black Style
-   Pure black · monospace · no gradients · no noise
    ════════════════════════════════════════════════════════════════ */
 
 /* ── Reset ───────────────────────────────────────────────────── */
@@ -16,10 +17,10 @@
 
 /* ── Bar Window ──────────────────────────────────────────────── */
 window#waybar {
-    background: rgba(10, 10, 12, 0.88);
-    color:      #c0c0c0;
+    background: @bg_surface;
+    color:      @text;
     border-radius: 12px;
-    border: 1px solid rgba(255, 255, 255, 0.06);
+    border: 1px solid @border_color;
 }
 
 /* ── Section Groups ──────────────────────────────────────────── */
@@ -31,13 +32,13 @@ window#waybar {
 }
 
 #custom-launcher {
-    color: #89b4fa;
+    color: @accent;
     font-size: 16px;
     padding: 0 14px 0 0;
 }
 
 #window {
-    color: #a9b1d6;
+    color: @subtext;
     font-size: 13px;
     padding: 0 16px;
 }
@@ -50,7 +51,7 @@ window#waybar {
 
 #workspaces button {
     background: transparent;
-    color:      #444444;
+    color:      @subtext;
     padding:    0 10px;
     font-size:  13px;
     transition: color 0.15s ease;
@@ -59,23 +60,23 @@ window#waybar {
 
 #workspaces button:hover {
     background: transparent;
-    color:      #888888;
+    color:      @text;
     box-shadow: none;
 }
 
 #workspaces button.active {
-    color:       #ffffff;
-    border-bottom: 2px solid #ffffff;
+    color:       @accent;
+    border-bottom: 2px solid @accent;
 }
 
 #workspaces button.urgent {
-    color: #f7768e;
-    border-bottom: 2px solid #f7768e;
+    color: @urgent;
+    border-bottom: 2px solid @urgent;
 }
 
 /* ── Clock (center — slightly brighter) ──────────────────────── */
 #clock {
-    color:       #e0e0e0;
+    color:       @text;
     font-weight: 600;
     font-size:   13px;
     letter-spacing: 0.5px;
@@ -94,7 +95,7 @@ window#waybar {
 #tray,
 #custom-trayicon,
 #custom-notif {
-    color:   #a9b1d6;
+    color:   @subtext;
     padding: 0 10px;
     transition: color 0.15s ease;
 }
@@ -109,40 +110,38 @@ window#waybar {
 #temperature:hover,
 #custom-trayicon:hover,
 #custom-notif:hover {
-    color: #ffffff;
+    color: @text;
 }
 
 /* ── Audio ────────────────────────────────────────────────────── */
 #pulseaudio.muted {
-    color: #3a3a3a;
+    color: @subtext;
+    opacity: 0.5;
 }
 
 /* ── Battery States ──────────────────────────────────────────── */
 #battery.charging {
-    color: #9ece6a;
+    color: @accent;
 }
 
 #battery.warning:not(.charging) {
-    color: #e0af68;
+    color: @secondary;
 }
 
 #battery.critical:not(.charging) {
-    color: #f7768e;
-    opacity: 0.7;
+    color: @urgent;
+    opacity: 0.8;
 }
-
-
-
 
 /* ── MPRIS (media) ────────────────────────────────────────────── */
 #mpris {
-    color:     #555555;
+    color:     @subtext;
     font-size: 12px;
 }
 
 /* ── Audio Visualizer ─────────────────────────────────────────── */
 #cava {
-    color: #7aa2f7;
+    color: @accent;
 }
 
 /* ── Notification Bell ────────────────────────────────────────── */
@@ -168,15 +167,15 @@ window#waybar {
 
 /* ── Power Menu ───────────────────────────────────────────────── */
 #custom-power {
-    color: #f7768e;
+    color: @urgent;
     font-size: 15px;
     padding: 0 14px;
     margin-left: 8px;
-    border-left: 1px solid rgba(255, 255, 255, 0.08);
+    border-left: 1px solid @border_color;
 }
 
 /* ── Separator ────────────────────────────────────────────────── */
 .separator {
-    color:   rgba(255, 255, 255, 0.06);
+    color:   @border_color;
     padding: 0 4px;
 }

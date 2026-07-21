@@ -1,0 +1,13 @@
+[config]
+
+[templates.hyprland]
+input_path = "/home/zen/Desktop/hyprzen/matugen-templates/hyprland.conf"
+output_path = "/home/zen/.config/hypr/themes/matugen.conf"
+
+[templates.waybar]
+input_path = "/home/zen/Desktop/hyprzen/matugen-templates/waybar.css"
+output_path = "/home/zen/.config/waybar/themes/matugen.css"
+
+[templates.kitty]
+input_path = "/home/zen/Desktop/hyprzen/matugen-templates/kitty.conf"
+output_path = "/home/zen/.config/kitty/themes/matugen.conf"

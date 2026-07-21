@@ -81,19 +81,28 @@ link "$DOTFILES_DIR/.config/waybar"  "$CONFIG_DIR/waybar"
 link "$DOTFILES_DIR/.config/kitty"   "$CONFIG_DIR/kitty"
 link "$DOTFILES_DIR/.config/swaync"  "$CONFIG_DIR/swaync"
 link "$DOTFILES_DIR/.config/rofi"    "$CONFIG_DIR/rofi"
+link "$DOTFILES_DIR/.config/eww"     "$CONFIG_DIR/eww"
 
 # ── Step 6: Install scripts ───────────────────────────────────
 echo ""
 echo "📜 Installing scripts..."
 mkdir -p "$HOME/scripts"
 cp "$DOTFILES_DIR/scripts/"*.sh "$HOME/scripts/"
-chmod +x "$HOME/scripts/"*.sh
+cp "$DOTFILES_DIR/scripts/"*.py "$HOME/scripts/"
+chmod +x "$HOME/scripts/"*
 echo "  installed: ~/scripts/"
 
 # ── Step 7: Create wallpaper / screenshot dirs ────────────────
-mkdir -p "$HOME/wallpapers/anime"
+mkdir -p "$HOME/wallpapers"
 mkdir -p "$HOME/screenshots"
-echo "  created: ~/wallpapers/anime/  ~/screenshots/"
+echo "  created: ~/wallpapers/  ~/screenshots/"
+echo ""
+echo "🖼️ Downloading initial wallpapers from Wallhaven..."
+if command -v python3 &>/dev/null; then
+    python3 "$HOME/scripts/fetch_wallpapers.py" || echo "  ⚠️ Failed to fetch wallpapers. Do it manually later!"
+else
+    echo "  ⚠️ python3 not found. Skipping wallpaper fetch."
+fi
 
 # ── Step 8: Apply default theme ──────────────────────────────
 echo ""
@@ -107,7 +116,9 @@ fi
 
 echo ""
 echo "✅ Done! Next steps:"
-echo "   1. Add anime wallpapers to ~/wallpapers/anime/"
-echo "   2. Install packages if not already: see README.md"
-echo "   3. Log in to Hyprland (or restart: hyprctl reload)"
-echo "   4. Switch themes: Super+Shift+T  or  ~/scripts/theme-switch.sh <theme>"
+echo "   1. Ensure required packages are installed: (see README.md)"
+echo "      e.g., rofi, waybar, hyprland, python-requests, swww, matugen"
+echo "   2. Log in to Hyprland (or restart: hyprctl reload)"
+echo "   3. Switch themes: Super+Shift+T  or  ~/scripts/theme-switch.sh <theme>"
+echo "   4. Switch Waybar layout: Super+Shift+W  or  ~/scripts/waybar-switcher.sh"
+echo "   5. Select Wallpapers via Super+W (Rofi GUI)"

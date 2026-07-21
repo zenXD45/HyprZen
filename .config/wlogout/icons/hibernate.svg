@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 300" width="100%" height="100%">
+    <g transform="translate(58, 80) scale(3.5)" fill="none" stroke="#94e2d5" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="2" y1="12" x2="22" y2="12"></line><line x1="12" y1="2" x2="12" y2="22"></line><path d="m20 16-4-4 4-4"></path><path d="m4 8 4 4-4 4"></path><path d="m16 4-4 4-4-4"></path><path d="m8 20 4-4 4 4"></path>
+    </g>
+    <text x="100" y="230" font-family="'JetBrainsMono Nerd Font', 'Inter', sans-serif" font-weight="900" font-size="26" fill="#94e2d5" text-anchor="middle" dominant-baseline="middle" letter-spacing="1">
+        HIBERNATE
+    </text>
+</svg>

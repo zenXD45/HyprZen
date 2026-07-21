@@ -1,0 +1,192 @@
+// ╔══════════════════════════════════════════════════════════════╗
+// ║  HyprZen — Ultra Minimal Waybar Config                      ║
+// ║  Black theme · Clean · No noise                             ║
+// ╚══════════════════════════════════════════════════════════════╝
+{
+    "layer": "top",
+    "position": "top",
+    "margin-top": 10,
+    "margin-bottom": 0,
+    "height": 36,
+    "spacing": 4,
+    "exclusive": true,
+    "passthrough": false,
+    "gtk-layer-shell": true,
+
+    // ── Layout ────────────────────────────────────────────────────
+    "modules-left":   [],
+    "modules-center": [
+        "custom/launcher",
+        "hyprland/workspaces",
+        "hyprland/window",
+        "clock",
+        "mpris",
+        "pulseaudio",
+        "network",
+        "battery",
+        "custom/notif",
+        "group/traydrawer",
+        "custom/power"
+    ],
+    "modules-right":  [],
+
+    // ── Launcher ──────────────────────────────────────────────────
+    "custom/launcher": {
+        "format": "",
+        "on-click": "rofi -show drun",
+        "tooltip": false
+    },
+
+    // ── Workspaces ────────────────────────────────────────────────
+    "hyprland/workspaces": {
+        "format": "{name}",
+        "sort-by-number": true,
+        "on-scroll-up":   "hyprctl dispatch workspace e+1",
+        "on-scroll-down": "hyprctl dispatch workspace e-1",
+        "on-click":       "activate"
+    },
+    // ── Window ────────────────────────────────────────────────────
+    "hyprland/window": {
+        "format": "{title}",
+        "max-length": 40,
+        "rewrite": {
+            "(.*) - Mozilla Firefox": "🌎 $1",
+            "(.*) - Kitty": "  $1"
+        }
+    },
+    // ── Clock ─────────────────────────────────────────────────────
+    "clock": {
+        "format": "<b>{:%H:%M}</b>",
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+        "on-click": "eww open --toggle dashboard"
+    },
+
+    // ── Media (mpris) ─────────────────────────────────────────────
+    "mpris": {
+        "format": "{player_icon} {title}",
+        "format-paused": " {title}",
+        "player-icons": {
+            "default":  "♪",
+            "spotify":  "",
+            "firefox":  "",
+            "mpv":      "▶"
+        },
+        "status-icons": { "paused": "" },
+        "max-length": 32,
+        "tooltip": false
+    },
+
+    // ── System Monitors ───────────────────────────────────────────
+    "cpu": {
+        "format": "  {usage}%",
+        "tooltip": false,
+        "on-click": "kitty -e btop"
+    },
+    "memory": {
+        "format": "  {percentage}%",
+        "tooltip": false
+    },
+    "temperature": {
+        "critical-threshold": 80,
+        "format": "{icon} {temperatureC}°C",
+        "format-icons": ["", "", ""]
+    },
+
+    // ── Audio ─────────────────────────────────────────────────────
+    "pulseaudio": {
+        "format":       "{icon} {volume}%",
+        "format-muted": "󰝟",
+        "format-icons": { "default": ["", "", ""] },
+        "on-click":       "pavucontrol",
+        "on-scroll-up":   "swayosd-client --output-volume raise",
+        "on-scroll-down": "swayosd-client --output-volume lower",
+        "tooltip": false
+    },
+
+    // ── Network ───────────────────────────────────────────────────
+    "network": {
+        "format-wifi":        "󰤨 {signalStrength}%",
+        "format-ethernet":    "󰈀",
+        "format-disconnected": "󰤭",
+        "tooltip-format-wifi": "{essid}  {signalStrength}%",
+        "on-click": "kitty --class impala -e impala"
+    },
+
+    // ── Audio Visualizer ──────────────────────────────────────────
+    "cava": {
+        "framerate": 60,
+        "autosens": 1,
+        "bars": 12,
+        "lower_cutoff_freq": 50,
+        "higher_cutoff_freq": 10000,
+        "method": "pipewire",
+        "source": "auto",
+        "stereo": true,
+        "reverse": false,
+        "bar_delimiter": 0,
+        "monstercat": false,
+        "waves": false,
+        "input_delay": 2,
+        "format-icons" : [" ", "▂", "▃", "▄", "▅", "▆", "▇", "█" ]
+    },
+
+    // ── Battery ───────────────────────────────────────────────────
+    "battery": {
+        "states": { "warning": 30, "critical": 15 },
+        "format":          "{icon} {capacity}%",
+        "format-charging": "󰂄 {capacity}%",
+        "format-plugged":  "󰚥",
+        "format-icons":    ["󰁺", "󰁼", "󰁾", "󰂀", "󰁹"],
+        "tooltip-format":  "{timeTo}",
+        "on-click":        "~/scripts/power-profile.sh"
+    },
+
+    // ── Notification Bell ─────────────────────────────────────────
+    "custom/notif": {
+        "tooltip": false,
+        "format": "{icon} {text}",
+        "format-icons": {
+            "notification": "<span foreground='red'><sup></sup></span>",
+            "none": "",
+            "dnd-notification": "<span foreground='red'><sup></sup></span>",
+            "dnd-none": "",
+            "inhibited-notification": "<span foreground='red'><sup></sup></span>",
+            "inhibited-none": "",
+            "dnd-inhibited-notification": "<span foreground='red'><sup></sup></span>",
+            "dnd-inhibited-none": ""
+        },
+        "return-type": "json",
+        "exec": "swaync-client -swb",
+        "on-click": "swaync-client -t -sw",
+        "on-click-right": "swaync-client -d -sw",
+        "escape": true
+    },
+
+    // ── Tray & Drawer ─────────────────────────────────────────────
+    "group/traydrawer": {
+        "orientation": "horizontal",
+        "drawer": {
+            "transition-duration": 500,
+            "transition-left-to-right": false
+        },
+        "modules": [
+            "custom/trayicon",
+            "tray"
+        ]
+    },
+    "custom/trayicon": {
+        "format": "",
+        "tooltip": false
+    },
+    "tray": {
+        "icon-size": 16,
+        "spacing":   8
+    },
+
+    // ── Power Menu ────────────────────────────────────────────────
+    "custom/power": {
+        "format": "⏻",
+        "on-click": "wlogout -b 2",
+        "tooltip": false
+    }
+}
