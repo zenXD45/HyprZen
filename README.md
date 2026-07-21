@@ -28,25 +28,38 @@
 
 ## 📸 Showcase
 
-<div align="center">
-  <h3>Clean Desktop Environment</h3>
-  <img src="assets/2.png" alt="Clean Desktop" width="800"/>
-
-  <h3>Rofi App Launcher</h3>
-  <img src="assets/3.png" alt="App Launcher" width="800"/>
-
-  <h3>Hyprswitch Window Switcher</h3>
-  <img src="assets/1.png" alt="Window Switcher" width="800"/>
-
-  <h3>Tiled Window Management</h3>
-  <img src="assets/4.png" alt="Tiled Windows" width="800"/>
-
-  <h3>Custom Fastfetch (Marin)</h3>
-  <img src="assets/5.png" alt="Fastfetch" width="800"/>
-
-  <h3>SwayNC Control Center</h3>
-  <img src="assets/6.png" alt="Control Center" width="800"/>
-</div>
+<table align="center">
+  <tr>
+    <td align="center">
+      <b>Clean Desktop Environment</b><br>
+      <img src="assets/2.png" alt="Clean Desktop" width="400"/>
+    </td>
+    <td align="center">
+      <b>Rofi App Launcher</b><br>
+      <img src="assets/3.png" alt="App Launcher" width="400"/>
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <b>Hyprswitch Window Switcher</b><br>
+      <img src="assets/1.png" alt="Window Switcher" width="400"/>
+    </td>
+    <td align="center">
+      <b>Tiled Window Management</b><br>
+      <img src="assets/4.png" alt="Tiled Windows" width="400"/>
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <b>Custom Fastfetch (Marin)</b><br>
+      <img src="assets/5.png" alt="Fastfetch" width="400"/>
+    </td>
+    <td align="center">
+      <b>SwayNC Control Center</b><br>
+      <img src="assets/6.png" alt="Control Center" width="400"/>
+    </td>
+  </tr>
+</table>
 
 ---
 
