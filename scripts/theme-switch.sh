@@ -95,7 +95,35 @@ hyprctl dispatch exec swayosd-server >/dev/null 2>&1
 # 9. Reload SwayNC
 swaync-client -rs 2>/dev/null || true
 
-# 10. Notify user
+# 10. Sync Neovim Theme
+case "$SELECTED" in
+    "noir") NVIM_THEME="carbonfox" ;;
+    "catppuccin") NVIM_THEME="catppuccin-mocha" ;;
+    "tokyo-night") NVIM_THEME="tokyonight" ;;
+    "gruvbox") NVIM_THEME="gruvbox" ;;
+    "nord") NVIM_THEME="nord" ;;
+    "osaka-jade") NVIM_THEME="everforest" ;;
+    "aetheria") NVIM_THEME="catppuccin-latte" ;;
+    "akane") NVIM_THEME="kanagawa" ;;
+    "alabaster") NVIM_THEME="github_light" ;;
+    "lavender") NVIM_THEME="tokyonight-moon" ;;
+    "eva-theme") NVIM_THEME="tokyonight-storm" ;;
+    *) NVIM_THEME="pywal" ;;
+esac
+
+STATE_FILE="$HOME/.local/state/nvim/settings_state.json"
+mkdir -p "$(dirname "$STATE_FILE")"
+if [ -f "$STATE_FILE" ]; then
+    jq ".theme = \"$NVIM_THEME\"" "$STATE_FILE" > "${STATE_FILE}.tmp" && mv "${STATE_FILE}.tmp" "$STATE_FILE"
+else
+    echo "{\"theme\": \"$NVIM_THEME\"}" > "$STATE_FILE"
+fi
+
+for server in $(find /run/user/$(id -u)/nvim* -type s 2>/dev/null); do
+    nvim --server "$server" --remote-send "<ESC>:lua require('ui_theme').apply_theme('$NVIM_THEME')<CR>" 2>/dev/null
+done
+
+# 11. Notify user
 notify-send "󰟡 HyprZen" "Theme: $SELECTED" \
     --icon=preferences-desktop-theme \
     --urgency=low \
