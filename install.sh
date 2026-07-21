@@ -96,17 +96,13 @@ cp "$DOTFILES_DIR/scripts/"*.py "$HOME/scripts/"
 chmod +x "$HOME/scripts/"*
 echo "  installed: ~/scripts/"
 
-# ── Step 7: Create wallpaper / screenshot dirs ────────────────
+# ── Step 7: Install curated wallpapers / screenshot dirs ──────
 mkdir -p "$HOME/wallpapers"
 mkdir -p "$HOME/screenshots"
 echo "  created: ~/wallpapers/  ~/screenshots/"
 echo ""
-echo "🖼️ Downloading initial wallpapers from Wallhaven..."
-if command -v python3 &>/dev/null; then
-    python3 "$HOME/scripts/fetch_wallpapers.py" || echo "  ⚠️ Failed to fetch wallpapers. Do it manually later!"
-else
-    echo "  ⚠️ python3 not found. Skipping wallpaper fetch."
-fi
+echo "🖼️ Installing categorized wallpapers..."
+cp -r "$DOTFILES_DIR/wallpapers/"* "$HOME/wallpapers/" 2>/dev/null || echo "  ⚠️ No local wallpapers found to install."
 
 # ── Step 8: Apply default theme ──────────────────────────────
 echo ""
