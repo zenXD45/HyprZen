@@ -17,7 +17,7 @@
 }
 window {
     width: 900px;
-    height: 700px;
+    height: 600px;
     border: 2px;
     border-color: @accent;
     border-radius: 20px;
