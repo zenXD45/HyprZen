@@ -118,6 +118,7 @@ HyprZen uses an ultra-minimal keybind configuration. For a full, searchable list
 | **Close Window** | `SUPER + Q` |
 | **Toggle Fullscreen** | `SUPER + F` |
 | **Toggle Floating** | `SUPER + SHIFT + F` |
+| **Toggle Opaque / Blur** | `SUPER + O` |
 | **Region Screenshot (Annotate)** | `SUPER + Print` |
 | **Region Screenshot (Clipboard)** | `SUPER + CTRL + Print` |
 | **Dismiss Notifications** | `SUPER + SHIFT + N` |
