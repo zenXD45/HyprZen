@@ -79,6 +79,12 @@ ln -sf "$HOME/.config/rofi/themes/$SELECTED.rasi" "$HOME/.config/rofi/colors.ras
 # 5. Update Waypaper wallpaper folder to match theme
 sed -i "s|^folder = .*|folder = ~/wallpapers/$SELECTED|" "$HOME/.config/waypaper/config.ini"
 
+# 5.1 Update Quickshell wallpaper picker directory
+sed -i "s|property string wallpaperDir:.*|property string wallpaperDir: homeDir + \"/wallpapers/$SELECTED\"|" "$HOME/Desktop/hyprzen/qs-wallpaper-picker/config/Settings.qml"
+
+# 5.2 Generate thumbnails for the new theme
+"$HOME/Desktop/hyprzen/qs-wallpaper-picker/scripts/generate_thumbs.sh" "$HOME/wallpapers/$SELECTED" &
+
 # 6. Reload Hyprland (re-reads current_theme via Lua)
 hyprctl reload
 

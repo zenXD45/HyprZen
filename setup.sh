@@ -31,7 +31,7 @@ sudo pacman -S --needed --noconfirm $PKGS
 
 # ── 4. AUR Packages (if needed) ──
 # Note: swayosd-git, impala, and satty might require an AUR helper depending on your distro/repos.
-AUR_PKGS="swayosd impala satty"
+AUR_PKGS="swayosd impala satty quickshell awww-git imagemagick"
 
 if command -v yay &> /dev/null; then
     echo "Running yay to install AUR packages..."
