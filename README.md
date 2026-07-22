@@ -2,6 +2,7 @@
   <img src="https://raw.githubusercontent.com/catppuccin/catppuccin/main/assets/palette/macchiato.png" width="400" alt="palette" />
   
   <h1>🌸 HyprZen</h1>
+  <h3>Web Developer | Linux Enthusiast</h3>
   <p><b>An ultra-minimal, zen-inspired dotfiles setup for Hyprland on Arch Linux.</b></p>
   
   <p>
