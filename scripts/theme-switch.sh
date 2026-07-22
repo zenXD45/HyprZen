@@ -123,7 +123,14 @@ for server in $(find /run/user/$(id -u)/nvim* -type s 2>/dev/null); do
     nvim --server "$server" --remote-send "<ESC>:lua require('ui_theme').apply_theme('$NVIM_THEME')<CR>" 2>/dev/null
 done
 
-# 11. Notify user
+# 11. Sync GTK color-scheme (for Librewolf and other apps)
+if [ "$SELECTED" = "aetheria" ] || [ "$SELECTED" = "alabaster" ]; then
+    gsettings set org.gnome.desktop.interface color-scheme 'prefer-light'
+else
+    gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
+fi
+
+# 12. Notify user
 notify-send "󰟡 HyprZen" "Theme: $SELECTED" \
     --icon=preferences-desktop-theme \
     --urgency=low \
