@@ -4,24 +4,26 @@
 }
 
 window {
-    background-color: rgba(10, 10, 15, 0.7);
+    background-color: rgba(0, 0, 0, 0.2);
 }
 
 button {
-    border-radius: 30px; /* Apple-style squircle */
-    border: 2px solid rgba(255, 255, 255, 0.03);
-    background-color: rgba(30, 30, 46, 0.5);
+    border-radius: 45px; /* Large pill shape */
+    border: 2px solid rgba(255, 255, 255, 0.05);
+    background-color: rgba(30, 30, 46, 0.5); /* Semi-transparent macchiato base */
     background-repeat: no-repeat;
     background-position: center;
-    background-size: 35%; /* Scale SVG */
-    margin: 15px; 
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    background-size: 25%;
+    margin: 300px 25px; /* Squeezes them into a horizontal row */
+    color: transparent; /* Hides the default text labels */
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
     transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
 button:hover {
-    border-radius: 20px;
-    background-size: 40%;
+    background-color: rgba(49, 50, 68, 0.8);
+    border-radius: 30px;
+    background-size: 30%; /* Expand icon on hover */
     outline-style: none;
     border-width: 2px;
 }
@@ -34,39 +36,39 @@ button:hover {
 #reboot { background-image: image(url("/home/zen/.config/wlogout/icons/reboot.svg")); }
 #shutdown { background-image: image(url("/home/zen/.config/wlogout/icons/shutdown.svg")); }
 
-/* Hover states */
+/* Aesthetic Catppuccin Neon Glows */
 #lock:hover {
     background-color: rgba(249, 226, 175, 0.2);
     border-color: #f9e2af;
-    box-shadow: 0 0 30px rgba(249, 226, 175, 0.3);
+    box-shadow: 0 0 50px rgba(249, 226, 175, 0.5);
 }
 
 #logout:hover {
     background-color: rgba(203, 166, 247, 0.2);
     border-color: #cba6f7;
-    box-shadow: 0 0 30px rgba(203, 166, 247, 0.3);
+    box-shadow: 0 0 50px rgba(203, 166, 247, 0.5);
 }
 
 #suspend:hover {
     background-color: rgba(137, 180, 250, 0.2);
     border-color: #89b4fa;
-    box-shadow: 0 0 30px rgba(137, 180, 250, 0.3);
+    box-shadow: 0 0 50px rgba(137, 180, 250, 0.5);
 }
 
 #hibernate:hover {
     background-color: rgba(148, 226, 213, 0.2);
     border-color: #94e2d5;
-    box-shadow: 0 0 30px rgba(148, 226, 213, 0.3);
+    box-shadow: 0 0 50px rgba(148, 226, 213, 0.5);
 }
 
 #reboot:hover {
     background-color: rgba(250, 179, 135, 0.2);
     border-color: #fab387;
-    box-shadow: 0 0 30px rgba(250, 179, 135, 0.3);
+    box-shadow: 0 0 50px rgba(250, 179, 135, 0.5);
 }
 
 #shutdown:hover {
-    background-color: rgba(243, 139, 168, 0.2);
+    background-color: rgba(243, 139, 168, 0.3);
     border-color: #f38ba8;
-    box-shadow: 0 0 30px rgba(243, 139, 168, 0.3);
+    box-shadow: 0 0 60px rgba(243, 139, 168, 0.6); /* Slightly stronger for shutdown */
 }
