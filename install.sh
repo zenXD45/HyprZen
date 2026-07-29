@@ -91,11 +91,12 @@ link "$DOTFILES_DIR/.config/nvim"    "$CONFIG_DIR/nvim"
 # ── Step 6: Install scripts ───────────────────────────────────
 echo ""
 echo "📜 Installing scripts..."
-mkdir -p "$HOME/scripts"
-cp "$DOTFILES_DIR/scripts/"*.sh "$HOME/scripts/"
-cp "$DOTFILES_DIR/scripts/"*.py "$HOME/scripts/"
+if [ -d "$HOME/scripts" ] && [ ! -L "$HOME/scripts" ]; then
+    rm -rf "$HOME/scripts"
+fi
+ln -sfn "$DOTFILES_DIR/scripts" "$HOME/scripts"
 chmod +x "$HOME/scripts/"*
-echo "  installed: ~/scripts/"
+echo "  linked: ~/scripts/"
 
 # ── Step 7: Install curated wallpapers / screenshot dirs ──────
 mkdir -p "$HOME/wallpapers"
