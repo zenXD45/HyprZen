@@ -1,0 +1,18 @@
+hl.config({
+    decoration = {
+        rounding = rounding,
+        active_opacity = 1.0,
+        inactive_opacity = inactive_opacity,
+        fullscreen_opacity = 1.0,
+        blur = {
+            enabled = true,
+            size = 4,
+            passes = 4,
+            ignore_opacity = true,
+            noise = 0.08,
+            contrast = 1.5,
+            xray = false,
+            new_optimizations = true,
+        },
+    },
+})

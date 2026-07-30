@@ -64,7 +64,8 @@ fi
 
 # ── Apply theme ────────────────────────────────────────────────
 
-# 1. Write theme name for Hyprlang config
+# 1. Write theme name for Hyprlang config and Hyprlock
+echo "require(\"themes.$SELECTED\")" > "$HYPR_DIR/themes/current_theme.lua"
 echo "source = ~/.config/hypr/themes/$SELECTED.conf" > "$HYPR_DIR/themes/current_theme.conf"
 
 # 2. Waybar CSS symlink
