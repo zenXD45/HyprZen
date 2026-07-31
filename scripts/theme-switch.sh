@@ -78,26 +78,36 @@ ln -sf "$KITTY_THEME_DIR/$SELECTED.conf" "$KITTY_THEME_DIR/current.conf"
 ln -sf "$HOME/.config/rofi/themes/$SELECTED.rasi" "$HOME/.config/rofi/colors.rasi"
 
 # 5. Update Waypaper wallpaper folder to match theme
-sed -i "s|^folder = .*|folder = ~/wallpapers/$SELECTED|" "$HOME/.config/waypaper/config.ini"
+if [ -f "$HOME/.config/waypaper/config.ini" ]; then
+    sed -i "s|^folder = .*|folder = ~/wallpapers/$SELECTED|" "$HOME/.config/waypaper/config.ini"
+fi
 
 # 5.1 Update Quickshell wallpaper picker directory
-sed -i "s|property string wallpaperDir:.*|property string wallpaperDir: homeDir + \"/wallpapers/$SELECTED\"|" "$HOME/Desktop/hyprzen/qs-wallpaper-picker/config/Settings.qml"
+if [ -f "$HOME/Desktop/hyprzen/qs-wallpaper-picker/config/Settings.qml" ]; then
+    sed -i "s|property string wallpaperDir:.*|property string wallpaperDir: homeDir + \"/wallpapers/$SELECTED\"|" "$HOME/Desktop/hyprzen/qs-wallpaper-picker/config/Settings.qml"
+fi
 
 # 5.2 Generate thumbnails for the new theme
-"$HOME/Desktop/hyprzen/qs-wallpaper-picker/scripts/generate_thumbs.sh" "$HOME/wallpapers/$SELECTED" &
+if [ -x "$HOME/Desktop/hyprzen/qs-wallpaper-picker/scripts/generate_thumbs.sh" ]; then
+    "$HOME/Desktop/hyprzen/qs-wallpaper-picker/scripts/generate_thumbs.sh" "$HOME/wallpapers/$SELECTED" &
+fi
 
 # 6. Reload Hyprland (re-reads current_theme via Lua)
-hyprctl reload
+if [ -n "$HYPRLAND_INSTANCE_SIGNATURE" ]; then
+    hyprctl reload
+fi
 
 # 7. Reload Waybar (picks up new CSS symlink)
-pkill -SIGUSR2 waybar 2>/dev/null
+pkill -SIGUSR2 waybar 2>/dev/null || true
 
 # 8. Reload Kitty (sends SIGUSR1 to all kitty instances)
-pkill -SIGUSR1 kitty 2>/dev/null
+pkill -SIGUSR1 kitty 2>/dev/null || true
 
 # 9. Reload SwayOSD to pick up the new CSS
 killall swayosd-server 2>/dev/null || true
-hyprctl dispatch exec swayosd-server >/dev/null 2>&1
+if [ -n "$HYPRLAND_INSTANCE_SIGNATURE" ]; then
+    hyprctl dispatch exec swayosd-server >/dev/null 2>&1
+fi
 
 # 9. Reload SwayNC
 swaync-client -rs 2>/dev/null || true
