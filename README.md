@@ -102,6 +102,15 @@ cd HyprZen
 **3. Reload Hyprland:**
 Press `SUPER + CTRL + R` to reload Hyprland and apply all the new configurations.
 
+**4. Install Scrolloverview Plugin (Inside Hyprland):**
+Open a terminal inside Hyprland and run:
+```bash
+hyprpm update
+hyprpm add https://github.com/yayuuu/hyprland-scroll-overview.git
+hyprpm enable scrolloverview
+```
+This enables the `SUPER + TAB` overview feature!
+
 ---
 
 ## ⌨️ Keybindings

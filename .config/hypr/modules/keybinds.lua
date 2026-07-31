@@ -107,7 +107,11 @@ hl.bind(SC .. " + right", hl.dsp.focus({ workspace = "e+1" }))
 hl.bind(SC .. " + left", hl.dsp.focus({ workspace = "e-1" }))
 
 -- ── Overview (Hyprswitch/Scrolloverview) ───────────────────────────
-hl.bind(S .. " + TAB", hl.dsp.exec_cmd("hyprctl dispatch scrolloverview:toggle all"))
+hl.bind(S .. " + TAB", function()
+    pcall(function()
+        hl.plugin.scrolloverview.overview("toggle all")
+    end)
+end)
 
 -- ── Switch workspaces ────────────────────────────────────────────────
 hl.bind(S .. " + S", hl.dsp.workspace.toggle_special("magic"))
