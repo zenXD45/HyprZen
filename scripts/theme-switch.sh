@@ -141,10 +141,12 @@ for server in $(find /run/user/$(id -u)/nvim* -type s 2>/dev/null); do
 done
 
 # 11. Sync GTK color-scheme (for Librewolf and other apps)
-if [ "$SELECTED" = "aetheria" ] || [ "$SELECTED" = "alabaster" ]; then
-    gsettings set org.gnome.desktop.interface color-scheme 'prefer-light'
-else
-    gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
+if [ -n "$WAYLAND_DISPLAY" ] || [ -n "$DBUS_SESSION_BUS_ADDRESS" ]; then
+    if [ "$SELECTED" = "aetheria" ] || [ "$SELECTED" = "alabaster" ]; then
+        gsettings set org.gnome.desktop.interface color-scheme 'prefer-light' 2>/dev/null || true
+    else
+        gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark' 2>/dev/null || true
+    fi
 fi
 
 # 12. Notify user
