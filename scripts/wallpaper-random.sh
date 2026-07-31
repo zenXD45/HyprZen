@@ -5,7 +5,7 @@
 #  regenerates pywal palette.
 # =============================================================
 
-WALLPAPER_DIR="$HOME/wallpapers/walls"
+WALLPAPER_DIR="$HOME/wallpapers"
 CURRENT_LINK="$HOME/wallpapers/current"
 USE_PYWAL=true   # Set false to skip pywal
 

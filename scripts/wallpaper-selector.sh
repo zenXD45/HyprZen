@@ -28,48 +28,48 @@ if [ -z "$ENTRIES" ]; then
 fi
 
 # Display rofi with a custom transparent glass grid layout
-CHOICE=$(echo -en "$ENTRIES" | rofi -dmenu -i -p "  Select Wallpaper" \
+CHOICE=$(echo -en "$ENTRIES" | rofi -dmenu -show-icons -i -p "Select Wallpaper" \
     -theme-str '
     * { 
         background-color: transparent; 
         text-color: #ffffff; 
-        font: "JetBrainsMono Nerd Font 12"; 
+        font: "JetBrainsMono Nerd Font 11"; 
     }
     window { 
-        width: 60%; 
-        height: 70%;
-        background-color: rgba(10, 10, 10, 0.5); 
-        border: 1px solid rgba(255, 255, 255, 0.15); 
-        border-radius: 20px; 
+        width: 75%; 
+        background-color: rgba(20, 21, 23, 0.5); 
+        border: 1px;
+        border-color: rgba(255, 255, 255, 0.1); 
+        border-radius: 15px; 
         padding: 30px; 
     }
-    mainbox { children: [ inputbar, listview ]; spacing: 20px; }
+    mainbox { children: [ inputbar, listview ]; spacing: 25px; }
     inputbar { 
-        background-color: rgba(255, 255, 255, 0.05); 
-        border-radius: 12px; 
-        padding: 15px 20px; 
+        background-color: rgba(30, 32, 36, 0.4); 
+        border-radius: 8px; 
+        padding: 12px 20px; 
         children: [ prompt, entry ];
     }
-    prompt { text-color: #a6adc8; font: "JetBrainsMono Nerd Font Bold 14"; margin: 0 15px 0 0; }
-    entry { placeholder: "Search wallpapers..."; placeholder-color: rgba(255,255,255,0.3); }
+    prompt { text-color: #8fd3c6; font: "JetBrainsMono Nerd Font 11"; margin: 0 15px 0 0; }
+    entry { placeholder: "Type to filter..."; placeholder-color: rgba(255,255,255,0.4); text-color: #ffffff; }
     listview { 
-        columns: 4; 
-        lines: 3; 
-        flow: horizontal; 
+        columns: 5; 
+        lines: 2; 
         spacing: 20px; 
         fixed-height: false;
     }
     element { 
         orientation: vertical; 
         padding: 15px; 
-        border-radius: 16px; 
-        background-color: rgba(255, 255, 255, 0.03); 
-        border: 1px solid rgba(255, 255, 255, 0.05);
+        border-radius: 12px; 
+        background-color: rgba(36, 38, 43, 0.4); 
     }
-    element hover { background-color: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.2); }
-    element selected { background-color: rgba(137, 180, 250, 0.2); border: 1px solid rgba(137, 180, 250, 0.6); }
-    element-icon { size: 180px; horizontal-align: 0.5; }
-    element-text { horizontal-align: 0.5; vertical-align: 0.5; margin: 10px 0 0 0; font: "JetBrainsMono Nerd Font 10"; }
+    element normal.normal { background-color: rgba(36, 38, 43, 0.4); text-color: #ffffff; }
+    element alternate.normal { background-color: rgba(36, 38, 43, 0.4); text-color: #ffffff; }
+    element selected.normal { background-color: #8fd3c6; text-color: #1a1b26; }
+    element hover { background-color: rgba(255, 255, 255, 0.1); }
+    element-icon { size: 240px; horizontal-align: 0.5; }
+    element-text { horizontal-align: 0.5; vertical-align: 0.5; margin: 10px 0 0 0; font: "JetBrainsMono Nerd Font 10"; text-color: inherit; }
     ')
 
 if [ -z "$CHOICE" ]; then
@@ -78,7 +78,7 @@ fi
 
 # Extract theme and filename from "[theme] filename"
 THEME_NAME=$(echo "$CHOICE" | awk -F'[][]' '{print $2}')
-FILE_NAME=$(echo "$CHOICE" | awk '{print $2}')
+FILE_NAME=$(echo "$CHOICE" | sed 's/^\[.*\] //')
 WALL="$WALLPAPER_DIR/$THEME_NAME/$FILE_NAME"
 
 if [ ! -f "$WALL" ]; then
@@ -88,8 +88,8 @@ fi
 # Update symlink
 ln -sf "$WALL" "$CURRENT_LINK"
 
-# Apply with swww (smooth transition)
-swww img "$WALL" \
+# Apply with awww (smooth transition)
+awww img "$WALL" \
     --transition-type grow \
     --transition-pos 0.5,0.5 \
     --transition-duration 1.2 \
