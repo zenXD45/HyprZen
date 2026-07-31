@@ -148,7 +148,9 @@ else
 fi
 
 # 12. Notify user
-notify-send "󰟡 HyprZen" "Theme: $SELECTED" \
-    --icon=preferences-desktop-theme \
-    --urgency=low \
-    --expire-time=2000
+if [ -n "$WAYLAND_DISPLAY" ] || [ -n "$HYPRLAND_INSTANCE_SIGNATURE" ]; then
+    notify-send "󰟡 HyprZen" "Theme: $SELECTED" \
+        --icon=preferences-desktop-theme \
+        --urgency=low \
+        --expire-time=2000 || true
+fi
