@@ -99,13 +99,11 @@ chmod +x "$HOME/scripts/"*
 echo "  linked: ~/scripts/"
 
 # ── Step 7: Install curated wallpapers / screenshot dirs ──────
-mkdir -p "$HOME/Pictures/wallpapers"
-mkdir -p "$HOME/Pictures/screenshots"
-echo "  created: ~/Pictures/wallpapers/  ~/Pictures/screenshots/"
+ln -sfn "$DOTFILES_DIR/wallpapers" "$HOME/wallpapers"
+mkdir -p "$HOME/screenshots"
+echo "  linked: ~/wallpapers/ (pointing to repo)"
+echo "  created: ~/screenshots/"
 echo ""
-echo "🖼️ Installing categorized wallpapers..."
-cp -r "$DOTFILES_DIR/wallpapers/"* "$HOME/Pictures/wallpapers/" 2>/dev/null || echo "  ⚠️ No local wallpapers found to install."
-
 # ── Step 8: Apply default theme ──────────────────────────────
 echo ""
 echo "🎨 Applying default theme: $DEFAULT_THEME"

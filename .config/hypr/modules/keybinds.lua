@@ -39,7 +39,7 @@ hl.bind(SS .. " + C", hl.dsp.exec_cmd("~/scripts/caffeine.sh"))
 hl.bind(S .. " + T", hl.dsp.exec_cmd("~/scripts/theme-switch.sh"))
 hl.bind(S .. " + W", hl.dsp.exec_cmd("~/scripts/waybar-switcher.sh"))
 hl.bind(SS .. " + W", hl.dsp.exec_cmd("killall -SIGUSR1 waybar"))
-hl.bind(SA .. " + W", hl.dsp.exec_cmd("~/scripts/wallpaper-selector.sh"))
+hl.bind(SA .. " + W", hl.dsp.exec_cmd("~/Desktop/hyprzen/scripts/wallpaper-selector.sh"))
 hl.bind(SA .. " + P", hl.dsp.exec_cmd("~/scripts/power-profile.sh"))
 
 -- ── Screenshots ───────────────────────────────────────────────
