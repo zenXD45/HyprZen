@@ -107,7 +107,9 @@ hl.bind(SC .. " + right", hl.dsp.focus({ workspace = "e+1" }))
 hl.bind(SC .. " + left", hl.dsp.focus({ workspace = "e-1" }))
 
 -- ── Overview (Hyprswitch) ─────────────────────────────────────
-hl.bind(S .. " + TAB", hl.dsp.exec_cmd("hyprswitch gui --mod-key super_l --key tab --close mod-key-release --reverse-key=mod=shift --sort-recent --ignore-workspaces"))
+hl.bind(S .. " + TAB", function()
+    hl.plugin.scrolloverview.overview("toggle all")
+end)
 
 -- ── Switch workspaces ────────────────────────────────────────────────
 hl.bind(S .. " + S", hl.dsp.workspace.toggle_special("magic"))
@@ -133,3 +135,7 @@ hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd("swayosd-client --brightness lo
 -- ── System ────────────────────────────────────────────────────
 hl.bind(SC .. " + R", hl.dsp.exec_cmd("hyprctl reload && notify-send \"Hyprland\" \"Config reloaded\""))
 hl.bind(SC .. " + Q", hl.dsp.exit())
+
+--Plugins
+---- hyprland.lua
+

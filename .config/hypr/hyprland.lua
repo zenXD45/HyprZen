@@ -21,4 +21,6 @@ require("modules.windowrules")
 -- Source: ~/.config/hypr/modules/workspaces.conf — convert this file to Lua and ensure it is on Lua's package.path.
 require("modules.workspaces")
 
+require("modules.plugins")
+
 

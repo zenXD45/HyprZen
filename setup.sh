@@ -31,7 +31,7 @@ sudo pacman -S --needed --noconfirm $PKGS
 
 # ── 4. AUR Packages (if needed) ──
 # Note: swayosd-git, impala, and satty might require an AUR helper depending on your distro/repos.
-AUR_PKGS="swayosd impala satty quickshell awww-git imagemagick wlogout waypaper hyprswitch hyprshot"
+AUR_PKGS="swayosd impala satty quickshell awww-git imagemagick wlogout waypaper hyprshot"
 
 if command -v yay &> /dev/null; then
     echo "Running yay to install AUR packages..."
@@ -45,6 +45,18 @@ else
 fi
 
 echo "✅ Dependencies installed successfully!"
+echo ""
+
+echo "🧩 Installing Hyprland Plugins..."
+if command -v hyprpm &> /dev/null; then
+    hyprpm update || true
+    hyprpm add https://github.com/yayuuu/hyprland-scroll-overview.git || true
+    hyprpm enable scrolloverview || true
+    echo "✅ Hyprland plugins installed!"
+else
+    echo "⚠️  hyprpm not found. Please install hyprland headers/plugins manager."
+fi
+
 echo ""
 echo "🔗 Proceeding to link configurations..."
 

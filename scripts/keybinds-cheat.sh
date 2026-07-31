@@ -1,38 +1,36 @@
 #!/bin/bash
-CONF="$HOME/Desktop/hyprzen/.config/hypr/modules/keybinds.conf"
+CONF="$HOME/Desktop/hyprzen/.config/hypr/modules/keybinds.lua"
 
 awk '
-/^# ── / {
-    gsub(/^# ── | ─+$/, "")
+/^-- ── / {
+    gsub(/^-- ── | ─+$/, "")
     print "───────────── " $0 " ─────────────"
 }
-/^bind[a-z]* =/ {
+/hl\.bind\(/ {
     line = $0
-    sub(/^bind[a-z]* = /, "", line)
     
-    # Split by comma
-    n = split(line, parts, ",")
+    match(line, /hl\.bind\(([^,]+),/, arr)
+    key = arr[1]
     
-    mod = parts[1]
-    key = parts[2]
+    gsub(/^S \.\. " \+ /, "SUPER + ", key)
+    gsub(/^SS \.\. " \+ /, "SUPER+SHIFT + ", key)
+    gsub(/^SC \.\. " \+ /, "SUPER+CTRL + ", key)
+    gsub(/^SA \.\. " \+ /, "SUPER+ALT + ", key)
+    gsub(/"/, "", key)
     
-    cmd = ""
-    for(i=3; i<=n; i++) {
-        cmd = cmd (i==3 ? "" : ",") parts[i]
+    match(line, /, (.*)\)$/, arr2)
+    action = arr2[1]
+    
+    if (action ~ /^function\(\)/) {
+        action = "Custom Lua Function"
+    } else if (match(action, /hl\.dsp\.exec_cmd\("([^"]+)"\)/, arr3)) {
+        action = "exec: " arr3[1]
+    } else {
+        # Strip trailing options if present
+        gsub(/, \{.*\}$/, "", action)
+        action = "action: " action
     }
     
-    # Trim spaces
-    gsub(/^[ \t]+|[ \t]+$/, "", mod)
-    gsub(/^[ \t]+|[ \t]+$/, "", key)
-    gsub(/^[ \t]+|[ \t]+$/, "", cmd)
-    
-    # Replace variables
-    if(mod == "$S") mod = "SUPER"
-    else if(mod == "$SS") mod = "SUPER+SHIFT"
-    else if(mod == "$SC") mod = "SUPER+CTRL"
-    else if(mod == "$SA") mod = "SUPER+ALT"
-    
-    # Format beautifully
-    printf "%-25s │ %s\n", mod " + " key, cmd
+    printf "%-25s │ %s\n", key, action
 }
 ' "$CONF" | rofi -dmenu -i -p "⌨️ Search Keybinds" -theme ~/.config/rofi/cheat.rasi
