@@ -4,8 +4,8 @@
 #  Displays a grid of wallpapers with thumbnails using Rofi
 # =============================================================
 
-WALLPAPER_DIR="$HOME/wallpapers"
-CURRENT_LINK="$HOME/wallpapers/current"
+WALLPAPER_DIR="$HOME/Pictures/wallpapers"
+CURRENT_LINK="$HOME/Pictures/wallpapers/current"
 USE_PYWAL=false
 
 if [ ! -d "$WALLPAPER_DIR" ]; then
