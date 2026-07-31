@@ -89,7 +89,8 @@ fi
 
 # 5.2 Generate thumbnails for the new theme
 if [ -x "$HOME/Desktop/hyprzen/qs-wallpaper-picker/scripts/generate_thumbs.sh" ]; then
-    "$HOME/Desktop/hyprzen/qs-wallpaper-picker/scripts/generate_thumbs.sh" "$HOME/wallpapers/$SELECTED" &
+    "$HOME/Desktop/hyprzen/qs-wallpaper-picker/scripts/generate_thumbs.sh" "$HOME/wallpapers/$SELECTED" >/dev/null 2>&1 &
+    disown
 fi
 
 # 6. Reload Hyprland (re-reads current_theme via Lua)
@@ -110,7 +111,9 @@ if [ -n "$HYPRLAND_INSTANCE_SIGNATURE" ]; then
 fi
 
 # 9. Reload SwayNC
-swaync-client -rs 2>/dev/null || true
+if [ -n "$WAYLAND_DISPLAY" ] || [ -n "$DBUS_SESSION_BUS_ADDRESS" ]; then
+    swaync-client -rs 2>/dev/null || true
+fi
 
 # 10. Sync Neovim Theme
 case "$SELECTED" in
