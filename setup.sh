@@ -18,10 +18,10 @@ fi
 echo "📦 Installing dependencies..."
 
 # ── 1. Core Hyprland & Wayland UI ──
-PKGS="hyprland hyprlock waybar rofi-wayland kitty swaync wlogout waypaper"
+PKGS="hyprland hyprlock waybar rofi-wayland kitty swaync"
 
 # ── 2. Utilities (Screenshots, Audio, Info, File Manager, Power) ──
-PKGS="$PKGS hyprshot cliphist wl-clipboard playerctl btop pavucontrol fastfetch cava thunar power-profiles-daemon python-pywal hyprswitch neovim ripgrep fd npm jq"
+PKGS="$PKGS cliphist wl-clipboard playerctl btop pavucontrol fastfetch cava thunar power-profiles-daemon python-pywal neovim ripgrep fd npm jq"
 
 # ── 3. Fonts ──
 PKGS="$PKGS ttf-jetbrains-mono-nerd"
@@ -31,7 +31,7 @@ sudo pacman -S --needed --noconfirm $PKGS
 
 # ── 4. AUR Packages (if needed) ──
 # Note: swayosd-git, impala, and satty might require an AUR helper depending on your distro/repos.
-AUR_PKGS="swayosd impala satty quickshell awww-git imagemagick"
+AUR_PKGS="swayosd impala satty quickshell awww-git imagemagick wlogout waypaper hyprswitch hyprshot"
 
 if command -v yay &> /dev/null; then
     echo "Running yay to install AUR packages..."
