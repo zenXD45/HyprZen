@@ -18,17 +18,25 @@ awk '
     gsub(/^SA \.\. " \+ /, "SUPER+ALT + ", key)
     gsub(/"/, "", key)
     
-    match(line, /, (.*)\)$/, arr2)
-    action = arr2[1]
-    
-    if (action ~ /^function\(\)/) {
-        action = "Custom Lua Function"
-    } else if (match(action, /hl\.dsp\.exec_cmd\("([^"]+)"\)/, arr3)) {
-        action = "exec: " arr3[1]
+    if (match(line, /, (.*)\)$/, arr2)) {
+        action = arr2[1]
+    } else if (match(line, /, (.*)$/, arr2)) {
+        action = arr2[1]
     } else {
-        # Strip trailing options if present
-        gsub(/, \{.*\}$/, "", action)
-        action = "action: " action
+        action = ""
+    }
+    
+    if (action ~ /^function/) {
+        action = "Toggle scrolloverview"
+    } else if (action ~ /^hl\.dsp\.exec_cmd\(/) {
+        sub(/^hl\.dsp\.exec_cmd\("/, "", action)
+        sub(/"\)$/, "", action)
+    } else {
+        # Clean up hyprland dispatchers
+        gsub(/^hl\.dsp\./, "", action)
+        gsub(/\(\{.*\}\)$/, "", action)
+        gsub(/\(".*"\)$/, "", action)
+        gsub(/\(\)$/, "", action)
     }
     
     printf "%-25s │ %s\n", key, action
