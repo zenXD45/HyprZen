@@ -1,3 +1,7 @@
+-- VM / VirtualBox compatibility (safe to keep on bare metal — they are ignored)
+hl.env("WLR_RENDERER_ALLOW_SOFTWARE", "1")
+hl.env("WLR_NO_HARDWARE_CURSORS", "1")
+
 hl.env("SDL_VIDEODRIVER", "wayland")
 hl.env("CLUTTER_BACKEND", "wayland")
 hl.env("QT_QPA_PLATFORM", "wayland;xcb")
