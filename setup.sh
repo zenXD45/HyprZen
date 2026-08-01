@@ -18,7 +18,10 @@ fi
 echo "📦 Installing dependencies..."
 
 # ── 1. Core Hyprland & Wayland UI ──
-PKGS="hyprland hyprlock waybar rofi-wayland kitty swaync"
+# Note: 'rofi' (v2.0+) has native Wayland support (provides rofi-wayland).
+# Using 'rofi' as the package name since 'rofi-wayland' is a virtual provide,
+# not an installable package name on most Arch-based repos.
+PKGS="hyprland hyprlock waybar rofi kitty swaync"
 
 # ── 2. Utilities (Screenshots, Audio, Info, File Manager, Power) ──
 PKGS="$PKGS cliphist wl-clipboard playerctl btop pavucontrol fastfetch cava thunar power-profiles-daemon python-pywal neovim ripgrep fd npm jq awww cmake cpio pkgconf gcc make"
@@ -29,9 +32,15 @@ PKGS="$PKGS ttf-jetbrains-mono-nerd"
 echo "Running pacman to install official packages..."
 sudo pacman -S --needed --noconfirm $PKGS
 
-# ── 4. AUR Packages (if needed) ──
-# Note: swayosd-git, impala, and satty might require an AUR helper depending on your distro/repos.
-AUR_PKGS="swayosd impala satty quickshell imagemagick wlogout waypaper hyprshot"
+# ── 4. AUR / Extra Packages ──
+# Some of these may be in the official repos on CachyOS or need an AUR helper.
+# imagemagick and wlogout may already be in official repos; --needed handles that.
+AUR_PKGS="impala satty quickshell imagemagick wlogout waypaper hyprshot"
+
+# swayosd may already be satisfied by swayosd-git; only add if not provided
+if ! pacman -Qi swayosd &>/dev/null && ! pacman -Qi swayosd-git &>/dev/null; then
+    AUR_PKGS="swayosd $AUR_PKGS"
+fi
 
 if command -v yay &> /dev/null; then
     echo "Running yay to install AUR packages..."

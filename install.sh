@@ -7,7 +7,9 @@
 
 set -e
 
-DOTFILES_DIR="$HOME/Desktop/hyprzen"
+# Resolve the script's directory so it works regardless of cwd
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+DOTFILES_DIR="$SCRIPT_DIR"
 CONFIG_DIR="$HOME/.config"
 DEFAULT_THEME="catppuccin"
 
@@ -95,21 +97,25 @@ if [ -d "$HOME/scripts" ] && [ ! -L "$HOME/scripts" ]; then
     rm -rf "$HOME/scripts"
 fi
 ln -sfn "$DOTFILES_DIR/scripts" "$HOME/scripts"
-chmod +x "$HOME/scripts/"*
+find "$HOME/scripts/" -maxdepth 1 -type f -name '*.sh' -exec chmod +x {} +
 echo "  linked: ~/scripts/"
 
 # ── Step 7: Install curated wallpapers / screenshot dirs ──────
-ln -sfn "$DOTFILES_DIR/wallpapers" "$HOME/wallpapers"
+mkdir -p "$HOME/wallpapers"
 mkdir -p "$HOME/screenshots"
-echo "  linked: ~/wallpapers/ (pointing to repo)"
-echo "  created: ~/screenshots/"
+echo "  created: ~/wallpapers/  ~/screenshots/"
 echo ""
+echo "🖼️ Installing categorized wallpapers..."
+cp -r "$DOTFILES_DIR/wallpapers/"* "$HOME/wallpapers/" 2>/dev/null || echo "  ⚠️ No local wallpapers found to install."
+
 # ── Step 8: Apply default theme ──────────────────────────────
 echo ""
 echo "🎨 Applying default theme: $DEFAULT_THEME"
 
 if [ -f "$HOME/scripts/theme-switch.sh" ]; then
-    "$HOME/scripts/theme-switch.sh" "$DEFAULT_THEME"
+    # theme-switch.sh may fail when running outside a desktop session
+    # (e.g., no Hyprland / Wayland display). Don't let that abort install.
+    "$HOME/scripts/theme-switch.sh" "$DEFAULT_THEME" || echo "⚠️  theme-switch.sh exited with errors (this is normal if not in a desktop session)."
 else
     echo "⚠️  theme-switch.sh not found, skipping default theme setup."
 fi
