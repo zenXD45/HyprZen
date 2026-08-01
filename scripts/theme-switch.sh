@@ -112,7 +112,7 @@ fi
 
 # 9. Reload SwayNC
 if [ -n "$WAYLAND_DISPLAY" ] || [ -n "$DBUS_SESSION_BUS_ADDRESS" ]; then
-    swaync-client -rs 2>/dev/null || true
+    timeout 3 swaync-client -rs 2>/dev/null || true
 fi
 
 # 10. Sync Neovim Theme
@@ -140,7 +140,7 @@ else
 fi
 
 for server in $(find /run/user/$(id -u)/nvim* -type s 2>/dev/null); do
-    nvim --server "$server" --remote-send "<ESC>:lua require('ui_theme').apply_theme('$NVIM_THEME')<CR>" 2>/dev/null
+    timeout 3 nvim --server "$server" --remote-send "<ESC>:lua require('ui_theme').apply_theme('$NVIM_THEME')<CR>" 2>/dev/null || true
 done
 
 # 11. Sync GTK color-scheme (for Librewolf and other apps)
