@@ -25,6 +25,8 @@
 -- ── Window Switcher ───────────────────────────────────────────
 
 hl.on("hyprland.start", function()
+    -- Load hyprpm plugins (scrolloverview, etc.) — must run first
+    hl.exec_cmd("hyprpm reload -n")
     hl.exec_cmd("/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1")
     hl.exec_cmd("dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP QT_QPA_PLATFORMTHEME")
     hl.exec_cmd("systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP QT_QPA_PLATFORMTHEME")
