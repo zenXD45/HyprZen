@@ -31,12 +31,12 @@ button:focus, button:active, button:hover {
 }
 
 /* Base icon mapping */
-#lock { background-image: image(url("/home/zen/.config/wlogout/icons/lock.svg")); }
-#logout { background-image: image(url("/home/zen/.config/wlogout/icons/logout.svg")); }
-#suspend { background-image: image(url("/home/zen/.config/wlogout/icons/suspend.svg")); }
-#hibernate { background-image: image(url("/home/zen/.config/wlogout/icons/hibernate.svg")); }
-#reboot { background-image: image(url("/home/zen/.config/wlogout/icons/reboot.svg")); }
-#shutdown { background-image: image(url("/home/zen/.config/wlogout/icons/shutdown.svg")); }
+#lock { background-image: image(url("icons/lock.svg")); }
+#logout { background-image: image(url("icons/logout.svg")); }
+#suspend { background-image: image(url("icons/suspend.svg")); }
+#hibernate { background-image: image(url("icons/hibernate.svg")); }
+#reboot { background-image: image(url("icons/reboot.svg")); }
+#shutdown { background-image: image(url("icons/shutdown.svg")); }
 
 /* Aesthetic Catppuccin Hover Colors */
 #lock:hover {
