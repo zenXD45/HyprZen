@@ -24,7 +24,7 @@ echo "📦 Installing dependencies..."
 PKGS="hyprland hyprlock waybar rofi kitty swaync"
 
 # ── 2. Utilities (Screenshots, Audio, Info, File Manager, Power) ──
-PKGS="$PKGS cliphist wl-clipboard playerctl btop pavucontrol fastfetch cava thunar power-profiles-daemon python-pywal neovim ripgrep fd npm jq awww cmake cpio pkgconf gcc make"
+PKGS="$PKGS cliphist wl-clipboard playerctl btop pavucontrol fastfetch cava thunar power-profiles-daemon python-pywal neovim ripgrep fd npm jq awww cmake cpio pkgconf gcc make unzip wget"
 
 # ── 3. Fonts ──
 PKGS="$PKGS ttf-jetbrains-mono-nerd"
@@ -54,6 +54,20 @@ else
 fi
 
 echo "✅ Dependencies installed successfully!"
+echo ""
+
+echo "🔤 Installing GeistMono Nerd Font..."
+FONT_DIR="$HOME/.local/share/fonts/GeistMono"
+if [ ! -d "$FONT_DIR" ]; then
+    mkdir -p "$FONT_DIR"
+    wget -q --show-progress -O /tmp/GeistMono.zip "https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/GeistMono.zip"
+    unzip -q /tmp/GeistMono.zip -d "$FONT_DIR"
+    rm /tmp/GeistMono.zip
+    fc-cache -fv &>/dev/null
+    echo "✅ GeistMono Nerd Font installed!"
+else
+    echo "✅ GeistMono Nerd Font already installed."
+fi
 echo ""
 
 echo "🧩 Installing Hyprland Plugins..."

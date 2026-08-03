@@ -9,6 +9,7 @@
 THEMES=(
     "catppuccin" "tokyo-night" "gruvbox" "nord" "osaka-jade"
     "aetheria" "akane" "alabaster" "lavender" "eva-theme" "noir"
+    "one-dark" "rose-pine"
 )
 DISPLAY_NAMES=(
     "☕ Catppuccin     — soothing pastel"
@@ -22,13 +23,15 @@ DISPLAY_NAMES=(
     "🪻 Lavender       — purple dark"
     "🤖 Eva Theme      — neon evangelion"
     "🌑 Noir           — soothing dark"
+    "💻 One Dark       — classic atom"
+    "🌹 Rosé Pine      — warm natural"
 )
 
 HYPR_DIR="$HOME/.config/hypr"
 WAYBAR_THEME_DIR="$HOME/.config/waybar/themes"
 KITTY_THEME_DIR="$HOME/.config/kitty/themes"
 THEME_FILE="$HYPR_DIR/current_theme"
-ROFI_THEME="$HOME/.config/rofi/anime.rasi"
+ROFI_THEME="$HOME/.config/rofi/minimal.rasi"
 
 # ── Select theme ───────────────────────────────────────────────
 if [ -n "$1" ]; then
@@ -128,6 +131,8 @@ case "$SELECTED" in
     "alabaster") NVIM_THEME="github_light" ;;
     "lavender") NVIM_THEME="tokyonight-moon" ;;
     "eva-theme") NVIM_THEME="tokyonight-storm" ;;
+    "one-dark") NVIM_THEME="onedark" ;;
+    "rose-pine") NVIM_THEME="rose-pine" ;;
     *) NVIM_THEME="pywal" ;;
 esac
 
@@ -143,7 +148,30 @@ for server in $(find /run/user/$(id -u)/nvim* -type s 2>/dev/null); do
     timeout 3 nvim --server "$server" --remote-send "<ESC>:lua require('ui_theme').apply_theme('$NVIM_THEME')<CR>" 2>/dev/null || true
 done
 
-# 11. Sync GTK color-scheme (for Librewolf and other apps)
+# 11. Sync VSCodium Theme
+case "$SELECTED" in
+    "noir") CODE_THEME="Noir Theme" ;;
+    "catppuccin") CODE_THEME="Catppuccin Mocha" ;;
+    "tokyo-night") CODE_THEME="Tokyo Night" ;;
+    "gruvbox") CODE_THEME="Gruvbox Dark Hard" ;;
+    "nord") CODE_THEME="Nord" ;;
+    "osaka-jade") CODE_THEME="Everforest Dark" ;;
+    "aetheria") CODE_THEME="Catppuccin Latte" ;;
+    "akane") CODE_THEME="Kanagawa" ;;
+    "alabaster") CODE_THEME="GitHub Light" ;;
+    "lavender") CODE_THEME="Tokyo Night Moon" ;;
+    "eva-theme") CODE_THEME="Tokyo Night Storm" ;;
+    "one-dark") CODE_THEME="Atom One Dark" ;;
+    "rose-pine") CODE_THEME="Rosé Pine" ;;
+    *) CODE_THEME="Default Dark+" ;;
+esac
+
+VSCODE_SETTINGS="$HOME/.config/VSCodium/User/settings.json"
+if [ -f "$VSCODE_SETTINGS" ]; then
+    jq ".\"workbench.colorTheme\" = \"$CODE_THEME\"" "$VSCODE_SETTINGS" > "${VSCODE_SETTINGS}.tmp" && mv "${VSCODE_SETTINGS}.tmp" "$VSCODE_SETTINGS"
+fi
+
+# 12. Sync GTK color-scheme (for Librewolf and other apps)
 if [ -n "$WAYLAND_DISPLAY" ] || [ -n "$DBUS_SESSION_BUS_ADDRESS" ]; then
     if [ "$SELECTED" = "aetheria" ] || [ "$SELECTED" = "alabaster" ]; then
         gsettings set org.gnome.desktop.interface color-scheme 'prefer-light' 2>/dev/null || true

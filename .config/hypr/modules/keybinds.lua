@@ -31,16 +31,16 @@ hl.bind(S .. " + N", hl.dsp.exec_cmd("swaync-client -t"))
 hl.bind(SS .. " + N", hl.dsp.exec_cmd("swaync-client -d"))
 
 -- ── Power / Session ───────────────────────────────────────────
-hl.bind(S .. " + X", hl.dsp.exec_cmd("wlogout -b 3"))
+hl.bind(S .. " + X", hl.dsp.exec_cmd("wlogout -b 5 -T 350 -B 350"))
 hl.bind(SS .. " + L", hl.dsp.exec_cmd("hyprlock"))
 hl.bind(SS .. " + C", hl.dsp.exec_cmd("~/scripts/caffeine.sh"))
-
 -- ── Theme & Wallpaper ─────────────────────────────────────────
-hl.bind(S .. " + T", hl.dsp.exec_cmd("~/scripts/theme-switch.sh"))
+
+hl.bind(S .. " + T", hl.dsp.exec_cmd("~/Desktop/hyprzen/scripts/theme-switch.sh"))
 hl.bind(S .. " + W", hl.dsp.exec_cmd("~/scripts/waybar-switcher.sh"))
 hl.bind(SS .. " + W", hl.dsp.exec_cmd("killall -SIGUSR1 waybar"))
 hl.bind(SA .. " + W", hl.dsp.exec_cmd("~/Desktop/hyprzen/scripts/wallpaper-selector.sh"))
-hl.bind(SA .. " + P", hl.dsp.exec_cmd("~/scripts/power-profile.sh"))
+
 
 -- ── Screenshots ───────────────────────────────────────────────
 hl.bind("Print", hl.dsp.exec_cmd("hyprshot -m output -o ~/screenshots"))

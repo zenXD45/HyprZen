@@ -1,7 +1,7 @@
 hl.config({
     general = {
-        gaps_in = gaps_in,
-        gaps_out = gaps_out,
+        gaps_in = 10,
+        gaps_out = 20,
         border_size = 0,
         col = {
             active_border = border_active,

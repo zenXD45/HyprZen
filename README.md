@@ -16,13 +16,14 @@
 
 ## ✨ Features
 
-- **Dynamic Island Waybar**: Completely replaces a boring static bar with a sleek, floating, expanding "dynamic island" pill in the top-center. You can also instantly swap between `minimal`, `pill`, and `dynamic-island` using `Super+Shift+W`.
-- **Aesthetic Glassmorphism**: Stunning Kawase blur (3 passes), minimal 1px borders, and transparent background glass effects across all applications including Rofi, VS Code, and terminal windows.
-- **Automated Wallpaper Downloader & Switcher**: Includes a custom `fetch_wallpapers.py` script that downloads 100+ high-res, aesthetic PC wallpapers (anime, cars, scenery) directly from Wallhaven! Pick them effortlessly through an immersive transparent Rofi grid GUI.
-- **Advanced Screenshots**: Fully integrated `hyprshot` and `satty`. Instantly capture regions, annotate them in a centered floating window, or copy them straight to your clipboard.
+- **Universal System Theming**: Press `SUPER + T` to instantly switch your entire system's aesthetic. It seamlessly syncs Waybar, Rofi, Kitty, Hyprland borders, GTK themes (for Librewolf/Firefox), Neovim, and **VSCodium** in real-time.
+- **13 Immersive Themes**: Includes Catppuccin (Mocha/Latte), Nord, Gruvbox, Tokyo Night (Moon/Storm), Everforest, Kanagawa, Noir, GitHub Light, One Dark, and Rosé Pine. 
+- **Dynamic Island Waybar**: Completely replaces a boring static bar with a sleek, floating, expanding "dynamic island" pill in the top-center. Instantly swap between `minimal`, `pill`, and `dynamic-island` using `Super + W`.
+- **Aesthetic Glassmorphism**: Stunning Kawase blur (3 passes), minimal borders, and transparent background glass effects across all applications including Rofi, VS Code, and terminal windows.
+- **Automated Wallpaper Downloader**: Pick 100+ high-res, aesthetic PC wallpapers effortlessly through an immersive transparent Rofi grid GUI (`SUPER + ALT + W`).
+- **Beautiful Typography**: Pre-configured to use the stunning `GeistMono Nerd Font` everywhere.
 - **Smart Workspaces**: Workspaces 1-4 are always visible for consistency, while 5-10 generate dynamically only when you need them.
-- **Interactive Cheatsheet**: Never forget a shortcut again. Press `SUPER + ,` to pull up a searchable, dynamically generated Rofi menu of all your keybindings.
-- **Automated Setup**: A bulletproof `setup.sh` script that automatically installs dependencies via `pacman` and `yay`/`paru`, followed by an installer that safely backups old configs and initializes dynamic themes.
+- **Automated Setup**: A bulletproof `setup.sh` script that automatically installs dependencies, downloads fonts, backs up old configs, and initializes dynamic themes.
 
 ---
 
@@ -35,41 +36,13 @@
       <img src="assets/2.png" alt="Clean Desktop" width="400"/>
     </td>
     <td align="center">
-      <b>Rofi App Launcher</b><br>
-      <img src="assets/3.png" alt="App Launcher" width="400"/>
-    </td>
-  </tr>
-  <tr>
-    <td align="center">
-      <b>Hyprswitch Window Switcher</b><br>
-      <img src="assets/1.png" alt="Window Switcher" width="400"/>
-    </td>
-    <td align="center">
-      <b>Tiled Window Management</b><br>
-      <img src="assets/4.png" alt="Tiled Windows" width="400"/>
-    </td>
-  </tr>
-  <tr>
-    <td align="center">
-      <b>Custom Fastfetch (Marin)</b><br>
-      <img src="assets/5.png" alt="Fastfetch" width="400"/>
-    </td>
-    <td align="center">
-      <b>SwayNC Control Center</b><br>
-      <img src="assets/6.png" alt="Control Center" width="400"/>
-    </td>
-  </tr>
-  <tr>
-    <td align="center">
-      <b>Live Keybinds Cheatsheet</b><br>
-      <img src="assets/7.png" alt="Keybinds Cheatsheet" width="400"/>
-    </td>
-    <td align="center">
       <b>Dynamic Theme Switcher</b><br>
       <img src="assets/8.png" alt="Theme Switcher" width="400"/>
     </td>
   </tr>
 </table>
+
+*(Add more screenshots to the `assets/` folder to show off your themes!)*
 
 ---
 
@@ -84,7 +57,7 @@ HyprZen is heavily optimized for **Arch Linux** and Arch-based distributions. It
 
 ### How to Install
 The installation process is split into two scripts that work together automatically:
-* **`setup.sh`**: Downloads and installs all the required programs (Hyprland, Waybar, etc.) using `pacman` and an AUR helper (`yay`/`paru`).
+* **`setup.sh`**: Downloads and installs all the required programs, fonts, and AUR packages.
 * **`install.sh`**: Safely backs up your old configuration files and symlinks the HyprZen aesthetic into your `~/.config` folder.
 
 **1. Clone the repository:**
@@ -102,27 +75,19 @@ cd HyprZen
 **3. Reload Hyprland:**
 Press `SUPER + CTRL + R` to reload Hyprland and apply all the new configurations.
 
-**4. Install Scrolloverview Plugin (Inside Hyprland):**
-Open a terminal inside Hyprland and run:
-```bash
-hyprpm update
-hyprpm add https://github.com/yayuuu/hyprland-scroll-overview.git
-hyprpm enable scrolloverview
-```
-This enables the `SUPER + TAB` overview feature!
-
 ---
 
 ## ⌨️ Keybindings
 
-HyprZen uses an ultra-minimal keybind configuration. For a full, searchable list of your live keybinds, simply press `SUPER + ,` inside Hyprland.
+HyprZen uses an ultra-minimal keybind configuration. 
 
 | Action | Shortcut |
 | :--- | :--- |
 | **Terminal (Kitty)** | `SUPER + ENTER` |
 | **App Launcher (Rofi)** | `SUPER + SPACE` |
-| **Keybinds Cheatsheet** | `SUPER + ,` (Comma) |
-| **Waybar Theme Switcher** | `SUPER + W` |
+| **Theme Switcher** | `SUPER + T` |
+| **Waybar Layout Switcher** | `SUPER + W` |
+| **Wallpaper Picker** | `SUPER + ALT + W` |
 | **Close Window** | `SUPER + Q` |
 | **Toggle Fullscreen** | `SUPER + F` |
 | **Toggle Floating** | `SUPER + SHIFT + F` |
@@ -138,19 +103,18 @@ HyprZen uses an ultra-minimal keybind configuration. For a full, searchable list
 ```text
 HyprZen/
 ├── .config/
-│   ├── dunst/        # Notification daemon theming
-│   ├── fastfetch/    # Custom minimal tree-style fetch
 │   ├── hypr/         # Core Hyprland configuration & rules
 │   ├── kitty/        # Terminal emulator themes
-│   ├── rofi/         # App launcher, clipboard, and cheatsheet menus
-│   └── waybar/       # Status bar and modular styles
+│   ├── rofi/         # App launcher, clipboard, and theme menus
+│   ├── waybar/       # Status bar and modular styles
+│   ├── nvim/         # Neovim dotfiles integrated with global themes
+│   └── ...
 ├── scripts/
-│   ├── keybinds-cheat.sh   # Generates the live rofi cheatsheet
-│   ├── power-profile.sh    # Rofi-based performance mode switcher
-│   ├── wallpaper-random.sh # Handles background rotation
-│   └── waybar-switcher.sh  # Live theme toggler
+│   ├── theme-switch.sh     # Global VSCodium, Nvim, GTK, Rofi, Kitty theme switcher
+│   ├── waybar-switcher.sh  # Live waybar layout toggler
+│   └── ...
 ├── install.sh        # Core symlink installer and backup utility
-└── setup.sh          # Dependency wrapper for Arch Linux
+└── setup.sh          # Dependency wrapper & font installer for Arch Linux
 ```
 
 ---

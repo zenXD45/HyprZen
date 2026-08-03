@@ -18,8 +18,8 @@ window#waybar {
     border: 1px solid @border_color;
     border-radius: 24px;
     padding: 2px 14px;
-    margin: 6px 10px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.4);
+    margin: 10px 15px 30px 15px;
+    box-shadow: 0px 8px 25px rgba(0, 0, 0, 0.2);
 }
 
 #custom-launcher, #window, #clock, #pulseaudio, #network, #battery, #cpu, #memory, #temperature, #tray, #custom-notif, #custom-power, #cava, #mpris {

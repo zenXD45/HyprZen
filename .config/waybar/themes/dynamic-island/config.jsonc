@@ -73,7 +73,8 @@
         },
         "status-icons": { "paused": "" },
         "max-length": 32,
-        "tooltip": false
+        "tooltip": false,
+        "on-click": "bash ~/.config/quickshell/media-popup/toggle.sh"
     },
 
     // ── System Monitors ───────────────────────────────────────────
@@ -138,7 +139,7 @@
         "format-plugged":  "󰚥",
         "format-icons":    ["󰁺", "󰁼", "󰁾", "󰂀", "󰁹"],
         "tooltip-format":  "{timeTo}",
-        "on-click":        "~/scripts/power-profile.sh"
+
     },
 
     // ── Notification Bell ─────────────────────────────────────────
