@@ -319,7 +319,13 @@ hl.layer_rule({
 hl.layer_rule({
     match = { namespace = "^(logout_dialog)$" },
     blur = true,
-    ignore_alpha = 0.1,
+    ignore_alpha = 0.2,
+})
+
+hl.layer_rule({
+    match = { namespace = "^(wlogout)$" },
+    blur = true,
+    ignore_alpha = 0.2,
 })
 
 -- ── Quickshell Wallpaper Picker ───────────────────────────────

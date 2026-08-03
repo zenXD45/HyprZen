@@ -188,7 +188,7 @@
     // ── Power Menu ────────────────────────────────────────────────
     "custom/power": {
         "format": "⏻",
-        "on-click": "wlogout -b 2",
+        "on-click": "wlogout -b 5 -T 350 -B 350",
         "tooltip": false
     }
 }

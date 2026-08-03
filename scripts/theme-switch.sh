@@ -171,13 +171,41 @@ if [ -f "$VSCODE_SETTINGS" ]; then
     jq ".\"workbench.colorTheme\" = \"$CODE_THEME\"" "$VSCODE_SETTINGS" > "${VSCODE_SETTINGS}.tmp" && mv "${VSCODE_SETTINGS}.tmp" "$VSCODE_SETTINGS"
 fi
 
-# 12. Sync GTK color-scheme (for Librewolf and other apps)
+# 12. Sync GTK and Kvantum Themes
+case "$SELECTED" in
+    "catppuccin") GTK_THEME="catppuccin-mocha-lavender-standard+default"; KV_THEME="catppuccin-mocha-lavender"; WLOGOUT_COLOR="rgba(180, 190, 254, 0.5)" ;;
+    "tokyo-night") GTK_THEME="adw-gtk3-dark"; KV_THEME="KvDark"; WLOGOUT_COLOR="rgba(122, 162, 247, 0.5)" ;;
+    "gruvbox") GTK_THEME="Colloid-Dark"; KV_THEME="KvDark"; WLOGOUT_COLOR="rgba(254, 128, 25, 0.5)" ;;
+    "nord") GTK_THEME="Nordic"; KV_THEME="KvDark"; WLOGOUT_COLOR="rgba(136, 192, 208, 0.5)" ;;
+    "osaka-jade") GTK_THEME="Colloid-Dark"; KV_THEME="KvDark"; WLOGOUT_COLOR="rgba(167, 192, 128, 0.5)" ;;
+    "aetheria") GTK_THEME="Colloid-Light"; KV_THEME="KvLight"; WLOGOUT_COLOR="rgba(114, 135, 253, 0.5)" ;;
+    "akane") GTK_THEME="adw-gtk3-dark"; KV_THEME="KvDark"; WLOGOUT_COLOR="rgba(255, 93, 98, 0.5)" ;;
+    "alabaster") GTK_THEME="Colloid-Light"; KV_THEME="KvLight"; WLOGOUT_COLOR="rgba(128, 128, 128, 0.5)" ;;
+    "lavender") GTK_THEME="catppuccin-mocha-lavender-standard+default"; KV_THEME="catppuccin-mocha-lavender"; WLOGOUT_COLOR="rgba(180, 190, 254, 0.5)" ;;
+    "eva-theme") GTK_THEME="Materia-dark"; KV_THEME="KvDark"; WLOGOUT_COLOR="rgba(158, 206, 106, 0.5)" ;;
+    "noir") GTK_THEME="adw-gtk3-dark"; KV_THEME="KvDark"; WLOGOUT_COLOR="rgba(255, 255, 255, 0.15)" ;;
+    "one-dark") GTK_THEME="AtomOneDarkTheme"; KV_THEME="KvDark"; WLOGOUT_COLOR="rgba(97, 175, 239, 0.5)" ;;
+    "rose-pine") GTK_THEME="Materia-dark"; KV_THEME="KvDark"; WLOGOUT_COLOR="rgba(196, 167, 231, 0.5)" ;;
+    *) GTK_THEME="adw-gtk3-dark"; KV_THEME="KvDark"; WLOGOUT_COLOR="rgba(255, 255, 255, 0.15)" ;;
+esac
+
 if [ -n "$WAYLAND_DISPLAY" ] || [ -n "$DBUS_SESSION_BUS_ADDRESS" ]; then
     if [ "$SELECTED" = "aetheria" ] || [ "$SELECTED" = "alabaster" ]; then
         gsettings set org.gnome.desktop.interface color-scheme 'prefer-light' 2>/dev/null || true
     else
         gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark' 2>/dev/null || true
     fi
+    gsettings set org.gnome.desktop.interface gtk-theme "$GTK_THEME" 2>/dev/null || true
+fi
+
+if command -v kvantummanager &> /dev/null; then
+    kvantummanager --set "$KV_THEME" 2>/dev/null || true
+fi
+
+# 13. Sync Wlogout hover color
+WLOGOUT_CSS="$HOME/.config/wlogout/style.css"
+if [ -f "$WLOGOUT_CSS" ]; then
+    sed -i "s|background-color: .* /\* WLOGOUT_HOVER_COLOR \*/|background-color: $WLOGOUT_COLOR; /* WLOGOUT_HOVER_COLOR */|" "$WLOGOUT_CSS"
 fi
 
 # 12. Notify user
