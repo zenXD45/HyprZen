@@ -56,7 +56,6 @@
     history_length  = 20
 
     ### Misc ###
-    dmenu         = /usr/bin/rofi -p dunst -dmenu
     browser       = /usr/bin/xdg-open
     always_run_script = true
     title         = Dunst

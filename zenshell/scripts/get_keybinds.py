@@ -10,18 +10,14 @@ def human_readable_action(action):
     mappings = {
         '~/.config/quickshell/dynamic-island/island_ctl.sh launcher': 'Open App Launcher',
         '~/.config/quickshell/dynamic-island/modules/spotlight/toggle.sh': 'Toggle Spotlight Search',
-        'rofi -show run    -theme ~/.config/rofi/minimal.rasi': 'Command Runner',
         'hyprswitch gui --mod-key alt_l --key tab --close mod-key-release --reverse-key=mod=shift --sort-recent --ignore-workspaces': 'Window Switcher',
         '~/.config/quickshell/dynamic-island/island_ctl.sh cheatsheet': 'Keybinds Cheatsheet',
-        '~/scripts/dropdown.sh': 'Dropdown Terminal',
         '~/.config/quickshell/dynamic-island/island_ctl.sh clipboard': 'Clipboard Manager',
         '~/.config/quickshell/dynamic-island/island_ctl.sh power': 'Power Menu',
         '~/.config/quickshell/dynamic-island/island_ctl.sh control_center': 'Control Center',
         'hyprlock': 'Lock Screen',
         '~/.config/quickshell/dynamic-island/island_ctl.sh powerprofile': 'Power Profiles',
         '~/.config/quickshell/dynamic-island/island_ctl.sh themes': 'Theme Switcher',
-        '~/scripts/waybar-switcher.sh': 'Toggle Waybar',
-        'killall -SIGUSR1 waybar': 'Reload Waybar',
         '~/.config/quickshell/dynamic-island/island_ctl.sh wallpapers': 'Wallpaper Selector',
         'hyprshade toggle oled': 'Toggle OLED Shader',
     }

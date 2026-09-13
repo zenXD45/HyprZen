@@ -10,22 +10,22 @@ fi
 
 WALLPAPER="$1"
 
-# 1. Run pywal without changing the background (Hyprpaper/Swaybg handles that)
+# 1. Run pywal without changing the background (awww handles that)
 wal -i "$WALLPAPER" -n -q
 
 # 2. Copy the generated templates to the themes directories as 'dynamic'
 cp ~/.cache/wal/colors-hyprland.conf ~/.config/hypr/themes/dynamic.conf
-cp ~/.cache/wal/colors-waybar.css ~/.config/waybar/themes/dynamic.css
 cp ~/.cache/wal/colors-kitty.conf ~/.config/kitty/themes/dynamic.conf
+# shared GUI colors for swaync / swayosd (waybar is gone; CSS lives in hypr/themes)
+cp ~/.cache/wal/colors-waybar.css ~/.config/hypr/themes/dynamic.css
+ln -sfn ~/.config/hypr/themes/dynamic.css ~/.config/hypr/themes/current.css
 
 # 3. Reload everything
 echo "source = ~/.config/hypr/themes/dynamic.conf" > ~/.config/hypr/themes/current_theme.conf
-ln -sf ~/.config/waybar/themes/dynamic.css ~/.config/waybar/themes/current.css
 ln -sf ~/.config/kitty/themes/dynamic.conf ~/.config/kitty/themes/current.conf
 
-hyprctl reload
-pkill -SIGUSR2 waybar 2>/dev/null
-pkill -SIGUSR1 kitty 2>/dev/null
+hyprctl reload 2>/dev/null || true
+pkill -SIGUSR1 kitty 2>/dev/null || true
 swaync-client -rs 2>/dev/null || true
 
-notify-send "󰟡 HyprZen" "Dynamic colors applied!" --icon=color-select
+notify-send "󰟡 HyprZen" "Dynamic colors applied!" --icon=color-select 2>/dev/null || true

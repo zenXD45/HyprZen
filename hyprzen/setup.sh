@@ -18,10 +18,9 @@ fi
 echo "📦 Installing dependencies..."
 
 # ── 1. Core Hyprland & Wayland UI ──
-# Note: 'rofi' (v2.0+) has native Wayland support (provides rofi-wayland).
-# Using 'rofi' as the package name since 'rofi-wayland' is a virtual provide,
-# not an installable package name on most Arch-based repos.
-PKGS="hyprland hyprlock waybar rofi kitty swaync"
+# waybar + rofi were removed — ZenShell (island/dock/spotlight) is
+# the default bar/launcher now.
+PKGS="hyprland hyprlock hypridle kitty swaync"
 
 # ── 2. Utilities (Screenshots, Audio, Info, File Manager, Power) ──
 PKGS="$PKGS cliphist wl-clipboard playerctl btop pavucontrol fastfetch cava thunar power-profiles-daemon python-pywal neovim ripgrep fd npm jq awww cmake cpio pkgconf gcc make unzip wget"

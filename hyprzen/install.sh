@@ -37,9 +37,9 @@ fi
 # Step 5 will cleanly replace the entire ~/.config/hypr directory anyway.
 HYPR_DIR="$CONFIG_DIR/hypr"
 
-# ── Step 4: Remove old waybar / swaync / rofi / kitty dirs ────
+# ── Step 4: Remove old swaync / kitty dirs ─────────────────────
 # (could be real dirs from old setups, or broken symlinks)
-for app in waybar swaync rofi kitty; do
+for app in swaync kitty; do
     target="$CONFIG_DIR/$app"
     if [ -L "$target" ]; then
         rm -f "$target"
@@ -54,11 +54,6 @@ for app in waybar swaync rofi kitty; do
             echo "  removed: ~/.config/$app"
         fi
     fi
-done
-
-# Also clean up the nested broken symlinks inside rofi/waybar if leftover
-for item in "$CONFIG_DIR/rofi/rofi" "$CONFIG_DIR/waybar/waybar"; do
-    [ -L "$item" ] && rm -f "$item" && echo "  removed nested symlink: $item" || true
 done
 
 # ── Step 5: Symlink HyprZen configs ──────────────────────────
@@ -79,10 +74,8 @@ if [ -e "$HYPR_DIR" ] && [ ! -L "$HYPR_DIR" ]; then
     echo "  cleaned up: ~/.config/hypr (old Caelestia dir)"
 fi
 link "$DOTFILES_DIR/.config/hypr"    "$CONFIG_DIR/hypr"
-link "$DOTFILES_DIR/.config/waybar"  "$CONFIG_DIR/waybar"
 link "$DOTFILES_DIR/.config/kitty"   "$CONFIG_DIR/kitty"
 link "$DOTFILES_DIR/.config/swaync"  "$CONFIG_DIR/swaync"
-link "$DOTFILES_DIR/.config/rofi"    "$CONFIG_DIR/rofi"
 link "$DOTFILES_DIR/.config/eww"     "$CONFIG_DIR/eww"
 link "$DOTFILES_DIR/.config/wlogout" "$CONFIG_DIR/wlogout"
 link "$DOTFILES_DIR/.config/swayosd" "$CONFIG_DIR/swayosd"
@@ -123,8 +116,7 @@ fi
 echo ""
 echo "✅ Done! Next steps:"
 echo "   1. Ensure required packages are installed: (see README.md)"
-echo "      e.g., rofi, waybar, hyprland, python-requests, hyprpaper, python-pywal"
+echo "      e.g., Hyprland, kitty, swaync, python-requests, hyprpaper, python-pywal"
 echo "   2. Log in to Hyprland (or restart: hyprctl reload)"
-echo "   3. Switch themes: Super+T  or  ~/scripts/theme-switch.sh <theme>"
-echo "   4. Switch Waybar layout: Super+W  or  ~/scripts/waybar-switcher.sh"
-echo "   5. Select Wallpapers via Super+Alt+W (Rofi GUI)"
+echo "   3. Switch themes: Super+T (island)  or  ~/scripts/theme-switch.sh <theme>"
+echo "   4. Pick wallpapers: Super+W (island)  or  ~/scripts/wallpaper-selector.sh set <path>"

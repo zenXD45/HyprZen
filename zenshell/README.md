@@ -85,14 +85,20 @@ You can bind the different modules to whatever keys you prefer.
 
 **Standard `.conf` bindings:**
 ```ini
-# App Launcher
-bind = SUPER_SHIFT, Space, exec, ~/.config/quickshell/dynamic-island/island_ctl.sh launcher
+# App Launcher (default)
+bind = SUPER, Space, exec, ~/.config/quickshell/dynamic-island/island_ctl.sh launcher
 
-# Keybinds Cheatsheet
-bind = SUPER_SHIFT, comma, exec, ~/.config/quickshell/dynamic-island/island_ctl.sh cheatsheet
+# Keybinds Cheatsheet (default)
+bind = SUPER, comma, exec, ~/.config/quickshell/dynamic-island/island_ctl.sh cheatsheet
 
-# Clipboard Manager
-bind = SUPER_SHIFT, V, exec, ~/.config/quickshell/dynamic-island/island_ctl.sh clipboard
+# Clipboard Manager (default)
+bind = SUPER, V, exec, ~/.config/quickshell/dynamic-island/island_ctl.sh clipboard
+
+# Theme Switcher (default)
+bind = SUPER, T, exec, ~/.config/quickshell/dynamic-island/island_ctl.sh themes
+
+# Wallpaper Selector (default)
+bind = SUPER, W, exec, ~/.config/quickshell/dynamic-island/island_ctl.sh wallpapers
 
 # Control Center
 bind = SUPER_SHIFT, N, exec, ~/.config/quickshell/dynamic-island/island_ctl.sh control_center
@@ -104,16 +110,18 @@ bind = SUPER, Escape, exec, ~/.config/quickshell/dynamic-island/island_ctl.sh po
 bind = SUPER_SHIFT, P, exec, ~/.config/quickshell/dynamic-island/island_ctl.sh powerprofile
 ```
 
-**Lua bindings:**
+**Lua bindings (ZenShell is the default UI — hyprzen ships no waybar/rofi):**
 ```lua
--- ZenShell Dynamic Island — uses SHIFT variants to avoid clashing
--- with HyprZen's SUPER+SPACE (rofi), SUPER+comma, SUPER+V
+-- ZenShell Dynamic Island — launcher/clipboard/cheatsheet/themes/
+-- wallpapers own the plain SUPER+ keys; the rest use SUPER+SHIFT.
 
 local ISLAND = "~/.config/quickshell/dynamic-island/island_ctl.sh"
 
-hl.bind("SUPER + SHIFT", "SPACE", hl.dsp.exec_cmd(ISLAND .. " launcher"))
-hl.bind("SUPER + SHIFT", "comma", hl.dsp.exec_cmd(ISLAND .. " cheatsheet"))
-hl.bind("SUPER + SHIFT", "V", hl.dsp.exec_cmd(ISLAND .. " clipboard"))
+hl.bind("SUPER", "SPACE", hl.dsp.exec_cmd(ISLAND .. " launcher"))
+hl.bind("SUPER", "comma", hl.dsp.exec_cmd(ISLAND .. " cheatsheet"))
+hl.bind("SUPER", "V", hl.dsp.exec_cmd(ISLAND .. " clipboard"))
+hl.bind("SUPER", "T", hl.dsp.exec_cmd(ISLAND .. " themes"))
+hl.bind("SUPER", "W", hl.dsp.exec_cmd(ISLAND .. " wallpapers"))
 hl.bind("SUPER + SHIFT", "N", hl.dsp.exec_cmd(ISLAND .. " control_center"))
 hl.bind("SUPER", "escape", hl.dsp.exec_cmd(ISLAND .. " power"))
 hl.bind("SUPER + SHIFT", "P", hl.dsp.exec_cmd(ISLAND .. " powerprofile"))

@@ -106,17 +106,21 @@ HyprZen/
 ├── .config/
 │   ├── hypr/         # Core Hyprland configuration & rules
 │   ├── kitty/        # Terminal emulator themes
-│   ├── rofi/         # App launcher, clipboard, and theme menus
-│   ├── waybar/       # Status bar and modular styles
+│   ├── swaync/       # Notifications (Wayland-native)
+│   ├── eww/          # Desktop clock widget
 │   ├── nvim/         # Neovim dotfiles integrated with global themes
 │   └── ...
 ├── scripts/
-│   ├── theme-switch.sh     # Global VSCodium, Nvim, GTK, Rofi, Kitty theme switcher
-│   ├── waybar-switcher.sh  # Live waybar layout toggler
+│   ├── theme-switch.sh          # Global VSCodium, Nvim, GTK, Kitty theme switcher
+│   ├── wallpaper-selector.sh    # Set current wallpaper (island picker calls this)
 │   └── ...
 ├── install.sh        # Core symlink installer and backup utility
 └── setup.sh          # Dependency wrapper & font installer for Arch Linux
 ```
+
+> **No waybar, no rofi** — ZenShell (Dynamic Island / Dock / Spotlight) is the
+> default launcher, bar, wallpaper picker and theme switcher. Screenshots,
+> clipboard, and menus all live in the glass island now.
 
 ---
 <div align="center">

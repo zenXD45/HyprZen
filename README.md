@@ -1,9 +1,9 @@
 # HyprZen 🏝️
 
-A monorepo merging two projects — **HyprZen** (hyprland dotfiles) and **Zen Shell** (Quickshell Dynamic Island desktop suite) — into one cohesive, conflict-free desktop experience.
+A monorepo merging two projects — **HyprZen** (Hyprland dotfiles & theming) and **Zen Shell** (Quickshell Dynamic Island desktop suite) — into one cohesive, conflict-free desktop experience where **ZenShell is the default UI** (launcher, bar, dock, spotlight, theme/wallpaper pickers).
 
-- [HyprZen — the base rice](hyprzen/README.md): ultra-minimal Hyprland config, 13 themes, dynamic waybar island, rofi menus.
-- [Zen Shell — the glassmorphic shell](zenshell/README.md): Dynamic Island, Dock, Spotlight, widgets.
+- [HyprZen — the base rice](hyprzen/README.md): ultra-minimal Hyprland config, 13 themes, swaync notifications, eww desktop clock.
+- [Zen Shell — the glassmorphic shell](zenshell/README.md): Dynamic Island, Dock, Spotlight, Desktop Widgets — replaces rofi and waybar entirely.
 
 ## Structure
 
@@ -26,7 +26,7 @@ cd HyprZen
 
 What `install.sh` does, in order:
 
-1. Installs all official packages (Hyprland, waybar, rofi, kitty, swaync, pipewire, cliphist, python, toolchain…).
+1. Installs all official packages (Hyprland, kitty, swaync, pipewire, cliphist, python, toolchain…). **No waybar, no rofi** — the island + dock replace them.
 2. Installs an AUR helper (`paru`/`yay`) and the AUR packages: `quickshell-git`, `eww-git`, `hyprswitch`, `matugen`, `satty`, `hyprshot`, `waypaper`, `swayosd`, `bibata-cursor-theme`. Failures are warned, not fatal.
 3. Downloads + caches **GeistMono Nerd Font**.
 4. Adds + enables the **scroll-overview** hyprpm plugin.
@@ -57,15 +57,13 @@ SUPER + CTRL + R
 
 ## ⌨️ Unified Keybinds
 
-All keybinds live in `hyprzen/.config/hypr/modules/keybinds.lua`. Combos are **unique** — no project clashes: HyprZen (rofi, swaync, wlogout) keeps the plain `SUPER+` keys, ZenShell's island uses `SUPER+SHIFT+` variants.
+All keybinds live in `hyprzen/.config/hypr/modules/keybinds.lua`. Combos are **unique**. ZenShell owns the primary UI actions on plain `SUPER+` keys (launcher, clipboard, cheatsheet, themes, wallpapers); HyprZen keeps terminal/app/system binds on their own keys. Media/brightness keys remain on the keyboard keys.
 
 ### Apps & Launcher
 | Action | Shortcut |
 | :--- | :--- |
 | Terminal (Kitty) | `SUPER + Enter` |
-| App Launcher (rofi) | `SUPER + Space` |
-| **App Launcher (ZenShell island)** | `SUPER + Shift + Space` |
-| Command Runner (rofi) | `SUPER + R` |
+| **App Launcher (ZenShell island)** | `SUPER + Space` |
 | Window Switcher | `SUPER + Alt + Tab` |
 | Browser (LibreWolf) | `SUPER + B` |
 | Files (Nautilus) | `SUPER + E` |
@@ -75,9 +73,9 @@ All keybinds live in `hyprzen/.config/hypr/modules/keybinds.lua`. Combos are **u
 ### ZenShell Dynamic Island
 | Action | Shortcut |
 | :--- | :--- |
-| App Launcher | `SUPER + Shift + Space` |
-| Keybinds Cheatsheet | `SUPER + Shift + comma` |
-| Clipboard Manager | `SUPER + Shift + V` |
+| App Launcher | `SUPER + Space` |
+| Keybinds Cheatsheet | `SUPER + comma` |
+| Clipboard Manager | `SUPER + V` |
 | Control Center | `SUPER + Shift + N` |
 | Power Menu | `SUPER + Escape` |
 | Power Profiles | `SUPER + Shift + P` |
@@ -86,17 +84,15 @@ All keybinds live in `hyprzen/.config/hypr/modules/keybinds.lua`. Combos are **u
 ### Clipboard / Notifications
 | Action | Shortcut |
 | :--- | :--- |
-| Clipboard (cliphist → rofi) | `SUPER + V` |
+| Clipboard (ZenShell island) | `SUPER + V` |
 | Notifications (toggle) | `SUPER + N` |
 | Notifications (dismiss) | `SUPER + Ctrl + N` |
 
-### Theme / Wallpaper / Waybar
+### Theme / Wallpaper
 | Action | Shortcut |
 | :--- | :--- |
-| Theme Switcher | `SUPER + T` |
-| Waybar Layout Switcher | `SUPER + W` |
-| Waybar Reload | `SUPER + Shift + W` |
-| Wallpaper Picker | `SUPER + Alt + W` |
+| Theme Switcher (island) | `SUPER + T` |
+| Wallpaper Picker (island) | `SUPER + W` |
 
 ### Screenshots
 | Action | Shortcut |
@@ -137,5 +133,6 @@ All keybinds live in `hyprzen/.config/hypr/modules/keybinds.lua`. Combos are **u
 
 ## Notes
 
-- Both projects previously hardcoded `~/Desktop/hyprzen/...` paths; these were normalized to `~/scripts` and `~/wallpapers` (the symlinks `hyprzen/install.sh` creates), and every `/home/zen/...` path inside ZenShell now resolves via `$HOME` / `Qt.homePath()`, so the repo works on any machine without edits.
+- **rofi and waybar are removed from HyprZen** — ZenShell's island (launcher, clipboard, cheatsheet, theme/wallpaper pickers) and dock are the default UI, so nothing can conflict.
+- Both projects previously hardcoded absolute paths (e.g. `~/Desktop/hyprzen/...` and a user home dir); these were normalized to `~/scripts` and `~/wallpapers` (the symlinks `hyprzen/install.sh` creates), and every `$HOME` / user-directory path inside ZenShell now resolves via `$HOME` / `Qt.homePath()`, so the repo works on any machine without edits.
 - Keep the install order above; ZenShell depends on HyprZen's `theme-switch.sh` for its ThemeSwitcher.

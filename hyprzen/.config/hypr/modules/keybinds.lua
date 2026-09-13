@@ -19,13 +19,12 @@ hl.bind(S .. " + C", hl.dsp.exec_cmd("codium"))
 hl.bind(S .. " + D", hl.dsp.exec_cmd("eww open --toggle desktop_clock"))
 
 -- ── Launcher / Search ─────────────────────────────────────────
-hl.bind(S .. " + SPACE", hl.dsp.exec_cmd("rofi -show drun   -theme ~/.config/rofi/minimal.rasi"))
-hl.bind(S .. " + R", hl.dsp.exec_cmd("rofi -show run    -theme ~/.config/rofi/minimal.rasi"))
+hl.bind(S .. " + SPACE", hl.dsp.exec_cmd("~/.config/quickshell/dynamic-island/island_ctl.sh launcher"))
+hl.bind(S .. " + comma", hl.dsp.exec_cmd("~/.config/quickshell/dynamic-island/island_ctl.sh cheatsheet"))
 hl.bind(SA .. " + TAB", hl.dsp.exec_cmd("hyprswitch gui --mod-key alt_l --key tab --close mod-key-release --reverse-key=mod=shift --sort-recent --ignore-workspaces"))
-hl.bind(S .. " + comma", hl.dsp.exec_cmd("~/scripts/keybinds-cheat.sh"))
 
--- ── Clipboard (cliphist → rofi) ───────────────────────────────
-hl.bind(S .. " + V", hl.dsp.exec_cmd("cliphist list | rofi -dmenu -theme ~/.config/rofi/minimal.rasi -p \"󰅇 clip\" | cliphist decode | wl-copy"))
+-- ── Clipboard (ZenShell island) ───────────────────────────────
+hl.bind(S .. " + V", hl.dsp.exec_cmd("~/.config/quickshell/dynamic-island/island_ctl.sh clipboard"))
 
 -- ── Notifications ─────────────────────────────────────────────
 hl.bind(S .. " + N", hl.dsp.exec_cmd("swaync-client -t"))
@@ -35,12 +34,9 @@ hl.bind(SC .. " + N", hl.dsp.exec_cmd("swaync-client -d"))
 hl.bind(S .. " + X", hl.dsp.exec_cmd("wlogout -b 5 -T 350 -B 350"))
 hl.bind(SS .. " + L", hl.dsp.exec_cmd("hyprlock"))
 hl.bind(SS .. " + C", hl.dsp.exec_cmd("~/scripts/caffeine.sh"))
--- ── Theme & Wallpaper ─────────────────────────────────────────
-
-hl.bind(S .. " + T", hl.dsp.exec_cmd("~/scripts/theme-switch.sh"))
-hl.bind(S .. " + W", hl.dsp.exec_cmd("~/scripts/waybar-switcher.sh"))
-hl.bind(SS .. " + W", hl.dsp.exec_cmd("killall -SIGUSR1 waybar"))
-hl.bind(SA .. " + W", hl.dsp.exec_cmd("~/scripts/wallpaper-selector.sh"))
+-- ── Theme & Wallpaper (ZenShell island) ───────────────────────
+hl.bind(S .. " + T", hl.dsp.exec_cmd("~/.config/quickshell/dynamic-island/island_ctl.sh themes"))
+hl.bind(S .. " + W", hl.dsp.exec_cmd("~/.config/quickshell/dynamic-island/island_ctl.sh wallpapers"))
 
 
 -- ── Screenshots ───────────────────────────────────────────────
@@ -139,12 +135,10 @@ hl.bind("XF86MonBrightnessUp", hl.dsp.exec_cmd("swayosd-client --brightness rais
 hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd("swayosd-client --brightness lower"), { locked = true, repeating = true })
 
 -- ── ZenShell Dynamic Island ───────────────────────────────────
--- Conflicts with HyprZen resolved: island actions live on
--- SHIFT variants so separate SUPER+SPACE/COMMA/V (rofi) survive.
+-- ZenShell is the default UI: launcher/clipboard/cheatsheet/
+-- themes/wallpapers live on the plain SUPER+ keys now that the
+-- rofi/waybar binds are gone. The rest keep SHIFT variants.
 
-hl.bind(SS .. " + SPACE", hl.dsp.exec_cmd("~/.config/quickshell/dynamic-island/island_ctl.sh launcher"))
-hl.bind(SS .. " + comma", hl.dsp.exec_cmd("~/.config/quickshell/dynamic-island/island_ctl.sh cheatsheet"))
-hl.bind(SS .. " + V", hl.dsp.exec_cmd("~/.config/quickshell/dynamic-island/island_ctl.sh clipboard"))
 hl.bind(SS .. " + N", hl.dsp.exec_cmd("~/.config/quickshell/dynamic-island/island_ctl.sh control_center"))
 hl.bind(S .. " + escape", hl.dsp.exec_cmd("~/.config/quickshell/dynamic-island/island_ctl.sh power"))
 hl.bind(SS .. " + P", hl.dsp.exec_cmd("~/.config/quickshell/dynamic-island/island_ctl.sh powerprofile"))

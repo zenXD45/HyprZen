@@ -1,4 +1,4 @@
-@import url("../waybar/themes/current.css");
+@import url("../hypr/themes/current.css");
 
 @define-color text @text;
 @define-color selected @accent;

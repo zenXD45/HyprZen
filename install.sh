@@ -3,10 +3,10 @@
 #   HyprZen Fusion — One-Shot Arch Installer
 #
 #   Installs the complete HyprZen desktop:
-#     • HyprZen    — Hyprland rice (waybar, rofi, kitty, swaync,
-#                    swayosd, eww, themes, scripts, wallpapers)
+#     • HyprZen    — Hyprland rice (kitty, swaync, swayosd, eww,
+#                    themes, scripts, wallpapers)
 #     • ZenShell   — Quickshell Dynamic Island / Dock / Spotlight /
-#                    Desktop Widgets suite
+#                    Desktop Widgets suite (default bar + launcher)
 #
 #   From-scratch friendly: takes a bare Arch install and leaves you
 #   with a working, themed Hyprland session. Tolerant of missing
@@ -79,8 +79,9 @@ sleep 2
 step "Official packages (pacman)"
 OFFICIAL_PKGS=(
     # Window / compositor & core UI
-    hyprland hyprlock hypridle waybar rofi kitty swaync wlogout
+    hyprland hyprlock hypridle kitty swaync wlogout
     xdg-desktop-portal-hyprland
+    # ZenShell needs NO waybar/rofi — the island + dock are the default.
     # Audio / OSD / input
     pipewire pipewire-pulse wireplumber pavucontrol playerctl brightnessctl
     # Clipboard / screenshot / clipboard utils
@@ -226,7 +227,7 @@ if [ ! -e "$HOME/wallpapers/current" ]; then
         ln -sf "$WALL" "$HOME/wallpapers/current"
         ok "Default wallpaper set: $WALL"
     else
-        warn "No wallpapers found for $DEFAULT_THEME — pick one later with Super+Alt+W."
+        warn "No wallpapers found for $DEFAULT_THEME — pick one later with Super+W (island picker)."
     fi
 else
     ok "Wallpaper already set."
@@ -256,8 +257,8 @@ check() { # check <desc> <cmd...>
 }
 check "hyprland"        sh -c 'command -v Hyprland'
 check "quickshell"      sh -c 'command -v quickshell'
-check "waybar"          sh -c 'command -v waybar'
-check "rofi"            sh -c 'command -v rofi'
+check "kitty"           sh -c 'command -v kitty'
+check "swaync"          sh -c 'command -v swaync'
 check "hypr [$HOME/.config/hypr]"   sh -c '[ -e "$HOME/.config/hypr" ]'
 check "scripts [$HOME/scripts]"     sh -c '[ -e "$HOME/scripts" ]'
 check "zen shell [$QS_DEST/shell.qml]" sh -c '[ -f "$HOME/.config/quickshell/dynamic-island/shell.qml" ]'
@@ -272,18 +273,17 @@ cat <<'EOF'
 
     Next steps:
       1. Reboot, then log into the "Hyprland" session.
-      2. Wallpaper picker:        Super+Alt+W
+      2. Wallpaper picker:        Super+W
       3. Theme switcher:          Super+T
-      4. Waybar switcher:         Super+W
-      5. Dynamic Island:
-           Launcher        Super+Shift+Space
-           Spotlight       Super+Shift+M
+      4. Dynamic Island (the default launcher bar/UI):
+           Launcher        Super+Space
            Control Center  Super+Shift+N
-           Clipboard       Super+Shift+V
+           Clipboard       Super+V
+           Cheatsheet      Super+,
            Power menu      Super+Escape
            Power profiles  Super+Shift+P
-           Cheatsheet      Super+Shift+,
-      6. zen shell autostart is wired into exec.lua (start_all.sh).
+           Spotlight       Super+Shift+M
+      5. zen shell autostart is wired into exec.lua (start_all.sh).
 
     If any AUR package failed, retry with:
          paru -S --needed <pkg...>

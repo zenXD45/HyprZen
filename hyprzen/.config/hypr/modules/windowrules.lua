@@ -280,13 +280,6 @@ hl.window_rule({
 })
 
 -- ── Layer Rules ───────────────────────────────────────────────
--- Waybar
-hl.layer_rule({
-    match = { namespace = "^(waybar)$" },
-    blur = true,
-    ignore_alpha = 0.5,
-})
-
 -- SwayNC notifications
 hl.layer_rule({
     match = { namespace = "^(swaync-notification-window)$" },
@@ -297,13 +290,6 @@ hl.layer_rule({
 -- SwayNC control center
 hl.layer_rule({
     match = { namespace = "^(swaync-control-center)$" },
-    blur = true,
-    ignore_alpha = 0.1,
-})
-
--- Rofi
-hl.layer_rule({
-    match = { namespace = "^(rofi)$" },
     blur = true,
     ignore_alpha = 0.1,
 })
