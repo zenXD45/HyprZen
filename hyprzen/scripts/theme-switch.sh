@@ -6,6 +6,9 @@
 #    theme-switch.sh <theme-name>  → Apply directly
 # =============================================================
 
+SCRIPT_DIR="$(cd "$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")" && pwd)"
+REPO_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
+
 THEMES=(
     "catppuccin" "tokyo-night" "gruvbox" "nord" "osaka-jade"
     "aetheria" "akane" "alabaster" "lavender" "eva-theme" "noir"
@@ -86,13 +89,13 @@ if [ -f "$HOME/.config/waypaper/config.ini" ]; then
 fi
 
 # 5.1 Update Quickshell wallpaper picker directory
-if [ -f "$HOME/Desktop/hyprzen/qs-wallpaper-picker/config/Settings.qml" ]; then
-    sed -i "s|property string wallpaperDir:.*|property string wallpaperDir: homeDir + \"/wallpapers/$SELECTED\"|" "$HOME/Desktop/hyprzen/qs-wallpaper-picker/config/Settings.qml"
+if [ -f "$REPO_ROOT/qs-wallpaper-picker/config/Settings.qml" ]; then
+    sed -i "s|property string wallpaperDir:.*|property string wallpaperDir: homeDir + \"/wallpapers/$SELECTED\"|" "$REPO_ROOT/qs-wallpaper-picker/config/Settings.qml"
 fi
 
 # 5.2 Generate thumbnails for the new theme
-if [ -x "$HOME/Desktop/hyprzen/qs-wallpaper-picker/scripts/generate_thumbs.sh" ]; then
-    "$HOME/Desktop/hyprzen/qs-wallpaper-picker/scripts/generate_thumbs.sh" "$HOME/wallpapers/$SELECTED" >/dev/null 2>&1 &
+if [ -x "$REPO_ROOT/qs-wallpaper-picker/scripts/generate_thumbs.sh" ]; then
+    "$REPO_ROOT/qs-wallpaper-picker/scripts/generate_thumbs.sh" "$HOME/wallpapers/$SELECTED" >/dev/null 2>&1 &
     disown
 fi
 

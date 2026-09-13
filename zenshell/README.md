@@ -53,11 +53,11 @@ The installer will safely backup any existing configurations, resolve all your s
 Simply run the following command in your terminal:
 
 ```bash
-git clone https://github.com/zenXD45/Zen-Shell.git ~/.config/quickshell/dynamic-island
-~/.config/quickshell/dynamic-island/install.sh
+git clone https://github.com/zenXD45/HyprZen.git
+~/HyprZen/zenshell/install.sh
 ```
 
-*(Note: If you run into a password prompt, it's just your AUR helper safely fetching missing dependencies like `socat` or `playerctl`!)*
+*(Note: ZenShell lives in the `zenshell/` directory of the HyprZen monorepo. If you run into a password prompt, it's just your AUR helper safely fetching missing dependencies like `socat` or `playerctl`!)*
 
 ## ⚙️ Hyprland Integration
 
@@ -81,33 +81,42 @@ hl.exec_cmd("~/.config/quickshell/dynamic-island/start_all.sh")
 
 ### Keybind Setup
 
-You can bind the different modules to whatever keys you prefer! 
+You can bind the different modules to whatever keys you prefer. 
 
 **Standard `.conf` bindings:**
 ```ini
 # App Launcher
-bind = SUPER, Space, exec, ~/.config/quickshell/dynamic-island/island_ctl.sh launcher
+bind = SUPER_SHIFT, Space, exec, ~/.config/quickshell/dynamic-island/island_ctl.sh launcher
 
 # Keybinds Cheatsheet
-bind = SUPER, comma, exec, ~/.config/quickshell/dynamic-island/island_ctl.sh cheatsheet
+bind = SUPER_SHIFT, comma, exec, ~/.config/quickshell/dynamic-island/island_ctl.sh cheatsheet
 
 # Clipboard Manager
-bind = SUPER, V, exec, ~/.config/quickshell/dynamic-island/island_ctl.sh clipboard
+bind = SUPER_SHIFT, V, exec, ~/.config/quickshell/dynamic-island/island_ctl.sh clipboard
 
 # Control Center
 bind = SUPER_SHIFT, N, exec, ~/.config/quickshell/dynamic-island/island_ctl.sh control_center
 
 # Power Menu
 bind = SUPER, Escape, exec, ~/.config/quickshell/dynamic-island/island_ctl.sh power
+
+# Power Profiles
+bind = SUPER_SHIFT, P, exec, ~/.config/quickshell/dynamic-island/island_ctl.sh powerprofile
 ```
 
 **Lua bindings:**
 ```lua
-hl.bind("SUPER", "Space", "exec", "~/.config/quickshell/dynamic-island/island_ctl.sh launcher")
-hl.bind("SUPER", "comma", "exec", "~/.config/quickshell/dynamic-island/island_ctl.sh cheatsheet")
-hl.bind("SUPER", "V", "exec", "~/.config/quickshell/dynamic-island/island_ctl.sh clipboard")
-hl.bind("SUPER_SHIFT", "N", "exec", "~/.config/quickshell/dynamic-island/island_ctl.sh control_center")
-hl.bind("SUPER", "Escape", "exec", "~/.config/quickshell/dynamic-island/island_ctl.sh power")
+-- ZenShell Dynamic Island — uses SHIFT variants to avoid clashing
+-- with HyprZen's SUPER+SPACE (rofi), SUPER+comma, SUPER+V
+
+local ISLAND = "~/.config/quickshell/dynamic-island/island_ctl.sh"
+
+hl.bind("SUPER + SHIFT", "SPACE", hl.dsp.exec_cmd(ISLAND .. " launcher"))
+hl.bind("SUPER + SHIFT", "comma", hl.dsp.exec_cmd(ISLAND .. " cheatsheet"))
+hl.bind("SUPER + SHIFT", "V", hl.dsp.exec_cmd(ISLAND .. " clipboard"))
+hl.bind("SUPER + SHIFT", "N", hl.dsp.exec_cmd(ISLAND .. " control_center"))
+hl.bind("SUPER", "escape", hl.dsp.exec_cmd(ISLAND .. " power"))
+hl.bind("SUPER + SHIFT", "P", hl.dsp.exec_cmd(ISLAND .. " powerprofile"))
 ```
 
 ## 🛠️ Directory Structure

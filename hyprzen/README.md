@@ -94,7 +94,8 @@ HyprZen uses an ultra-minimal keybind configuration.
 | **Toggle Opaque / Blur** | `SUPER + O` |
 | **Region Screenshot (Annotate)** | `SUPER + Print` |
 | **Region Screenshot (Clipboard)** | `SUPER + CTRL + Print` |
-| **Dismiss Notifications** | `SUPER + SHIFT + N` |
+| **Dismiss Notifications** | `SUPER + CTRL + N` |
+| **Control Center (ZenShell)** | `SUPER + SHIFT + N` |
 
 ---
 

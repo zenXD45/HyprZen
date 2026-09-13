@@ -57,7 +57,7 @@ Scope {
     function applyTheme(themeId) {
         root.currentThemeId = themeId;
         updateThemeAccent();
-        applyThemeProcess.command = ["bash", "/home/zen/Desktop/hyprzen/scripts/theme-switch.sh", themeId];
+        applyThemeProcess.command = ["bash", "~/scripts/theme-switch.sh", themeId];
         applyThemeProcess.running = true;
         root.displayState = 0;
         root.updateState();

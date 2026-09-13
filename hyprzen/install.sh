@@ -2,7 +2,7 @@
 # =============================================================
 #  HyprZen Install Script
 #  Removes Caelestia setup and replaces with HyprZen.
-#  Symlinks all configs from ~/Desktop/hyprzen to ~/.config.
+#  Symlinks all configs from the repo's hyprzen/ directory to ~/.config.
 # =============================================================
 
 set -e
@@ -125,6 +125,6 @@ echo "✅ Done! Next steps:"
 echo "   1. Ensure required packages are installed: (see README.md)"
 echo "      e.g., rofi, waybar, hyprland, python-requests, hyprpaper, python-pywal"
 echo "   2. Log in to Hyprland (or restart: hyprctl reload)"
-echo "   3. Switch themes: Super+Shift+T  or  ~/scripts/theme-switch.sh <theme>"
-echo "   4. Switch Waybar layout: Super+Shift+W  or  ~/scripts/waybar-switcher.sh"
-echo "   5. Select Wallpapers via Super+W (Rofi GUI)"
+echo "   3. Switch themes: Super+T  or  ~/scripts/theme-switch.sh <theme>"
+echo "   4. Switch Waybar layout: Super+W  or  ~/scripts/waybar-switcher.sh"
+echo "   5. Select Wallpapers via Super+Alt+W (Rofi GUI)"

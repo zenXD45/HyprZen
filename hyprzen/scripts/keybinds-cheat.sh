@@ -1,5 +1,6 @@
 #!/bin/bash
-CONF="$HOME/Desktop/hyprzen/.config/hypr/modules/keybinds.lua"
+SCRIPT_DIR="$(cd "$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")" && pwd)"
+CONF="$SCRIPT_DIR/../.config/hypr/modules/keybinds.lua"
 
 awk '
 /^-- ── / {

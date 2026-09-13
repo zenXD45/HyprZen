@@ -1,6 +1,6 @@
 #!/bin/bash
 # Zen Shell - One-Click Installation Script
-# https://github.com/zenXD45/Zen-Shell
+# Part of the HyprZen monorepo (https://github.com/zenXD45/HyprZen)
 
 set -e
 
@@ -88,12 +88,12 @@ if [ -d "$INSTALL_DIR" ]; then
 fi
 
 # --- Clone Repository ---
-REPO_URL="https://github.com/zenXD45/Zen-Shell.git"
-print_info "Cloning Zen Shell repository..."
+REPO_URL="https://github.com/zenXD45/HyprZen.git"
+print_info "Cloning HyprZen monorepo..."
+TMP_CLONE="$HOME/.cache/hyprzen-install-zen"
 
 # If the script is already inside the downloaded repo, we just copy it.
-# Otherwise, we clone it. 
-# Since we are assuming the user curls this script or clones it manually, we will handle both.
+# Otherwise, we clone the monorepo (containing zenshell/).
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" &> /dev/null && pwd)"
 
 if [ -f "$SCRIPT_DIR/shell.qml" ] && [ "$SCRIPT_DIR" != "$INSTALL_DIR" ]; then
@@ -104,7 +104,10 @@ elif [ "$SCRIPT_DIR" == "$INSTALL_DIR" ]; then
     print_success "Already running from the install directory!"
 else
     mkdir -p "$HOME/.config/quickshell"
-    git clone "$REPO_URL" "$INSTALL_DIR"
+    rm -rf "$TMP_CLONE"
+    git clone --depth 1 "$REPO_URL" "$TMP_CLONE"
+    cp -r "$TMP_CLONE/zenshell" "$INSTALL_DIR"
+    rm -rf "$TMP_CLONE"
 fi
 
 # Ensure scripts are executable
@@ -123,8 +126,13 @@ echo ""
 echo -e "To start the entire Zen Shell Desktop Suite automatically, add this to your ${BOLD}hyprland.conf${NC} (or hyprland lua config):"
 echo -e "${YELLOW}exec-once = ~/.config/quickshell/dynamic-island/start_all.sh${NC}"
 echo ""
-echo -e "Keybindings example:"
-echo -e "  ${BOLD}App Launcher:${NC}      ${YELLOW}~/.config/quickshell/dynamic-island/island_ctl.sh launcher${NC}"
+echo -e "Keybindings example (conflict-free with HyprZen — island uses SUPER+SHIFT):"
+echo -e "  ${BOLD}App Launcher:${NC}      ${YELLOW}SUPER+SHIFT+Space → island_ctl.sh launcher${NC}"
+echo -e "  ${BOLD}Cheatsheet:${NC}        ${YELLOW}SUPER+SHIFT+comma → island_ctl.sh cheatsheet${NC}"
+echo -e "  ${BOLD}Clipboard:${NC}         ${YELLOW}SUPER+SHIFT+V → island_ctl.sh clipboard${NC}"
+echo -e "  ${BOLD}Control Center:${NC}    ${YELLOW}SUPER+SHIFT+N → island_ctl.sh control_center${NC}"
+echo -e "  ${BOLD}Power Menu:${NC}        ${YELLOW}SUPER+Escape → island_ctl.sh power${NC}"
+echo -e "  ${BOLD}Power Profiles:${NC}    ${YELLOW}SUPER+SHIFT+P → island_ctl.sh powerprofile${NC}"
 echo -e "  ${BOLD}Spotlight Search:${NC}  ${YELLOW}quickshell -p ~/.config/quickshell/dynamic-island/modules/spotlight${NC}"
 echo -e "${CYAN}${BOLD}==========================================${NC}"
 echo ""

@@ -5,8 +5,8 @@
 #  regenerates pywal palette.
 # =============================================================
 
-WALLPAPER_DIR="$HOME/Desktop/hyprzen/wallpapers"
-CURRENT_LINK="$HOME/Desktop/hyprzen/wallpapers/current"
+WALLPAPER_DIR="$HOME/wallpapers"
+CURRENT_LINK="$HOME/wallpapers/current"
 USE_PYWAL=true   # Set false to skip pywal
 
 # Check dir

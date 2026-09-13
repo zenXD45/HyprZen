@@ -16,6 +16,7 @@ def human_readable_action(action):
         '~/scripts/dropdown.sh': 'Dropdown Terminal',
         '~/.config/quickshell/dynamic-island/island_ctl.sh clipboard': 'Clipboard Manager',
         '~/.config/quickshell/dynamic-island/island_ctl.sh power': 'Power Menu',
+        '~/.config/quickshell/dynamic-island/island_ctl.sh control_center': 'Control Center',
         'hyprlock': 'Lock Screen',
         '~/.config/quickshell/dynamic-island/island_ctl.sh powerprofile': 'Power Profiles',
         '~/.config/quickshell/dynamic-island/island_ctl.sh themes': 'Theme Switcher',
@@ -125,12 +126,12 @@ def parse_keybinds():
                 key_raw = match.group(1)
                 action_raw = match.group(2)
                 
-                # Format Key
+                # Format Key (order matters: super+shift/ctrl/alt BEFORE super)
                 key = key_raw
-                key = key.replace('S .. " + ', 'SUPER + ')
                 key = key.replace('SS .. " + ', 'SUPER+SHIFT + ')
                 key = key.replace('SC .. " + ', 'SUPER+CTRL + ')
                 key = key.replace('SA .. " + ', 'SUPER+ALT + ')
+                key = key.replace('S .. " + ', 'SUPER + ')
                 key = key.replace('"', '').strip()
 
                 if action_raw.startswith("function"):
