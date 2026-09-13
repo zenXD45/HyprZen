@@ -37,9 +37,13 @@ if command -v matugen &> /dev/null; then
     echo "source = ~/.config/hypr/themes/matugen.conf" > ~/.config/hypr/themes/current_theme.conf
     ln -sf ~/.config/kitty/themes/matugen.conf ~/.config/kitty/themes/current.conf
 
+    # Refresh shared GUI colors (swayosd) if matugen rendered a css theme
+    for cand in "$HOME/.cache/matugen/colors-waybar.css" "$HOME/.config/matugen/templates/colors-waybar.css"; do
+        [ -f "$cand" ] && ln -sfn "$cand" ~/.config/hypr/themes/current.css && break
+    done
+
     hyprctl reload 2>/dev/null || true
     pkill -SIGUSR1 kitty 2>/dev/null || true
-    swaync-client -rs 2>/dev/null || true
 
     notify-send "󰟡 HyprZen" "Material You colors applied!" --icon=color-select 2>/dev/null || true
 fi

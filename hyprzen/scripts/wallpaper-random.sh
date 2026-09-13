@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 # =============================================================
 #  HyprZen Wallpaper Randomizer
-#  Picks a random wallpaper, applies with swww, optionally
-#  regenerates pywal palette.
+#  Picks a random wallpaper, applies with awww, optionally
+#  regenerates pywal palette, keeps ~/wallpapers/current in sync.
 # =============================================================
 
 WALLPAPER_DIR="$HOME/wallpapers"

@@ -20,7 +20,7 @@ echo "📦 Installing dependencies..."
 # ── 1. Core Hyprland & Wayland UI ──
 # waybar + rofi were removed — ZenShell (island/dock/spotlight) is
 # the default bar/launcher now.
-PKGS="hyprland hyprlock hypridle kitty swaync"
+PKGS="hyprland hyprlock hypridle kitty"
 
 # ── 2. Utilities (Screenshots, Audio, Info, File Manager, Power) ──
 PKGS="$PKGS cliphist wl-clipboard playerctl btop pavucontrol fastfetch cava thunar power-profiles-daemon python-pywal neovim ripgrep fd npm jq awww cmake cpio pkgconf gcc make unzip wget"
@@ -35,7 +35,7 @@ sudo pacman -S --needed --noconfirm $PKGS
 # Some of these may be in the official repos on CachyOS or need an AUR helper.
 # imagemagick and wlogout may already be in official repos; --needed handles that.
 # quickshell-git is REQUIRED (the stable 'quickshell' package conflicts).
-AUR_PKGS="quickshell-git eww-git hyprswitch matugen satty hyprshot waypaper wlogout"
+AUR_PKGS="quickshell-git hyprswitch matugen satty hyprshot waypaper wlogout"
 if ! pacman -Qi swayosd &>/dev/null && ! pacman -Qi swayosd-git &>/dev/null; then
     AUR_PKGS="swayosd $AUR_PKGS"
 fi

@@ -100,8 +100,8 @@ bind = SUPER, T, exec, ~/.config/quickshell/dynamic-island/island_ctl.sh themes
 # Wallpaper Selector (default)
 bind = SUPER, W, exec, ~/.config/quickshell/dynamic-island/island_ctl.sh wallpapers
 
-# Control Center
-bind = SUPER_SHIFT, N, exec, ~/.config/quickshell/dynamic-island/island_ctl.sh control_center
+# Control Center / Notifications (default)
+bind = SUPER, N, exec, ~/.config/quickshell/dynamic-island/island_ctl.sh control
 
 # Power Menu
 bind = SUPER, Escape, exec, ~/.config/quickshell/dynamic-island/island_ctl.sh power
@@ -110,10 +110,11 @@ bind = SUPER, Escape, exec, ~/.config/quickshell/dynamic-island/island_ctl.sh po
 bind = SUPER_SHIFT, P, exec, ~/.config/quickshell/dynamic-island/island_ctl.sh powerprofile
 ```
 
-**Lua bindings (ZenShell is the default UI — hyprzen ships no waybar/rofi):**
+**Lua bindings (ZenShell is the default UI — hyprzen ships no waybar/rofi/swaync):**
 ```lua
 -- ZenShell Dynamic Island — launcher/clipboard/cheatsheet/themes/
--- wallpapers own the plain SUPER+ keys; the rest use SUPER+SHIFT.
+-- wallpapers + the control/notification center own the plain SUPER+
+-- keys; the rest use SUPER+SHIFT.
 
 local ISLAND = "~/.config/quickshell/dynamic-island/island_ctl.sh"
 
@@ -122,7 +123,7 @@ hl.bind("SUPER", "comma", hl.dsp.exec_cmd(ISLAND .. " cheatsheet"))
 hl.bind("SUPER", "V", hl.dsp.exec_cmd(ISLAND .. " clipboard"))
 hl.bind("SUPER", "T", hl.dsp.exec_cmd(ISLAND .. " themes"))
 hl.bind("SUPER", "W", hl.dsp.exec_cmd(ISLAND .. " wallpapers"))
-hl.bind("SUPER + SHIFT", "N", hl.dsp.exec_cmd(ISLAND .. " control_center"))
+hl.bind("SUPER", "N", hl.dsp.exec_cmd(ISLAND .. " control"))
 hl.bind("SUPER", "escape", hl.dsp.exec_cmd(ISLAND .. " power"))
 hl.bind("SUPER + SHIFT", "P", hl.dsp.exec_cmd(ISLAND .. " powerprofile"))
 ```

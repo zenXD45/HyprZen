@@ -3,7 +3,7 @@
 #   HyprZen Fusion — One-Shot Arch Installer
 #
 #   Installs the complete HyprZen desktop:
-#     • HyprZen    — Hyprland rice (kitty, swaync, swayosd, eww,
+#     • HyprZen    — Hyprland rice (kitty, swayosd,
 #                    themes, scripts, wallpapers)
 #     • ZenShell   — Quickshell Dynamic Island / Dock / Spotlight /
 #                    Desktop Widgets suite (default bar + launcher)
@@ -79,9 +79,10 @@ sleep 2
 step "Official packages (pacman)"
 OFFICIAL_PKGS=(
     # Window / compositor & core UI
-    hyprland hyprlock hypridle kitty swaync wlogout
+    hyprland hyprlock hypridle kitty wlogout
     xdg-desktop-portal-hyprland
     # ZenShell needs NO waybar/rofi — the island + dock are the default.
+    # Notifications are owned by ZenShell's island, not swaync.
     # Audio / OSD / input
     pipewire pipewire-pulse wireplumber pavucontrol playerctl brightnessctl
     # Clipboard / screenshot / clipboard utils
@@ -93,7 +94,7 @@ OFFICIAL_PKGS=(
     awww imagemagick python-pywal
     # Terminal apps
     btop fastfetch cava thunar neovim
-    # Toolchain (needed by AUR builds: eww, matugen, quickshell)
+    # Toolchain (needed by AUR builds: matugen, quickshell)
     base-devel git cmake cpio pkgconf gcc make unzip wget curl jq npm ripgrep fd rust
     # Networks
     impala
@@ -126,7 +127,6 @@ step "AUR packages"
 # Everything else: helper + --needed skips whatever is already satisfied.
 AUR_PKGS=(
     quickshell-git
-    eww-git
     hyprswitch
     matugen
     satty
@@ -258,7 +258,6 @@ check() { # check <desc> <cmd...>
 check "hyprland"        sh -c 'command -v Hyprland'
 check "quickshell"      sh -c 'command -v quickshell'
 check "kitty"           sh -c 'command -v kitty'
-check "swaync"          sh -c 'command -v swaync'
 check "hypr [$HOME/.config/hypr]"   sh -c '[ -e "$HOME/.config/hypr" ]'
 check "scripts [$HOME/scripts]"     sh -c '[ -e "$HOME/scripts" ]'
 check "zen shell [$QS_DEST/shell.qml]" sh -c '[ -f "$HOME/.config/quickshell/dynamic-island/shell.qml" ]'
@@ -277,7 +276,7 @@ cat <<'EOF'
       3. Theme switcher:          Super+T
       4. Dynamic Island (the default launcher bar/UI):
            Launcher        Super+Space
-           Control Center  Super+Shift+N
+           Control Center  Super+N
            Clipboard       Super+V
            Cheatsheet      Super+,
            Power menu      Super+Escape

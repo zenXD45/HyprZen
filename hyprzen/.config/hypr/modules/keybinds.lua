@@ -16,7 +16,7 @@ hl.bind(S .. " + RETURN", hl.dsp.exec_cmd("kitty"))
 hl.bind(S .. " + B", hl.dsp.exec_cmd("librewolf"))
 hl.bind(S .. " + E", hl.dsp.exec_cmd("nautilus"))
 hl.bind(S .. " + C", hl.dsp.exec_cmd("codium"))
-hl.bind(S .. " + D", hl.dsp.exec_cmd("eww open --toggle desktop_clock"))
+hl.bind(S .. " + D", hl.dsp.exec_cmd("quickshell ipc -p ~/.config/quickshell/dynamic-island/modules/desktop-widgets call widgets toggle"))
 
 -- ── Launcher / Search ─────────────────────────────────────────
 hl.bind(S .. " + SPACE", hl.dsp.exec_cmd("~/.config/quickshell/dynamic-island/island_ctl.sh launcher"))
@@ -26,9 +26,8 @@ hl.bind(SA .. " + TAB", hl.dsp.exec_cmd("hyprswitch gui --mod-key alt_l --key ta
 -- ── Clipboard (ZenShell island) ───────────────────────────────
 hl.bind(S .. " + V", hl.dsp.exec_cmd("~/.config/quickshell/dynamic-island/island_ctl.sh clipboard"))
 
--- ── Notifications ─────────────────────────────────────────────
-hl.bind(S .. " + N", hl.dsp.exec_cmd("swaync-client -t"))
-hl.bind(SC .. " + N", hl.dsp.exec_cmd("swaync-client -d"))
+-- ── Notifications (owned by ZenShell island) ──────────────────
+hl.bind(S .. " + N", hl.dsp.exec_cmd("~/.config/quickshell/dynamic-island/island_ctl.sh control"))
 
 -- ── Power / Session ───────────────────────────────────────────
 hl.bind(S .. " + X", hl.dsp.exec_cmd("wlogout -b 5 -T 350 -B 350"))
@@ -135,11 +134,10 @@ hl.bind("XF86MonBrightnessUp", hl.dsp.exec_cmd("swayosd-client --brightness rais
 hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd("swayosd-client --brightness lower"), { locked = true, repeating = true })
 
 -- ── ZenShell Dynamic Island ───────────────────────────────────
--- ZenShell is the default UI: launcher/clipboard/cheatsheet/
--- themes/wallpapers live on the plain SUPER+ keys now that the
--- rofi/waybar binds are gone. The rest keep SHIFT variants.
+-- Notification/control center is SUPER+N (plain, section above).
+-- The rest live on SUPER+SHIFT since the primary UI binds now own
+-- the plain SUPER+ keys.
 
-hl.bind(SS .. " + N", hl.dsp.exec_cmd("~/.config/quickshell/dynamic-island/island_ctl.sh control_center"))
 hl.bind(S .. " + escape", hl.dsp.exec_cmd("~/.config/quickshell/dynamic-island/island_ctl.sh power"))
 hl.bind(SS .. " + P", hl.dsp.exec_cmd("~/.config/quickshell/dynamic-island/island_ctl.sh powerprofile"))
 hl.bind(SS .. " + M", hl.dsp.exec_cmd("~/.config/quickshell/dynamic-island/modules/spotlight/toggle.sh"))

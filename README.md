@@ -2,8 +2,8 @@
 
 A monorepo merging two projects — **HyprZen** (Hyprland dotfiles & theming) and **Zen Shell** (Quickshell Dynamic Island desktop suite) — into one cohesive, conflict-free desktop experience where **ZenShell is the default UI** (launcher, bar, dock, spotlight, theme/wallpaper pickers).
 
-- [HyprZen — the base rice](hyprzen/README.md): ultra-minimal Hyprland config, 13 themes, swaync notifications, eww desktop clock.
-- [Zen Shell — the glassmorphic shell](zenshell/README.md): Dynamic Island, Dock, Spotlight, Desktop Widgets — replaces rofi and waybar entirely.
+- [HyprZen — the base rice](hyprzen/README.md): ultra-minimal Hyprland config, 13 themes, swayosd OSD, wallpapers.
+- [Zen Shell — the glassmorphic shell](zenshell/README.md): Dynamic Island, Dock, Spotlight, Desktop Widgets — replaces not only rofi and waybar but also swaync (notifications) and eww (desktop clock).
 
 ## Structure
 
@@ -26,8 +26,8 @@ cd HyprZen
 
 What `install.sh` does, in order:
 
-1. Installs all official packages (Hyprland, kitty, swaync, pipewire, cliphist, python, toolchain…). **No waybar, no rofi** — the island + dock replace them.
-2. Installs an AUR helper (`paru`/`yay`) and the AUR packages: `quickshell-git`, `eww-git`, `hyprswitch`, `matugen`, `satty`, `hyprshot`, `waypaper`, `swayosd`, `bibata-cursor-theme`. Failures are warned, not fatal.
+1. Installs all official packages (Hyprland, kitty, pipewire, cliphist, python, toolchain…). **No waybar, no rofi, no swaync** — the island + dock are the default UI (ZenShell owns notifications too).
+2. Installs an AUR helper (`paru`/`yay`) and the AUR packages: `quickshell-git`, `hyprswitch`, `matugen`, `satty`, `hyprshot`, `waypaper`, `swayosd`, `bibata-cursor-theme`. Failures are warned, not fatal.
 3. Downloads + caches **GeistMono Nerd Font**.
 4. Adds + enables the **scroll-overview** hyprpm plugin.
 5. Detects NVIDIA GPUs and installs `nvidia-dkms`/`nvidia-utils`.
@@ -68,7 +68,7 @@ All keybinds live in `hyprzen/.config/hypr/modules/keybinds.lua`. Combos are **u
 | Browser (LibreWolf) | `SUPER + B` |
 | Files (Nautilus) | `SUPER + E` |
 | Editor (VSCodium) | `SUPER + C` |
-| Desktop Clock | `SUPER + D` |
+| Desktop Widgets (clock + weather, toggle) | `SUPER + D` |
 
 ### ZenShell Dynamic Island
 | Action | Shortcut |
@@ -76,17 +76,15 @@ All keybinds live in `hyprzen/.config/hypr/modules/keybinds.lua`. Combos are **u
 | App Launcher | `SUPER + Space` |
 | Keybinds Cheatsheet | `SUPER + comma` |
 | Clipboard Manager | `SUPER + V` |
-| Control Center | `SUPER + Shift + N` |
+| Control Center / Notifications | `SUPER + N` |
 | Power Menu | `SUPER + Escape` |
 | Power Profiles | `SUPER + Shift + P` |
 | Spotlight Search | `SUPER + Shift + M` |
 
-### Clipboard / Notifications
+### Clipboard
 | Action | Shortcut |
 | :--- | :--- |
 | Clipboard (ZenShell island) | `SUPER + V` |
-| Notifications (toggle) | `SUPER + N` |
-| Notifications (dismiss) | `SUPER + Ctrl + N` |
 
 ### Theme / Wallpaper
 | Action | Shortcut |
@@ -133,6 +131,6 @@ All keybinds live in `hyprzen/.config/hypr/modules/keybinds.lua`. Combos are **u
 
 ## Notes
 
-- **rofi and waybar are removed from HyprZen** — ZenShell's island (launcher, clipboard, cheatsheet, theme/wallpaper pickers) and dock are the default UI, so nothing can conflict.
+- **rofi, waybar, swaync, and eww are removed from HyprZen** — ZenShell is the default UI everywhere: the island owns the launcher, clipboard, cheatsheet, theme/wallpaper pickers, **and notifications** (`SUPER+N` → control center); the dock replaces the bar; `SUPER+D` toggles the desktop clock + weather. Nothing can conflict.
 - Both projects previously hardcoded absolute paths (e.g. `~/Desktop/hyprzen/...` and a user home dir); these were normalized to `~/scripts` and `~/wallpapers` (the symlinks `hyprzen/install.sh` creates), and every `$HOME` / user-directory path inside ZenShell now resolves via `$HOME` / `Qt.homePath()`, so the repo works on any machine without edits.
 - Keep the install order above; ZenShell depends on HyprZen's `theme-switch.sh` for its ThemeSwitcher.

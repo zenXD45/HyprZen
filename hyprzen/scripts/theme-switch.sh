@@ -43,8 +43,8 @@ fi
 echo "require(\"themes.$SELECTED\")" > "$HYPR_DIR/themes/current_theme.lua"
 echo "source = ~/.config/hypr/themes/$SELECTED.conf" > "$HYPR_DIR/themes/current_theme.conf"
 
-# 2. Shared GUI colors for swaync / swayosd (waybar is gone; the
-#    CSS variables now live alongside the theme instead)
+# 2. Shared GUI colors for swayosd (waybar is gone; the CSS
+#    variables now live alongside the theme instead)
 ln -sfn "$HYPR_DIR/themes/$SELECTED.css" "$HYPR_DIR/themes/current.css"
 
 # 3. Kitty theme symlink
@@ -69,12 +69,7 @@ if [ -n "$HYPRLAND_INSTANCE_SIGNATURE" ]; then
     hyprctl dispatch exec swayosd-server >/dev/null 2>&1
 fi
 
-# 8. Reload SwayNC
-if [ -n "$WAYLAND_DISPLAY" ] || [ -n "$DBUS_SESSION_BUS_ADDRESS" ]; then
-    timeout 3 swaync-client -rs 2>/dev/null || true
-fi
-
-# 9. Sync Neovim Theme
+# 8. Sync Neovim Theme
 case "$SELECTED" in
     "noir") NVIM_THEME="carbonfox" ;;
     "catppuccin") NVIM_THEME="catppuccin-mocha" ;;
@@ -104,7 +99,7 @@ for server in $(find /run/user/$(id -u)/nvim* -type s 2>/dev/null); do
     timeout 3 nvim --server "$server" --remote-send "<ESC>:lua require('ui_theme').apply_theme('$NVIM_THEME')<CR>" 2>/dev/null || true
 done
 
-# 10. Sync VSCodium Theme
+# 9. Sync VSCodium Theme
 case "$SELECTED" in
     "noir") CODE_THEME="Noir Theme" ;;
     "catppuccin") CODE_THEME="Catppuccin Mocha" ;;
@@ -127,7 +122,7 @@ if [ -f "$VSCODE_SETTINGS" ]; then
     jq ".\"workbench.colorTheme\" = \"$CODE_THEME\"" "$VSCODE_SETTINGS" > "${VSCODE_SETTINGS}.tmp" && mv "${VSCODE_SETTINGS}.tmp" "$VSCODE_SETTINGS"
 fi
 
-# 11. Sync GTK and Kvantum Themes
+# 10. Sync GTK and Kvantum Themes
 case "$SELECTED" in
     "catppuccin") GTK_THEME="catppuccin-mocha-lavender-standard+default"; KV_THEME="catppuccin-mocha-lavender"; WLOGOUT_COLOR="rgba(180, 190, 254, 0.5)" ;;
     "tokyo-night") GTK_THEME="adw-gtk3-dark"; KV_THEME="KvDark"; WLOGOUT_COLOR="rgba(122, 162, 247, 0.5)" ;;
@@ -158,13 +153,13 @@ if command -v kvantummanager &> /dev/null; then
     kvantummanager --set "$KV_THEME" 2>/dev/null || true
 fi
 
-# 12. Sync Wlogout hover color
+# 11. Sync Wlogout hover color
 WLOGOUT_CSS="$HOME/.config/wlogout/style.css"
 if [ -f "$WLOGOUT_CSS" ]; then
     sed -i "s|background-color: .* /\* WLOGOUT_HOVER_COLOR \*/|background-color: $WLOGOUT_COLOR; /* WLOGOUT_HOVER_COLOR */|" "$WLOGOUT_CSS"
 fi
 
-# 13. Notify user
+# 12. Notify user
 if [ -n "$WAYLAND_DISPLAY" ] || [ -n "$HYPRLAND_INSTANCE_SIGNATURE" ]; then
     notify-send "󰟡 HyprZen" "Theme: $SELECTED" \
         --icon=preferences-desktop-theme \

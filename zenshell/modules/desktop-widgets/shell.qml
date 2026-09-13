@@ -10,6 +10,7 @@ Scope {
 
     // ... State ...
     property string font: "JetBrainsMono Nerd Font"
+    property bool widgetsVisible: true
     
     // Clock State
     property string currentTime: "00:00"
@@ -93,6 +94,8 @@ Scope {
 
             // Widget Container
             Column {
+                opacity: root.widgetsVisible ? 1 : 0
+                Behavior on opacity { NumberAnimation { duration: 350; easing.type: Easing.OutCubic } }
                 anchors.top: parent.top
                 anchors.right: parent.right
                 anchors.margins: 48
@@ -276,5 +279,12 @@ Scope {
                 }
             }
         }
+    }
+
+    IpcHandler {
+        target: "widgets"
+        function toggle(): void { root.widgetsVisible = !root.widgetsVisible }
+        function show(): void { root.widgetsVisible = true }
+        function hide(): void { root.widgetsVisible = false }
     }
 }

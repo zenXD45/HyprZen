@@ -84,18 +84,16 @@ HyprZen uses an ultra-minimal keybind configuration.
 | Action | Shortcut |
 | :--- | :--- |
 | **Terminal (Kitty)** | `SUPER + ENTER` |
-| **App Launcher (Rofi)** | `SUPER + SPACE` |
-| **Theme Switcher** | `SUPER + T` |
-| **Waybar Layout Switcher** | `SUPER + W` |
-| **Wallpaper Picker** | `SUPER + ALT + W` |
+| **App Launcher (ZenShell island)** | `SUPER + SPACE` |
+| **Theme Switcher (island)** | `SUPER + T` |
+| **Wallpaper Picker (island)** | `SUPER + W` |
 | **Close Window** | `SUPER + Q` |
 | **Toggle Fullscreen** | `SUPER + F` |
 | **Toggle Floating** | `SUPER + SHIFT + F` |
 | **Toggle Opaque / Blur** | `SUPER + O` |
 | **Region Screenshot (Annotate)** | `SUPER + Print` |
 | **Region Screenshot (Clipboard)** | `SUPER + CTRL + Print` |
-| **Dismiss Notifications** | `SUPER + CTRL + N` |
-| **Control Center (ZenShell)** | `SUPER + SHIFT + N` |
+| **Control Center / Notifications (ZenShell)** | `SUPER + N` |
 
 ---
 
@@ -106,8 +104,6 @@ HyprZen/
 ├── .config/
 │   ├── hypr/         # Core Hyprland configuration & rules
 │   ├── kitty/        # Terminal emulator themes
-│   ├── swaync/       # Notifications (Wayland-native)
-│   ├── eww/          # Desktop clock widget
 │   ├── nvim/         # Neovim dotfiles integrated with global themes
 │   └── ...
 ├── scripts/
@@ -118,9 +114,10 @@ HyprZen/
 └── setup.sh          # Dependency wrapper & font installer for Arch Linux
 ```
 
-> **No waybar, no rofi** — ZenShell (Dynamic Island / Dock / Spotlight) is the
-> default launcher, bar, wallpaper picker and theme switcher. Screenshots,
-> clipboard, and menus all live in the glass island now.
+> **No waybar, no rofi, no swaync, no eww** — ZenShell (Dynamic Island /
+> Dock / Spotlight / Desktop Widgets) is the default launcher, bar, wallpaper
+> picker, theme switcher, *and* notification center. Screenshots, clipboard,
+> and menus all live in the glass island now.
 
 ---
 <div align="center">

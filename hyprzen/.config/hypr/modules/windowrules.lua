@@ -280,20 +280,6 @@ hl.window_rule({
 })
 
 -- ── Layer Rules ───────────────────────────────────────────────
--- SwayNC notifications
-hl.layer_rule({
-    match = { namespace = "^(swaync-notification-window)$" },
-    blur = true,
-    ignore_alpha = 0.1,
-})
-
--- SwayNC control center
-hl.layer_rule({
-    match = { namespace = "^(swaync-control-center)$" },
-    blur = true,
-    ignore_alpha = 0.1,
-})
-
 -- Hyprswitch
 hl.layer_rule({
     match = { namespace = "^(hyprswitch)$" },

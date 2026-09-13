@@ -37,9 +37,9 @@ fi
 # Step 5 will cleanly replace the entire ~/.config/hypr directory anyway.
 HYPR_DIR="$CONFIG_DIR/hypr"
 
-# ── Step 4: Remove old swaync / kitty dirs ─────────────────────
-# (could be real dirs from old setups, or broken symlinks)
-for app in swaync kitty; do
+# ── Step 4: Remove old kitty dir ───────────────────────────────
+# (could be a real dir from an old setup, or a broken symlink)
+for app in kitty; do
     target="$CONFIG_DIR/$app"
     if [ -L "$target" ]; then
         rm -f "$target"
@@ -75,8 +75,6 @@ if [ -e "$HYPR_DIR" ] && [ ! -L "$HYPR_DIR" ]; then
 fi
 link "$DOTFILES_DIR/.config/hypr"    "$CONFIG_DIR/hypr"
 link "$DOTFILES_DIR/.config/kitty"   "$CONFIG_DIR/kitty"
-link "$DOTFILES_DIR/.config/swaync"  "$CONFIG_DIR/swaync"
-link "$DOTFILES_DIR/.config/eww"     "$CONFIG_DIR/eww"
 link "$DOTFILES_DIR/.config/wlogout" "$CONFIG_DIR/wlogout"
 link "$DOTFILES_DIR/.config/swayosd" "$CONFIG_DIR/swayosd"
 link "$DOTFILES_DIR/.config/fastfetch" "$CONFIG_DIR/fastfetch"
@@ -116,7 +114,7 @@ fi
 echo ""
 echo "✅ Done! Next steps:"
 echo "   1. Ensure required packages are installed: (see README.md)"
-echo "      e.g., Hyprland, kitty, swaync, python-requests, hyprpaper, python-pywal"
+echo "      e.g., Hyprland, kitty, python-requests, hyprpaper, python-pywal"
 echo "   2. Log in to Hyprland (or restart: hyprctl reload)"
 echo "   3. Switch themes: Super+T (island)  or  ~/scripts/theme-switch.sh <theme>"
 echo "   4. Pick wallpapers: Super+W (island)  or  ~/scripts/wallpaper-selector.sh set <path>"

@@ -1,6 +1,6 @@
 -- ══════════════════════════════════════════════════════════════
 -- HyprZen — Autostart (exec-once)
--- Ultra Minimal Black — Waybar + Rofi + SwayNC + SwayOSD
+-- SwayOSD for OSD — notifications owned by ZenShell's island
 -- ══════════════════════════════════════════════════════════════
 
 -- ── Core System ───────────────────────────────────────────────
@@ -8,9 +8,9 @@
 
 -- ── Bar ───────────────────────────────────────────────────────
 
--- ── Notifications & OSD ───────────────────────────────────────
+-- ── Notifications (ZenShell island) & OSD ─────────────────────
 
--- ── Wallpaper (swww is lighter than awww, same result) ────────
+-- ── Wallpaper (awww — smooth transitions, updates ~/wallpapers/current) ──
 
 -- ── Idle & Lock ───────────────────────────────────────────────
 
@@ -31,12 +31,10 @@ hl.on("hyprland.start", function()
     hl.exec_cmd("dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP QT_QPA_PLATFORMTHEME")
     hl.exec_cmd("systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP QT_QPA_PLATFORMTHEME")
     hl.exec_cmd("sleep 2 && systemctl --user restart xdg-desktop-portal-hyprland xdg-desktop-portal")
-    hl.exec_cmd("swaync")
     hl.exec_cmd("swayosd-server")
     hl.exec_cmd("awww-daemon")
     hl.exec_cmd("sleep 0.5 && awww img ~/wallpapers/current --transition-type wipe")
     hl.exec_cmd("hypridle")
-    hl.exec_cmd("eww daemon && eww open desktop_clock")
     hl.exec_cmd("~/.config/quickshell/dynamic-island/start_all.sh")
     hl.exec_cmd("wl-paste --type text  --watch cliphist store")
     hl.exec_cmd("wl-paste --type image --watch cliphist store")
