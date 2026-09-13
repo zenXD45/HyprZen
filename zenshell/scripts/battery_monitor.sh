@@ -1,5 +1,5 @@
 #!/bin/bash
-QS_PATH="/home/zen/.config/quickshell/dynamic-island"
+QS_PATH="$HOME/.config/quickshell/dynamic-island"
 BAT_PATH=$(upower -e | grep 'battery' | head -n 1)
 
 if [ -z "$BAT_PATH" ]; then

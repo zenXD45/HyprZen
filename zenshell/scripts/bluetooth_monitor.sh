@@ -1,5 +1,5 @@
 #!/bin/bash
-QS_PATH="/home/zen/.config/quickshell/dynamic-island"
+QS_PATH="$HOME/.config/quickshell/dynamic-island"
 
 # Listen for BlueZ PropertiesChanged signals for devices
 dbus-monitor --system "type='signal',interface='org.freedesktop.DBus.Properties',member='PropertiesChanged',arg0='org.bluez.Device1'" | \

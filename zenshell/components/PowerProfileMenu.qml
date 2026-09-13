@@ -23,13 +23,15 @@ Item {
 
     function setProfile(profile) {
         activeProfile = profile
-        var cmd = ""
+        var home = Qt.homePath()
+        var gm = home + "/scripts/dell-gmode.sh"
+        var cmd = "powerprofilesctl set " + profile
         if (profile === "performance") {
-            cmd = "/home/zen/scripts/dell-gmode.sh set-perf"
+            cmd = "[ -x " + gm + " ] && " + gm + " set-perf || powerprofilesctl set performance"
         } else if (profile === "power-saver") {
-            cmd = "/home/zen/scripts/dell-gmode.sh set-quiet"
+            cmd = "[ -x " + gm + " ] && " + gm + " set-quiet || powerprofilesctl set power-saver"
         } else {
-            cmd = "/home/zen/scripts/dell-gmode.sh set-balanced"
+            cmd = "[ -x " + gm + " ] && " + gm + " set-balanced || powerprofilesctl set balanced"
         }
         profileProc.running = false
         profileProc.command = ["bash", "-c", cmd]

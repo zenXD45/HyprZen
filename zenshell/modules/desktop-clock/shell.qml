@@ -26,7 +26,7 @@ Scope {
 
     FileView {
         id: matugenFile
-        path: Qt.resolvedUrl("/home/zen/.config/quickshell/matugen.json")
+        path: Qt.resolvedUrl(Qt.homePath() + "/.config/quickshell/matugen.json")
         onTextChanged: {
             try {
                 root.matugen = JSON.parse(text)

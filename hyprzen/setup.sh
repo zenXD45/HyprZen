@@ -35,9 +35,8 @@ sudo pacman -S --needed --noconfirm $PKGS
 # ── 4. AUR / Extra Packages ──
 # Some of these may be in the official repos on CachyOS or need an AUR helper.
 # imagemagick and wlogout may already be in official repos; --needed handles that.
-AUR_PKGS="impala satty quickshell imagemagick wlogout waypaper hyprshot"
-
-# swayosd may already be satisfied by swayosd-git; only add if not provided
+# quickshell-git is REQUIRED (the stable 'quickshell' package conflicts).
+AUR_PKGS="quickshell-git eww-git hyprswitch matugen satty hyprshot waypaper wlogout"
 if ! pacman -Qi swayosd &>/dev/null && ! pacman -Qi swayosd-git &>/dev/null; then
     AUR_PKGS="swayosd $AUR_PKGS"
 fi

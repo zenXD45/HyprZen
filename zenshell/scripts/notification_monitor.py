@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+import os
 import sys
 import subprocess
 import dbus
@@ -6,7 +7,7 @@ import dbus.service
 from dbus.mainloop.glib import DBusGMainLoop
 from gi.repository import GLib
 
-QS_PATH = "/home/zen/.config/quickshell/dynamic-island"
+QS_PATH = os.path.expanduser("~/.config/quickshell/dynamic-island")
 
 DBusGMainLoop(set_as_default=True)
 

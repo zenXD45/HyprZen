@@ -148,6 +148,7 @@ hl.bind(SS .. " + V", hl.dsp.exec_cmd("~/.config/quickshell/dynamic-island/islan
 hl.bind(SS .. " + N", hl.dsp.exec_cmd("~/.config/quickshell/dynamic-island/island_ctl.sh control_center"))
 hl.bind(S .. " + escape", hl.dsp.exec_cmd("~/.config/quickshell/dynamic-island/island_ctl.sh power"))
 hl.bind(SS .. " + P", hl.dsp.exec_cmd("~/.config/quickshell/dynamic-island/island_ctl.sh powerprofile"))
+hl.bind(SS .. " + M", hl.dsp.exec_cmd("~/.config/quickshell/dynamic-island/modules/spotlight/toggle.sh"))
 
 -- ── System ────────────────────────────────────────────────────
 hl.bind(SC .. " + R", hl.dsp.exec_cmd("hyprctl reload && notify-send \"Hyprland\" \"Config reloaded\""))

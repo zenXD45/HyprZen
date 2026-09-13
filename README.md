@@ -12,21 +12,48 @@ hyprzen/     Hyprland dotfiles & theming (installs to ~/.config, ~/scripts, ~/wa
 zenshell/    Quickshell Dynamic Island suite (installs to ~/.config/quickshell/dynamic-island)
 ```
 
-## Installation (order matters)
+## Installation
 
-1. **HyprZen base** — dependencies + symlinks:
-   ```bash
-   cd hyprzen && ./setup.sh    # Arch dependency installer (runs install.sh too)
-   ```
-   Installs configs to `~/.config`, symlinks `~/scripts`, copies wallpapers to `~/wallpapers`.
+> One command installs everything on a from-scratch (or existing) Arch install:
+> official packages, AUR packages (tolerant of build failures), GeistMono Nerd
+> Font, scroll-overview plugin, GPU drivers, configs, ZenShell, services, theme.
 
-2. **Zen Shell** — Quickshell suite (backup/install into `~/.config/quickshell`):
-   ```bash
-   cd zenshell && ./install.sh
-   ```
-   Add to your hypr config: `exec-once = ~/.config/quickshell/dynamic-island/start_all.sh`
+```bash
+git clone https://github.com/zenXD45/HyprZen.git
+cd HyprZen
+./install.sh
+```
 
-3. Reload Hyprland: `SUPER + CTRL + R`
+What `install.sh` does, in order:
+
+1. Installs all official packages (Hyprland, waybar, rofi, kitty, swaync, pipewire, cliphist, python, toolchain…).
+2. Installs an AUR helper (`paru`/`yay`) and the AUR packages: `quickshell-git`, `eww-git`, `hyprswitch`, `matugen`, `satty`, `hyprshot`, `waypaper`, `swayosd`, `bibata-cursor-theme`. Failures are warned, not fatal.
+3. Downloads + caches **GeistMono Nerd Font**.
+4. Adds + enables the **scroll-overview** hyprpm plugin.
+5. Detects NVIDIA GPUs and installs `nvidia-dkms`/`nvidia-utils`.
+6. Runs `hyprzen/install.sh` to symlink configs → `~/.config`, link `~/scripts`, copy wallpapers → `~/wallpapers`.
+7. Installs ZenShell → `~/.config/quickshell/dynamic-island` (backs up existing).
+8. Applies the default theme (`catppuccin`) and sets a default wallpaper.
+9. Enables NetworkManager, bluetooth, power-profiles-daemon + pipewire session services.
+10. Verifies key binaries/configs, warns if known deps are missing.
+
+After install: **log into the `Hyprland` session** (or run `hyprctl reload`).
+ZenShell autostarts via `exec.lua` → `start_all.sh`; no manual `exec-once` line needed.
+
+### Manual (order matters)
+
+Equivalent steps if you prefer to run the pieces yourself:
+
+```bash
+# 1. HyprZen base — dependencies + symlinks
+cd hyprzen && ./setup.sh
+
+# 2. ZenShell — Quickshell suite
+cd zenshell && ./install.sh
+
+# 3. Reload
+SUPER + CTRL + R
+```
 
 ## ⌨️ Unified Keybinds
 
@@ -54,6 +81,7 @@ All keybinds live in `hyprzen/.config/hypr/modules/keybinds.lua`. Combos are **u
 | Control Center | `SUPER + Shift + N` |
 | Power Menu | `SUPER + Escape` |
 | Power Profiles | `SUPER + Shift + P` |
+| Spotlight Search | `SUPER + Shift + M` |
 
 ### Clipboard / Notifications
 | Action | Shortcut |
@@ -109,6 +137,5 @@ All keybinds live in `hyprzen/.config/hypr/modules/keybinds.lua`. Combos are **u
 
 ## Notes
 
-- Both projects previously hardcoded `~/Desktop/hyprzen/...` paths; these were normalized to `~/scripts` and `~/wallpapers` (the symlinks `hyprzen/install.sh` creates), so the repo can live anywhere.
-- ZenShell's daemons and scripts still reference `/home/zen/...` in a few QML/Python files — adjust to your user before installing on another machine.
-- Keep both install scripts in the order above; ZenShell depends on HyprZen's `theme-switch.sh` for its ThemeSwitcher.
+- Both projects previously hardcoded `~/Desktop/hyprzen/...` paths; these were normalized to `~/scripts` and `~/wallpapers` (the symlinks `hyprzen/install.sh` creates), and every `/home/zen/...` path inside ZenShell now resolves via `$HOME` / `Qt.homePath()`, so the repo works on any machine without edits.
+- Keep the install order above; ZenShell depends on HyprZen's `theme-switch.sh` for its ThemeSwitcher.

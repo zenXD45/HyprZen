@@ -54,7 +54,7 @@ Scope {
 
     Process {
         id: weatherProcess
-        command: ["python3", "/home/zen/.config/quickshell/desktop-widgets/get_weather.py"]
+        command: ["python3", Qt.homePath() + "/.config/quickshell/dynamic-island/modules/desktop-widgets/get_weather.py"]
         stdout: SplitParser {
             onRead: (data) => {
                 try {

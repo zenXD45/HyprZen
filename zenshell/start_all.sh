@@ -22,5 +22,10 @@ if [ -d "$SCRIPT_DIR/modules/desktop-widgets" ]; then
     quickshell -p "$SCRIPT_DIR/modules/desktop-widgets" &
 fi
 
+# Launch Spotlight Search
+if [ -d "$SCRIPT_DIR/modules/spotlight" ]; then
+    quickshell -p "$SCRIPT_DIR/modules/spotlight" &
+fi
+
 print_info() { echo "[Zen Shell] Started all desktop shell components."; }
 print_info

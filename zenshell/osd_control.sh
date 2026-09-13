@@ -1,7 +1,7 @@
 #!/bin/bash
 TYPE=$1
 ACTION=$2
-QS_PATH="/home/zen/.config/quickshell/dynamic-island"
+QS_PATH="$HOME/.config/quickshell/dynamic-island"
 
 if [ "$TYPE" == "volume" ]; then
     if [ "$ACTION" == "up" ]; then
@@ -16,9 +16,9 @@ if [ "$TYPE" == "volume" ]; then
     fi
     
     if [ "$TYPE" == "volume" ]; then
-        quickshell ipc -p /home/zen/.config/quickshell/dynamic-island call osd showVolume
+        quickshell ipc -p $QS_PATH call osd showVolume
     else
-        quickshell ipc -p /home/zen/.config/quickshell/dynamic-island call osd showMic
+        quickshell ipc -p $QS_PATH call osd showMic
     fi
     
 elif [ "$TYPE" == "brightness" ]; then
@@ -28,5 +28,5 @@ elif [ "$TYPE" == "brightness" ]; then
         brightnessctl set 5%-
     fi
     
-    quickshell ipc -p /home/zen/.config/quickshell/dynamic-island call osd showBrightness
+    quickshell ipc -p $QS_PATH call osd showBrightness
 fi
