@@ -1,0 +1,124 @@
+/* ════════════════════════════════════════════════════════════════
+   HyprZen — Rofi Glassmorphism Theme
+   ════════════════════════════════════════════════════════════════ */
+
+@import "colors.rasi"
+
+configuration {
+    show-icons:         true;
+    icon-theme:         "Papirus-Dark";
+    display-drun:       "󰀻 ";
+    display-run:        " ";
+    display-window:     " ";
+    drun-display-format: "{name}";
+    window-format:      "{w}  {t}";
+    font:               "JetBrainsMono Nerd Font 13";
+    kb-cancel:          "Escape,Super+d";
+}
+
+* {
+    bg: @surface;
+    bg-sel: @secondary-container;
+    fg: @on-surface;
+    fg-sel: @primary;
+    border-col: @outline;
+
+    background-color: transparent;
+    text-color:       @fg;
+    border:           0;
+    margin:           0;
+    padding:          0;
+    spacing:          0;
+}
+
+window {
+    background-color: @bg;
+    border:           1px;
+    border-color:     @border-col;
+    border-radius:    16px;
+    width:            600px;
+    padding:          32px;
+    x-offset:         0px;
+    y-offset:         -60px;
+}
+
+mainbox {
+    spacing: 24px;
+    children: [ inputbar, listview ];
+}
+
+/* ── Search bar ─────────────────────────────────────────────── */
+inputbar {
+    background-color: @surface-container-high;
+    border:           1px;
+    border-radius:    12px;
+    border-color: @outline;
+    padding:          14px 18px;
+    children:         [ prompt, entry ];
+    spacing:          12px;
+}
+
+prompt {
+    color: @primary;
+    text-color: @primary;
+    font:             "JetBrainsMono Nerd Font 15";
+    vertical-align:   0.5;
+}
+
+entry {
+    text-color: @on-surface;
+    placeholder:      "Search apps...";
+    placeholder-color: @outline;
+    cursor:           text;
+    blink:            true;
+    vertical-align:   0.5;
+}
+
+/* ── Results ─────────────────────────────────────────────────── */
+listview {
+    border:           0;
+    padding:          0;
+    spacing:          6px;
+    scrollbar:        false;
+    lines:            7;
+    columns:          1;
+    fixed-height:     false;
+}
+
+element {
+    border-radius:    10px;
+    padding:          10px 14px;
+    spacing:          16px;
+    orientation:      horizontal;
+    cursor:           pointer;
+}
+
+element-icon {
+    size:             28px;
+    vertical-align:   0.5;
+}
+
+element-text {
+    text-color:       @fg;
+    vertical-align:   0.5;
+    highlight: bold;
+}
+
+element.selected.normal {
+    background-color: @bg-sel;
+    border:           1px;
+    border-color: @primary;
+}
+
+element.selected.normal element-text {
+    text-color: @fg-sel;
+    font-weight: bold;
+}
+
+element.urgent element-text {
+    text-color: @error;
+}
+
+element.active element-text {
+    text-color: @tertiary;
+}

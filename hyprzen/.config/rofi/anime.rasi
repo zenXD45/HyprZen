@@ -1,0 +1,103 @@
+/* HyprZen — Rofi Launcher Theme (anime.rasi)
+   Works with: rofi -show drun -theme ~/.config/rofi/anime.rasi
+*/
+
+@import "colors.rasi"
+
+* {
+    font:             "JetBrainsMono Nerd Font 13";
+    background-color: transparent;
+    text-color: @on-surface;
+}
+
+window {
+    background-color: @surface;
+    border:           2px;
+    border-color: @primary;
+    border-radius:    16px;
+    width:            520px;
+    padding:          20px;
+}
+
+mainbox {
+    spacing: 10px;
+}
+
+/* ── Search bar ───────────────────────────────────────────── */
+inputbar {
+    background-color: @surface-container-high;
+    border-radius:    10px;
+    padding:          10px 14px;
+    border:           1px;
+    border-color: @outline;
+    children:         [ prompt, entry ];
+    spacing:          8px;
+}
+
+prompt {
+    color: @primary;
+    padding:    0px;
+}
+
+entry {
+    color: @on-surface;
+    placeholder:  "Search...";
+    placeholder-color: @outline;
+}
+
+/* ── Results list ─────────────────────────────────────────── */
+listview {
+    border:       0px;
+    padding:      4px 0px 0px;
+    spacing:      4px;
+    scrollbar:    false;
+    lines:        8;
+}
+
+element {
+    background-color: transparent;
+    border-radius:    8px;
+    padding:          8px 12px;
+    spacing:          10px;
+    orientation:      horizontal;
+}
+
+element-icon {
+    size:       28px;
+    vertical-align: 0.5;
+}
+
+element-text {
+    vertical-align: 0.5;
+    color: @on-surface;
+}
+
+element.selected.normal {
+    background-color: @secondary-container;
+    border:           1px;
+    border-color: @primary;
+    text-color: @primary;
+}
+
+element.selected.normal element-text {
+    color: @primary;
+}
+
+element.urgent {
+    text-color: @error;
+}
+
+element.active {
+    text-color: @tertiary;
+}
+
+/* ── Message / No results ─────────────────────────────────── */
+message {
+    padding:    10px 14px;
+    background-color: @surface-container-high;
+    border-radius: 8px;
+}
+
+textbox {
+    text-color: @outline;
+}

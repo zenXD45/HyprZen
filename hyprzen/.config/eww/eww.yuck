@@ -1,0 +1,63 @@
+(defpoll time :interval "1s"
+  `date +'%H:%M'`)
+
+(defpoll date :interval "1h"
+  `date +'%A, %B %d'`)
+
+(defpoll greeting :interval "1h"
+  `~/scripts/greeting.sh`)
+
+;; ── Desktop Clock Window ──────────────────────────────────────
+(defwindow desktop_clock
+    :monitor 0
+    :geometry (geometry :x "0%"
+                        :y "15%"
+                        :width "800px"
+                        :height "200px"
+                        :anchor "top center")
+    :stacking "bg"
+    :exclusive false
+    :windowtype "desktop"
+  (box :class "clock-container" :orientation "h" :space-evenly false :spacing 30 :valign "center" :halign "center"
+    (label :class "clock-time" :text time)
+    (box :orientation "v" :space-evenly false :spacing 5 :valign "center"
+      (label :class "clock-date" :text date :halign "start")
+      (label :class "clock-greeting" :text greeting :halign "start"))))
+
+;; ── Dashboard Window ──────────────────────────────────────────
+(defwindow dashboard
+    :monitor 0
+    :geometry (geometry :x "0px"
+                        :y "60px"
+                        :width "340px"
+                        :height "400px"
+                        :anchor "top center")
+    :stacking "overlay"
+    :exclusive false
+  (box :class "dashboard-container" :orientation "v" :space-evenly false :spacing 20
+    
+    (box :class "user-info" :orientation "h" :space-evenly false :spacing 15
+      (box :class "profile-pic")
+      (box :orientation "v" :space-evenly false :valign "center"
+        (label :class "dash-name" :text "Zen" :halign "start")
+        (label :class "dash-host" :text "HyprZen" :halign "start")))
+
+    (box :class "system-stats" :orientation "h" :space-evenly true :spacing 15
+      (box :class "stat-box" :orientation "v" :space-evenly false :spacing 5
+        (circular-progress :value {EWW_CPU.avg} :class "cpu-ring" :thickness 8
+          (label :text "" :class "stat-icon"))
+        (label :text "CPU" :class "stat-label"))
+        
+      (box :class "stat-box" :orientation "v" :space-evenly false :spacing 5
+        (circular-progress :value {EWW_RAM.used_mem_perc} :class "ram-ring" :thickness 8
+          (label :text "" :class "stat-icon"))
+        (label :text "RAM" :class "stat-label")))
+
+    (box :class "dash-controls" :orientation "v" :space-evenly false :spacing 15
+      (box :orientation "h" :space-evenly false :spacing 10
+        (label :text "" :class "slider-icon")
+        (scale :min 0 :max 101 :value 50 :onchange "wpctl set-volume @DEFAULT_AUDIO_SINK@ {}%" :class "vol-slider" :hexpand true))
+      (box :orientation "h" :space-evenly false :spacing 10
+        (label :text "" :class "slider-icon")
+        (scale :min 0 :max 101 :value 50 :onchange "brightnessctl s {}%" :class "bri-slider" :hexpand true)))
+  ))

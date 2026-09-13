@@ -1,0 +1,85 @@
+/**
+ * HyprZen - Keybinds Cheat Sheet Theme
+ */
+
+@import "colors.rasi"
+
+* {
+    bg-col: @surface;
+    bg-col-light: @surface-container-high;
+    accent: @primary;
+    selected-col: @secondary-container;
+    fg-col: @on-surface;
+    fg-col2: @on-secondary-container;
+    grey: @outline;
+
+    text-color: @fg-col;
+}
+window {
+    width: 900px;
+    height: 700px;
+    border: 2px;
+    border-color: @accent;
+    border-radius: 20px;
+    background-color: @bg-col;
+    padding: 30px;
+}
+
+mainbox {
+    background-color: transparent;
+    spacing: 20px;
+}
+
+inputbar {
+    children: [prompt, entry];
+    background-color: @bg-col-light;
+    border-radius: 12px;
+    padding: 15px;
+}
+
+prompt {
+    background-color: transparent;
+    text-color: @accent;
+    padding: 0 15px 0 0;
+    font: "JetBrainsMono Nerd Font Bold 14";
+}
+
+entry {
+    background-color: transparent;
+    text-color: @fg-col;
+    placeholder: "Search keybinds...";
+    placeholder-color: @grey;
+    font: "JetBrainsMono Nerd Font 14";
+}
+
+listview {
+    background-color: transparent;
+    columns: 2;
+    lines: 12;
+    spacing: 12px;
+    cycle: false;
+    dynamic: true;
+    layout: vertical;
+}
+
+element {
+    background-color: transparent;
+    padding: 12px 15px;
+    border-radius: 10px;
+}
+
+element selected {
+    background-color: @selected-col;
+    text-color: @fg-col2;
+}
+
+element-text {
+    background-color: transparent;
+    text-color: inherit;
+    highlight: bold;
+    font: "JetBrainsMono Nerd Font 13";
+}
+
+element-text selected {
+    text-color: @fg-col2;
+}

@@ -1,0 +1,11 @@
+@define-color bg_base       #1a1525;
+@define-color bg_surface    rgba(34, 27, 51, 0.88);
+@define-color bg_overlay    rgba(18, 14, 26, 0.75);
+@define-color accent        #a37acc;
+@define-color accent_soft   rgba(163, 122, 204, 0.18);
+@define-color accent_glow   transparent;
+@define-color secondary     #a37acc;
+@define-color text          #e6d9f2;
+@define-color subtext       #a693bf;
+@define-color border_color  rgba(163, 122, 204, 0.20);
+@define-color urgent        #ff6699;

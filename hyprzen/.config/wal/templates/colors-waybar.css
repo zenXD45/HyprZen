@@ -1,0 +1,11 @@
+@define-color bg_base {background};
+@define-color bg_surface {background};
+@define-color bg_overlay {color0};
+@define-color accent {color4};
+@define-color accent_soft alpha({color4}, 0.18);
+@define-color accent_glow transparent;
+@define-color secondary {color5};
+@define-color text {foreground};
+@define-color subtext {color7};
+@define-color border_color alpha({color4}, 0.20);
+@define-color urgent {color1};

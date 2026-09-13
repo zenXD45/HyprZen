@@ -1,0 +1,11 @@
+* {
+    surface: rgba(15, 15, 15, 0.75);
+    surface-container-high: rgba(20, 20, 20, 0.50);
+    primary: #838996;
+    secondary-container: rgba(26, 26, 26, 0.30);
+    on-surface: #cccccc;
+    on-secondary-container: #888888;
+    outline: #262626;
+    error: #d75f5f;
+    tertiary: #838996;
+}

@@ -1,0 +1,36 @@
+* {
+    background-image: none;
+    box-shadow: none;
+}
+
+window {
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+button {
+    border-radius: 30px;
+    border: none;
+    background: transparent;
+    color: transparent;
+    
+    margin: 40px 40px;
+    
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 20%;
+}
+
+button:hover, button:focus {
+    background-color: rgba(255, 255, 255, 0.15); /* WLOGOUT_HOVER_COLOR */
+    background-size: 30%;
+    margin: 10px 10px;
+    border: none;
+    outline-style: none;
+}
+
+#lock { background-image: image(url("icons/lock.svg")); }
+#logout { background-image: image(url("icons/logout.svg")); }
+#suspend { background-image: image(url("icons/suspend.svg")); }
+#reboot { background-image: image(url("icons/reboot.svg")); }
+#shutdown { background-image: image(url("icons/shutdown.svg")); }
