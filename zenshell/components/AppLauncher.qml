@@ -233,7 +233,7 @@ Item {
                                 text: model.name
                                 color: isSel ? "#FFFFFF" : (isHov ? "#F0F0F2" : "#D8D8DC")
                                 font.family: "Outfit"
-                                font.pixelSize: 12.5
+                                font.pixelSize: 13
                                 font.weight: isSel ? Font.DemiBold : Font.Normal
                                 elide: Text.ElideRight
                                 maximumLineCount: 1
@@ -244,7 +244,7 @@ Item {
                                 text: model.sub || ""
                                 color: "#8A8A90"
                                 font.family: "Outfit"
-                                font.pixelSize: 9.5
+                                font.pixelSize: 10
                                 elide: Text.ElideRight
                                 maximumLineCount: 1
                             }

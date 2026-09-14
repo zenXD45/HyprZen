@@ -559,7 +559,7 @@ Item {
                         text: "Caffeine"
                         color: caffeineEnabled ? "#FFFFFF" : "#77777C"
                         font.family: "Outfit"
-                        font.pixelSize: 9.5
+                        font.pixelSize: 10
                         font.weight: caffeineEnabled ? Font.Bold : Font.Medium
                     }
                 }
@@ -601,7 +601,7 @@ Item {
                         text: "Night Light"
                         color: nightLightEnabled ? "#FFFFFF" : "#77777C"
                         font.family: "Outfit"
-                        font.pixelSize: 9.5
+                        font.pixelSize: 10
                         font.weight: nightLightEnabled ? Font.Bold : Font.Medium
                     }
                 }
@@ -643,7 +643,7 @@ Item {
                         text: "Do Not Disturb"
                         color: root.dndEnabled ? "#FFFFFF" : "#77777C"
                         font.family: "Outfit"
-                        font.pixelSize: 9.5
+                        font.pixelSize: 10
                         font.weight: root.dndEnabled ? Font.Bold : Font.Medium
                     }
                 }
@@ -685,7 +685,7 @@ Item {
                         text: micMuted ? "Muted" : "Mic"
                         color: micMuted ? "#FFFFFF" : "#77777C"
                         font.family: "Outfit"
-                        font.pixelSize: 9.5
+                        font.pixelSize: 10
                         font.weight: micMuted ? Font.Bold : Font.Medium
                     }
                 }
@@ -762,7 +762,7 @@ Item {
                     text: Math.round(brightnessValue) + "%"
                     color: "#77777C"
                     font.family: "Outfit"
-                    font.pixelSize: 9.5
+                    font.pixelSize: 10
                     Layout.preferredWidth: 30
                     horizontalAlignment: Text.AlignRight
                 }
@@ -832,7 +832,7 @@ Item {
                     text: Math.round(volumeValue) + "%"
                     color: "#77777C"
                     font.family: "Outfit"
-                    font.pixelSize: 9.5
+                    font.pixelSize: 10
                     Layout.preferredWidth: 30
                     horizontalAlignment: Text.AlignRight
                 }
@@ -877,7 +877,7 @@ Item {
                     text: recorderMode === "ui" ? "gsr-ui" : "gpu-screen-recorder"
                     color: "#44444A"
                     font.family: "Outfit"
-                    font.pixelSize: 8.5
+                    font.pixelSize: 9
                 }
             }
 
@@ -1234,7 +1234,7 @@ Item {
                 text: "AVAILABLE NETWORKS"
                 color: "#4A4A50"
                 font.family: "Outfit"
-                font.pixelSize: 8.5
+                font.pixelSize: 9
                 font.weight: Font.Bold
             }
             Item { Layout.fillWidth: true }
@@ -1299,7 +1299,7 @@ Item {
                         text: isConnecting ? "Connecting…" : (itemNet.security ? "" : "Open")
                         color: isConnecting ? themeAccent : "#44444A"
                         font.family: "Outfit"
-                        font.pixelSize: 8.5
+                        font.pixelSize: 9
                     }
 
                     Text {
@@ -1459,7 +1459,7 @@ Item {
             text: "DEVICES"
             color: "#4A4A50"
             font.family: "Outfit"
-            font.pixelSize: 8.5
+            font.pixelSize: 9
             font.weight: Font.Bold
         }
 
@@ -1511,7 +1511,7 @@ Item {
                             text: itemBt.paired ? "Paired" : "Not paired"
                             color: "#55555A"
                             font.family: "Outfit"
-                            font.pixelSize: 8.5
+                            font.pixelSize: 9
                         }
                     }
 
