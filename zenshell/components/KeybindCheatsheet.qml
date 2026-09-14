@@ -45,7 +45,7 @@ Item {
 
     Process {
         id: fetchBinds
-        command: [Qt.environmentVariable("HOME") + "/.config/quickshell/dynamic-island/scripts/get_keybinds.py"]
+        command: [Quickshell.env("HOME") + "/.config/quickshell/dynamic-island/scripts/get_keybinds.py"]
         stdout: SplitParser {
             onRead: data => {
                 try {

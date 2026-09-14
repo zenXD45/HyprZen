@@ -1,5 +1,6 @@
 import QtQuick
 import QtQuick.Layouts
+import Quickshell
 import Quickshell.Io
 
 Item {
@@ -13,7 +14,7 @@ Item {
 
     // ── Actions ─────────────────────────────────────────────────
     function runSearch() {
-        searchProc.command = ["python3", Qt.environmentVariable("HOME") + "/.config/quickshell/dynamic-island/scripts/get_search.py", searchInput.text.trim()];
+        searchProc.command = ["python3", Quickshell.env("HOME") + "/.config/quickshell/dynamic-island/scripts/get_search.py", searchInput.text.trim()];
         searchProc.running = true;
     }
 

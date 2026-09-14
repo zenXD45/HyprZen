@@ -1,5 +1,6 @@
 import QtQuick
 import QtQuick.Layouts
+import Quickshell
 import Quickshell.Io
 
 Item {
@@ -23,7 +24,7 @@ Item {
 
     function setProfile(profile) {
         activeProfile = profile
-        var home = Qt.environmentVariable("HOME")
+        var home = Quickshell.env("HOME")
         var gm = home + "/scripts/dell-gmode.sh"
         var cmd = "powerprofilesctl set " + profile
         if (profile === "performance") {

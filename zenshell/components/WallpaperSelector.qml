@@ -1,5 +1,6 @@
 import QtQuick
 import QtQuick.Layouts
+import Quickshell
 
 Item {
     anchors.fill: parent
@@ -158,7 +159,7 @@ Item {
                         onExited: { if (wpListView.hoveredWpName === model.filename) wpListView.hoveredWpName = "" }
                         onClicked: {
                             root.displayState = 0; root.updateState();
-                            runCmd.command = ["bash", Qt.environmentVariable("HOME") + "/scripts/wallpaper-selector.sh", model.path];
+                            runCmd.command = ["bash", Quickshell.env("HOME") + "/scripts/wallpaper-selector.sh", model.path];
                             runCmd.running = true;
                         }
                     }
