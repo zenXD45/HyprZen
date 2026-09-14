@@ -99,8 +99,8 @@ OFFICIAL_PKGS=(
     base-devel git cmake cpio pkgconf gcc make unzip wget curl jq npm ripgrep fd rust
     # Networks
     impala
-    # Fonts / GTK theming
-    ttf-jetbrains-mono-nerd noto-fonts-emoji adw-gtk3 papirus-icon-theme
+    # Fonts / GTK theming (adw-gtk3 dropped from official → hyprzen/setup.sh)
+    ttf-jetbrains-mono-nerd noto-fonts-emoji papirus-icon-theme
     # Python (monitors / control scripts)
     python python-dbus python-gobject
 )
