@@ -79,7 +79,7 @@ sleep 2
 step "Official packages (pacman)"
 OFFICIAL_PKGS=(
     # Window / compositor & core UI
-    hyprland hyprlock hypridle kitty
+    hyprland hyprlock hypridle hyprsunset kitty
     xdg-desktop-portal-hyprland
     # NOTE: wlogout (SUPER+X) + pywal are AUR-only since 2026 — see hyprzen/setup.sh.
     # ZenShell needs NO waybar/rofi — the island + dock are the default.

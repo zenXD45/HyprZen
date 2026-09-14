@@ -20,10 +20,10 @@ echo "📦 Installing dependencies..."
 # ── 1. Core Hyprland & Wayland UI ──
 # waybar + rofi were removed — ZenShell (island/dock/spotlight) is
 # the default bar/launcher now.
-PKGS="hyprland hyprlock hypridle kitty"
+PKGS="hyprland hyprlock hypridle hyprsunset kitty"
 
 # ── 2. Utilities (Screenshots, Audio, Info, File Manager, Power) ──
-PKGS="$PKGS cliphist wl-clipboard playerctl btop pavucontrol fastfetch cava thunar power-profiles-daemon python-pywal neovim ripgrep fd npm jq awww cmake cpio pkgconf gcc make unzip wget"
+PKGS="$PKGS cliphist wl-clipboard playerctl btop pavucontrol fastfetch cava thunar power-profiles-daemon neovim ripgrep fd npm jq awww cmake cpio pkgconf gcc make unzip wget"
 
 # ── 3. Fonts ──
 PKGS="$PKGS ttf-jetbrains-mono-nerd"
