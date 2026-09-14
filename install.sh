@@ -79,8 +79,9 @@ sleep 2
 step "Official packages (pacman)"
 OFFICIAL_PKGS=(
     # Window / compositor & core UI
-    hyprland hyprlock hypridle kitty wlogout
+    hyprland hyprlock hypridle kitty
     xdg-desktop-portal-hyprland
+    # NOTE: wlogout (SUPER+X) + pywal are AUR-only since 2026 — see hyprzen/setup.sh.
     # ZenShell needs NO waybar/rofi — the island + dock are the default.
     # Notifications are owned by ZenShell's island, not swaync.
     # Audio / OSD / input
@@ -90,8 +91,8 @@ OFFICIAL_PKGS=(
     # System bits
     polkit-gnome network-manager-applet upower bluez-utils power-profiles-daemon
     socat inotify-tools xdg-utils libnotify glib2
-    # Wallpaper / theme pipeline
-    awww imagemagick python-pywal
+    # Wallpaper / theme pipeline (pywal moved to AUR — see hyprzen/setup.sh)
+    awww imagemagick
     # Terminal apps
     btop fastfetch cava thunar neovim
     # Toolchain (needed by AUR builds: matugen, quickshell)
