@@ -11,12 +11,12 @@ Scope {
   id: root
   
   property var pinnedApps: []
-  property string pinnedJsonPath: Qt.homePath() + "/.config/quickshell/dynamic-island/modules/dock/pinned_apps.json"
+  property string pinnedJsonPath: Qt.environmentVariable("HOME") + "/.config/quickshell/dynamic-island/modules/dock/pinned_apps.json"
   property string dockTheme: "liquid"
   property bool isAutoHide: true
   
   Process {
-    command: ["cat", Qt.homePath() + "/.config/quickshell/shell_settings.json"]
+    command: ["cat", Qt.environmentVariable("HOME") + "/.config/quickshell/shell_settings.json"]
     running: true
     stdout: SplitParser {
       onRead: (data) => {
@@ -30,7 +30,7 @@ Scope {
 
   IpcHandler {
     target: "qs-dock"
-    function updateTheme(themeName): void {
+    function updateTheme(themeName: string): void {
       root.dockTheme = themeName;
     }
     function toggleAutoHide(): void {
@@ -78,7 +78,7 @@ Scope {
   
   Process {
     id: hyprctlProcess
-    command: ["python3", Qt.homePath() + "/.config/quickshell/dynamic-island/modules/dock/get_clients.py"]
+    command: ["python3", Qt.environmentVariable("HOME") + "/.config/quickshell/dynamic-island/modules/dock/get_clients.py"]
     stdout: SplitParser {
       onRead: data => {
         try {

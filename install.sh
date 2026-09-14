@@ -91,6 +91,8 @@ OFFICIAL_PKGS=(
     # System bits
     polkit-gnome network-manager-applet upower bluez-utils power-profiles-daemon
     socat inotify-tools xdg-utils libnotify glib2
+    # ZenShell Qt runtime (Qt5Compat.GraphicalEffects used by the island/dock)
+    qt6-5compat
     # Wallpaper / theme pipeline (pywal moved to AUR — see hyprzen/setup.sh)
     awww imagemagick
     # Terminal apps

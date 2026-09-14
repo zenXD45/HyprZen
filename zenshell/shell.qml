@@ -19,7 +19,7 @@ Scope {
     property string islandTheme: "dark"
     
     Process {
-      command: ["cat", Qt.homePath() + "/.config/quickshell/shell_settings.json"]
+      command: ["cat", Qt.environmentVariable("HOME") + "/.config/quickshell/shell_settings.json"]
       running: true
       stdout: SplitParser {
         onRead: (data) => {
@@ -33,7 +33,7 @@ Scope {
 
     IpcHandler {
       target: "qs-island"
-      function updateTheme(themeName): void {
+      function updateTheme(themeName: string): void {
         root.islandTheme = themeName;
       }
     }
@@ -57,7 +57,7 @@ Scope {
     function applyTheme(themeId) {
         root.currentThemeId = themeId;
         updateThemeAccent();
-        applyThemeProcess.command = ["bash", Qt.homePath() + "/scripts/theme-switch.sh", themeId];
+        applyThemeProcess.command = ["bash", Qt.environmentVariable("HOME") + "/scripts/theme-switch.sh", themeId];
         applyThemeProcess.running = true;
         root.displayState = 0;
         root.updateState();
@@ -70,7 +70,7 @@ Scope {
 
     Process {
         id: fetchThemes
-        command: ["python3", Qt.homePath() + "/.config/quickshell/dynamic-island/scripts/get_themes.py"]
+        command: ["python3", Qt.environmentVariable("HOME") + "/.config/quickshell/dynamic-island/scripts/get_themes.py"]
         running: true
         stdout: SplitParser {
             onRead: data => {
@@ -84,7 +84,7 @@ Scope {
 
     Process {
         id: fetchCurrentTheme
-        command: ["cat", Qt.homePath() + "/.config/hypr/themes/current_theme.conf"]
+        command: ["cat", Qt.environmentVariable("HOME") + "/.config/hypr/themes/current_theme.conf"]
         running: true
         stdout: SplitParser {
             onRead: data => {
@@ -533,7 +533,7 @@ Scope {
                 root.currentLyrics = [];
                 root.currentLyricLine = "";
                 fetchLyrics.running = false;
-                fetchLyrics.command = ["python3", Qt.homePath() + "/.config/quickshell/dynamic-island/scripts/get_lyrics.py", root.trackArtist, root.trackTitle];
+                fetchLyrics.command = ["python3", Qt.environmentVariable("HOME") + "/.config/quickshell/dynamic-island/scripts/get_lyrics.py", root.trackArtist, root.trackTitle];
                 triggerLyrics.restart();
             }
         } else {
@@ -554,7 +554,7 @@ Scope {
 
     Process {
         id: fetchApps
-        command: ["python3", Qt.homePath() + "/.config/quickshell/dynamic-island/scripts/get_apps.py"]
+        command: ["python3", Qt.environmentVariable("HOME") + "/.config/quickshell/dynamic-island/scripts/get_apps.py"]
         running: true
         stdout: SplitParser {
             onRead: data => {
@@ -569,7 +569,7 @@ Scope {
 
     Process {
         id: fetchWallpapers
-        command: ["python3", Qt.homePath() + "/.config/quickshell/dynamic-island/scripts/get_wallpapers.py"]
+        command: ["python3", Qt.environmentVariable("HOME") + "/.config/quickshell/dynamic-island/scripts/get_wallpapers.py"]
         running: true
         stdout: SplitParser {
             onRead: data => {
@@ -584,7 +584,7 @@ Scope {
 
     Process {
         id: fetchClipboard
-        command: ["python3", Qt.homePath() + "/.config/quickshell/dynamic-island/scripts/get_clipboard.py"]
+        command: ["python3", Qt.environmentVariable("HOME") + "/.config/quickshell/dynamic-island/scripts/get_clipboard.py"]
         stdout: SplitParser {
             onRead: data => {
                 try {

@@ -78,7 +78,7 @@ Item {
 
     Process {
         id: wifiListProc
-        command: ["python3", Qt.homePath() + "/.config/quickshell/dynamic-island/scripts/network_ctl.py", "--wifi-list"]
+        command: ["python3", Qt.environmentVariable("HOME") + "/.config/quickshell/dynamic-island/scripts/network_ctl.py", "--wifi-list"]
         stdout: SplitParser {
             onRead: data => {
                 try {
@@ -89,7 +89,7 @@ Item {
     }
 
     function refreshNetwork() {
-        netProc.command = ["python3", Qt.homePath() + "/.config/quickshell/dynamic-island/scripts/network_ctl.py", "--status"]
+        netProc.command = ["python3", Qt.environmentVariable("HOME") + "/.config/quickshell/dynamic-island/scripts/network_ctl.py", "--status"]
         netProc.running = true
         if (currentView === "network") {
             wifiListProc.running = true
@@ -97,23 +97,23 @@ Item {
     }
 
     function switchWired() {
-        netProc.command = ["python3", Qt.homePath() + "/.config/quickshell/dynamic-island/scripts/network_ctl.py", "--switch-wired"]
+        netProc.command = ["python3", Qt.environmentVariable("HOME") + "/.config/quickshell/dynamic-island/scripts/network_ctl.py", "--switch-wired"]
         netProc.running = true
     }
 
     function switchWifi() {
-        netProc.command = ["python3", Qt.homePath() + "/.config/quickshell/dynamic-island/scripts/network_ctl.py", "--switch-wifi"]
+        netProc.command = ["python3", Qt.environmentVariable("HOME") + "/.config/quickshell/dynamic-island/scripts/network_ctl.py", "--switch-wifi"]
         netProc.running = true
     }
 
     function toggleWifiRadio() {
-        netProc.command = ["python3", Qt.homePath() + "/.config/quickshell/dynamic-island/scripts/network_ctl.py", "--toggle-wifi"]
+        netProc.command = ["python3", Qt.environmentVariable("HOME") + "/.config/quickshell/dynamic-island/scripts/network_ctl.py", "--toggle-wifi"]
         netProc.running = true
     }
 
     function connectWifi(ssid) {
         connectingSsid = ssid
-        netProc.command = ["python3", Qt.homePath() + "/.config/quickshell/dynamic-island/scripts/network_ctl.py", "--connect-wifi", ssid]
+        netProc.command = ["python3", Qt.environmentVariable("HOME") + "/.config/quickshell/dynamic-island/scripts/network_ctl.py", "--connect-wifi", ssid]
         netProc.running = true
     }
 
@@ -134,7 +134,7 @@ Item {
 
     Process {
         id: btDevProc
-        command: ["python3", Qt.homePath() + "/.config/quickshell/dynamic-island/scripts/bluetooth_ctl.py", "--devices"]
+        command: ["python3", Qt.environmentVariable("HOME") + "/.config/quickshell/dynamic-island/scripts/bluetooth_ctl.py", "--devices"]
         stdout: SplitParser {
             onRead: data => {
                 connectingMac = ""
@@ -146,7 +146,7 @@ Item {
     }
 
     function refreshBluetooth() {
-        btProc.command = ["python3", Qt.homePath() + "/.config/quickshell/dynamic-island/scripts/bluetooth_ctl.py", "--status"]
+        btProc.command = ["python3", Qt.environmentVariable("HOME") + "/.config/quickshell/dynamic-island/scripts/bluetooth_ctl.py", "--status"]
         btProc.running = true
         if (currentView === "bt") {
             btDevProc.running = true
@@ -154,13 +154,13 @@ Item {
     }
 
     function toggleBluetooth() {
-        btProc.command = ["python3", Qt.homePath() + "/.config/quickshell/dynamic-island/scripts/bluetooth_ctl.py", "--toggle"]
+        btProc.command = ["python3", Qt.environmentVariable("HOME") + "/.config/quickshell/dynamic-island/scripts/bluetooth_ctl.py", "--toggle"]
         btProc.running = true
     }
 
     function connectBtDevice(mac) {
         connectingMac = mac
-        btDevProc.command = ["python3", Qt.homePath() + "/.config/quickshell/dynamic-island/scripts/bluetooth_ctl.py", "--connect", mac]
+        btDevProc.command = ["python3", Qt.environmentVariable("HOME") + "/.config/quickshell/dynamic-island/scripts/bluetooth_ctl.py", "--connect", mac]
         btDevProc.running = true
     }
 

@@ -23,7 +23,7 @@ Item {
 
     function setProfile(profile) {
         activeProfile = profile
-        var home = Qt.homePath()
+        var home = Qt.environmentVariable("HOME")
         var gm = home + "/scripts/dell-gmode.sh"
         var cmd = "powerprofilesctl set " + profile
         if (profile === "performance") {

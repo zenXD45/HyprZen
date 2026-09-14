@@ -158,7 +158,7 @@ Item {
                         onExited: { if (wpListView.hoveredWpName === model.filename) wpListView.hoveredWpName = "" }
                         onClicked: {
                             root.displayState = 0; root.updateState();
-                            runCmd.command = ["bash", Qt.homePath() + "/scripts/wallpaper-selector.sh", model.path];
+                            runCmd.command = ["bash", Qt.environmentVariable("HOME") + "/scripts/wallpaper-selector.sh", model.path];
                             runCmd.running = true;
                         }
                     }

@@ -54,7 +54,7 @@ Scope {
 
   Process {
     id: searchProc
-    command: [Qt.homePath() + "/.config/quickshell/dynamic-island/modules/spotlight/search.py", root.currentQuery]
+    command: [Qt.environmentVariable("HOME") + "/.config/quickshell/dynamic-island/modules/spotlight/search.py", root.currentQuery]
     running: false
     stdout: SplitParser {
       onRead: (data) => {
