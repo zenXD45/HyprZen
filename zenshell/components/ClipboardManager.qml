@@ -88,7 +88,7 @@ Item {
                             var targetIdx = (clipListView.currentIndex >= 0 && clipListView.currentIndex < clipboardModel.count) ? clipListView.currentIndex : 0;
                             var selectedItem = clipboardModel.get(targetIdx);
                             root.displayState = 0; root.updateState();
-                            runCmd.command = ["python3", Quickshell.env("HOME") + "/.config/quickshell/dynamic-island/scripts/get_clipboard.py", "decode", selectedItem.id];
+                            runCmd.command = ["python3", Quickshell.shellDir + "/scripts/get_clipboard.py", "decode", selectedItem.id];
                             runCmd.running = true;
                             text = "";
                         }
@@ -197,7 +197,7 @@ Item {
                         clipListView.currentIndex = index;
                         clipSearchInput.forceActiveFocus();
                         root.displayState = 0; root.updateState();
-                        runCmd.command = ["python3", Quickshell.env("HOME") + "/.config/quickshell/dynamic-island/scripts/get_clipboard.py", "decode", model.id];
+                        runCmd.command = ["python3", Quickshell.shellDir + "/scripts/get_clipboard.py", "decode", model.id];
                         runCmd.running = true;
                         clipSearchInput.text = "";
                     }

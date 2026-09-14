@@ -11,7 +11,7 @@ Scope {
   id: root
   
   property var pinnedApps: []
-  property string pinnedJsonPath: Quickshell.env("HOME") + "/.config/quickshell/dynamic-island/modules/dock/pinned_apps.json"
+  property string pinnedJsonPath: Quickshell.shellDir + "/pinned_apps.json"
   property string dockTheme: "liquid"
   property bool isAutoHide: true
   
@@ -78,7 +78,7 @@ Scope {
   
   Process {
     id: hyprctlProcess
-    command: ["python3", Quickshell.env("HOME") + "/.config/quickshell/dynamic-island/modules/dock/get_clients.py"]
+    command: ["python3", Quickshell.shellDir + "/get_clients.py"]
     stdout: SplitParser {
       onRead: data => {
         try {

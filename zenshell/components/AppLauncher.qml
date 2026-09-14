@@ -14,7 +14,7 @@ Item {
 
     // ── Actions ─────────────────────────────────────────────────
     function runSearch() {
-        searchProc.command = ["python3", Quickshell.env("HOME") + "/.config/quickshell/dynamic-island/scripts/get_search.py", searchInput.text.trim()];
+        searchProc.command = ["python3", Quickshell.shellDir + "/scripts/get_search.py", searchInput.text.trim()];
         searchProc.running = true;
     }
 

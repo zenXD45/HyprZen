@@ -70,7 +70,7 @@ Scope {
 
     Process {
         id: fetchThemes
-        command: ["python3", Quickshell.env("HOME") + "/.config/quickshell/dynamic-island/scripts/get_themes.py"]
+        command: ["python3", Quickshell.shellDir + "/scripts/get_themes.py"]
         running: true
         stdout: SplitParser {
             onRead: data => {
@@ -533,7 +533,7 @@ Scope {
                 root.currentLyrics = [];
                 root.currentLyricLine = "";
                 fetchLyrics.running = false;
-                fetchLyrics.command = ["python3", Quickshell.env("HOME") + "/.config/quickshell/dynamic-island/scripts/get_lyrics.py", root.trackArtist, root.trackTitle];
+                fetchLyrics.command = ["python3", Quickshell.shellDir + "/scripts/get_lyrics.py", root.trackArtist, root.trackTitle];
                 triggerLyrics.restart();
             }
         } else {
@@ -554,7 +554,7 @@ Scope {
 
     Process {
         id: fetchApps
-        command: ["python3", Quickshell.env("HOME") + "/.config/quickshell/dynamic-island/scripts/get_apps.py"]
+        command: ["python3", Quickshell.shellDir + "/scripts/get_apps.py"]
         running: true
         stdout: SplitParser {
             onRead: data => {
@@ -569,7 +569,7 @@ Scope {
 
     Process {
         id: fetchWallpapers
-        command: ["python3", Quickshell.env("HOME") + "/.config/quickshell/dynamic-island/scripts/get_wallpapers.py"]
+        command: ["python3", Quickshell.shellDir + "/scripts/get_wallpapers.py"]
         running: true
         stdout: SplitParser {
             onRead: data => {
@@ -584,7 +584,7 @@ Scope {
 
     Process {
         id: fetchClipboard
-        command: ["python3", Quickshell.env("HOME") + "/.config/quickshell/dynamic-island/scripts/get_clipboard.py"]
+        command: ["python3", Quickshell.shellDir + "/scripts/get_clipboard.py"]
         stdout: SplitParser {
             onRead: data => {
                 try {

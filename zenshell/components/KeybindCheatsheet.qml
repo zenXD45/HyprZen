@@ -45,7 +45,7 @@ Item {
 
     Process {
         id: fetchBinds
-        command: [Quickshell.env("HOME") + "/.config/quickshell/dynamic-island/scripts/get_keybinds.py"]
+        command: [Quickshell.shellDir + "/scripts/get_keybinds.py"]
         stdout: SplitParser {
             onRead: data => {
                 try {

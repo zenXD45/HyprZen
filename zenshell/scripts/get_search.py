@@ -143,7 +143,7 @@ def main():
         calc = solve()
         if calc:
             results.append(calc)
-    sys.stdout.write(json.dumps(results[:60]))
+    sys.stdout.write(json.dumps(results[:60]) + "\n")
 
 
 if __name__ == "__main__":
