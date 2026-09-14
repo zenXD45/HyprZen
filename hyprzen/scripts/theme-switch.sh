@@ -17,7 +17,6 @@ THEMES=(
 
 HYPR_DIR="$HOME/.config/hypr"
 KITTY_THEME_DIR="$HOME/.config/kitty/themes"
-THEME_FILE="$HYPR_DIR/current_theme"
 
 # ── Get theme ─────────────────────────────────────────────────
 if [ -z "${1:-}" ]; then
