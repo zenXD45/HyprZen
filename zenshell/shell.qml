@@ -832,7 +832,7 @@ Scope {
                         root.displayState === 7 ? 40 :
                         root.displayState === 6 ? 80 :
                         root.displayState === 4 ? 150 :
-                        root.displayState === 3 ? 180 :
+                        root.displayState === 3 ? 440 :
                         root.displayState === 2 ? 48 :
                         root.displayState === 1 ? (root.isExpanded ? 190 : 44) :
                         32

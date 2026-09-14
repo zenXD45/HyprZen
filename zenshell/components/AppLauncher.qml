@@ -1,5 +1,6 @@
 import QtQuick
 import QtQuick.Layouts
+import Quickshell.Io
 
 Item {
     anchors.fill: parent
@@ -10,18 +11,75 @@ Item {
         NumberAnimation { duration: root.displayState === 3 ? 240 : 160; easing.type: Easing.OutCubic }
     }
 
+    // ── Actions ─────────────────────────────────────────────────
+    function runSearch() {
+        searchProc.command = ["python3", Qt.environmentVariable("HOME") + "/.config/quickshell/dynamic-island/scripts/get_search.py", searchInput.text.trim()];
+        searchProc.running = true;
+    }
+
+    function shellQuote(s) {
+        return "'" + String(s).replace(/'/g, "'\\''") + "'";
+    }
+
+    function launchEntry(modelItem) {
+        root.displayState = 0; root.updateState();
+        searchInput.text = "";
+        if (modelItem.kind === "calc") {
+            copyProc.command = ["bash", "-c", "printf %s " + shellQuote(modelItem.result) + " | wl-copy -n"];
+            copyProc.running = true;
+        } else if (modelItem.kind === "file") {
+            runCmd.command = ["bash", "-c", "xdg-open " + shellQuote(modelItem.path) + " > /dev/null 2>&1 &"];
+            runCmd.running = true;
+        } else {
+            runCmd.command = ["bash", "-c", "gtk-launch " + modelItem.exec + " > /dev/null 2>&1 || " + modelItem.exec + " > /dev/null 2>&1 &"];
+            runCmd.running = true;
+        }
+    }
+
+    // ── Search process (debounced) ───────────────────────────────
+    ListModel { id: searchModel }
+
+    Process {
+        id: searchProc
+        stdout: SplitParser {
+            onRead: data => {
+                try {
+                    var results = JSON.parse(data);
+                    searchModel.clear();
+                    for (var i = 0; i < results.length; i++) searchModel.append(results[i]);
+                    resultList.currentIndex = 0;
+                } catch(e) {
+                    searchModel.clear();
+                }
+            }
+        }
+    }
+
+    Process {
+        id: copyProc
+    }
+
+    Timer {
+        id: debounce
+        interval: 180
+        onTriggered: runSearch()
+    }
+
+    Component.onCompleted: runSearch()
+
+    // ── Layout ───────────────────────────────────────────────────
     ColumnLayout {
         width: 740
-        height: 166
+        height: parent.height - 8
         anchors.top: parent.top
-        anchors.horizontalCenter: parent.horizontalCenter
         anchors.topMargin: 8
+        anchors.horizontalCenter: parent.horizontalCenter
         spacing: 12
 
         // ── Search Bar ──
         Rectangle {
             Layout.alignment: Qt.AlignHCenter
-            Layout.preferredWidth: 340
+            Layout.preferredWidth: 520
             Layout.preferredHeight: 32
             radius: 16
             color: "#0AFFFFFF"
@@ -40,7 +98,7 @@ Item {
                 }
 
                 TextInput {
-                    id: appSearchInput
+                    id: searchInput
                     Layout.fillWidth: true
                     color: "#EEEEF0"
                     font.family: "Outfit"
@@ -49,177 +107,166 @@ Item {
                     clip: true
                     focus: root.displayState === 3
                     focusPolicy: Qt.StrongFocus
+                    selectByMouse: true
                     onTextChanged: {
-                        root.filterApps(text);
-                        appListView.currentIndex = 0;
+                        debounce.restart();
                     }
                     Keys.onEscapePressed: {
                         root.displayState = 0; root.updateState(); text = "";
                     }
+                    Keys.onReturnPressed: {
+                        if (searchModel.count > 0) {
+                            var targetIdx = (resultList.currentIndex >= 0 && resultList.currentIndex < searchModel.count) ? resultList.currentIndex : 0;
+                            launchEntry(searchModel.get(targetIdx));
+                        }
+                    }
+                    Keys.onUpPressed: (event) => {
+                        if (resultList.currentIndex > 0) {
+                            resultList.currentIndex--;
+                            resultList.positionViewAtIndex(resultList.currentIndex, ListView.Contain);
+                        }
+                        event.accepted = true;
+                    }
+                    Keys.onDownPressed: (event) => {
+                        if (resultList.currentIndex < searchModel.count - 1) {
+                            resultList.currentIndex++;
+                            resultList.positionViewAtIndex(resultList.currentIndex, ListView.Contain);
+                        }
+                        event.accepted = true;
+                    }
                     Keys.onLeftPressed: (event) => {
-                        if (appListView.currentIndex > 0) {
-                            appListView.currentIndex--;
-                            appListView.positionViewAtIndex(appListView.currentIndex, ListView.Contain);
+                        if (resultList.currentIndex > 0) {
+                            resultList.currentIndex--;
+                            resultList.positionViewAtIndex(resultList.currentIndex, ListView.Contain);
                         }
                         event.accepted = true;
                     }
                     Keys.onRightPressed: (event) => {
-                        if (appListView.currentIndex < appsModel.count - 1) {
-                            appListView.currentIndex++;
-                            appListView.positionViewAtIndex(appListView.currentIndex, ListView.Contain);
+                        if (resultList.currentIndex < searchModel.count - 1) {
+                            resultList.currentIndex++;
+                            resultList.positionViewAtIndex(resultList.currentIndex, ListView.Contain);
                         }
                         event.accepted = true;
-                    }
-                    Keys.onReturnPressed: {
-                        if (appsModel.count > 0) {
-                            var targetIdx = (appListView.currentIndex >= 0 && appListView.currentIndex < appsModel.count) ? appListView.currentIndex : 0;
-                            var selectedApp = appsModel.get(targetIdx);
-                            root.displayState = 0; root.updateState();
-                            runCmd.command = ["bash", "-c", "gtk-launch " + selectedApp.exec + " > /dev/null 2>&1 || " + selectedApp.exec + " > /dev/null 2>&1 &"];
-                            runCmd.running = true;
-                            text = "";
-                        }
                     }
 
                     Text {
                         anchors.fill: parent
                         verticalAlignment: Text.AlignVCenter
-                        text: "Search apps..."
+                        text: "Search apps, files, and solve math\u2026"
                         color: "#333338"
                         font.family: "Outfit"
                         font.pixelSize: 12
-                        visible: !appSearchInput.text && !appSearchInput.activeFocus
+                        visible: !searchInput.text && !searchInput.activeFocus
                     }
                 }
             }
         }
 
-        // ── App Row ──
+        // ── Results ──
         ListView {
-            id: appListView
-            property string hoveredItemName: ""
-            property real scrollAcc: 0
-            currentIndex: 0
+            id: resultList
             Layout.fillWidth: true
             Layout.fillHeight: true
-            orientation: ListView.Horizontal
-            spacing: 6
+            spacing: 8
             clip: true
-            model: appsModel
-            header: Item { width: 36; height: 1 }
-            footer: Item { width: 36; height: 1 }
-
-            MouseArea {
-                anchors.fill: parent
-                propagateComposedEvents: true
-                onWheel: (wheel) => {
-                    var delta = (wheel.angleDelta.y !== 0 ? wheel.angleDelta.y : wheel.angleDelta.x);
-                    appListView.scrollAcc += delta;
-                    if (Math.abs(appListView.scrollAcc) >= 60) {
-                        if (appListView.scrollAcc < 0 && appListView.currentIndex < appsModel.count - 1) appListView.currentIndex++;
-                        else if (appListView.scrollAcc > 0 && appListView.currentIndex > 0) appListView.currentIndex--;
-                        appListView.positionViewAtIndex(appListView.currentIndex, ListView.Contain);
-                        appListView.scrollAcc = 0;
-                    }
-                }
-            }
+            model: searchModel
+            boundsBehavior: Flickable.StopAtBounds
 
             delegate: Item {
-                width: 72
-                height: ListView.view.height
+                width: resultList.width
+                height: 54
 
-                property bool isSel: index === appListView.currentIndex
-                property bool isHov: appArea.containsMouse
+                property bool isSel: index === resultList.currentIndex
+                property bool isHov: rowArea.containsMouse
 
                 Rectangle {
-                    id: appCard
                     anchors.fill: parent
-                    anchors.margins: 2
-                    radius: 18
-                    color: isSel ? "#0CFFFFFF" : "transparent"
-                    Behavior on color { ColorAnimation { duration: 200 } }
+                    radius: 16
+                    color: isSel ? "#1AFFFFFF" : (isHov ? "#12FFFFFF" : "#0AFFFFFF")
+                    border.color: isSel ? "#44FFFFFF" : "transparent"
+                    border.width: 1
+                    Behavior on color { ColorAnimation { duration: 150 } }
 
-                    property real s: 1.0
-                    transform: Scale { origin.x: appCard.width/2; origin.y: appCard.height/2; xScale: appCard.s; yScale: appCard.s }
-                    Behavior on s { NumberAnimation { duration: 200; easing.type: Easing.OutBack } }
+                    RowLayout {
+                        anchors.fill: parent
+                        anchors.leftMargin: 12
+                        anchors.rightMargin: 16
+                        spacing: 14
 
-                    ColumnLayout {
-                        anchors.centerIn: parent
-                        spacing: 6
-
-                        // Icon
-                        Item {
+                        // Icon box
+                        Rectangle {
                             Layout.preferredWidth: 44
                             Layout.preferredHeight: 44
-                            Layout.alignment: Qt.AlignHCenter
+                            Layout.alignment: Qt.AlignVCenter
+                            radius: 14
+                            color: "#15FFFFFF"
 
                             Image {
-                                id: appIconImg
+                                id: rowIcon
                                 anchors.centerIn: parent
-                                width: isSel ? 44 : 38
-                                height: width
+                                width: 26
+                                height: 26
                                 source: (model.icon && model.icon.startsWith("/")) ? "file://" + model.icon : (model.icon ? "image://icon/" + model.icon : "")
                                 sourceSize: Qt.size(44, 44)
                                 asynchronous: true
-                                opacity: isSel ? 1.0 : (isHov ? 0.8 : 0.5)
-
-                                Behavior on width { NumberAnimation { duration: 200; easing.type: Easing.OutQuart } }
-                                Behavior on opacity { NumberAnimation { duration: 200 } }
+                                visible: model.kind !== "calc" && rowIcon.status !== Image.Error && model.name !== ""
                             }
 
                             Text {
                                 anchors.centerIn: parent
-                                text: "\uf061"
-                                color: "#444448"
+                                text: model.kind === "calc" ? "\uf1ec" : (model.kind === "file" ? "\uf016" : "\uf061")
+                                color: "#88888E"
                                 font.family: root.font
-                                font.pixelSize: 16
-                                visible: appIconImg.status !== Image.Ready
+                                font.pixelSize: 18
+                                visible: model.kind === "calc" || model.kind === "file" || rowIcon.status !== Image.Ready || model.icon === ""
                             }
                         }
 
-                        // Name
-                        Text {
+                        // Text
+                        ColumnLayout {
                             Layout.fillWidth: true
-                            Layout.maximumWidth: 68
-                            horizontalAlignment: Text.AlignHCenter
-                            text: model.name
-                            color: isSel ? "#EEEEF0" : (isHov ? "#AAAAAA" : "#555558")
-                            font.family: "Outfit"
-                            font.pixelSize: 10
-                            font.weight: isSel ? Font.DemiBold : Font.Normal
-                            elide: Text.ElideRight
-                            maximumLineCount: 1
-                            Behavior on color { ColorAnimation { duration: 200 } }
-                        }
-                    }
+                            Layout.alignment: Qt.AlignVCenter
+                            spacing: 2
 
-                    // Accent underline
-                    Rectangle {
-                        anchors.bottom: parent.bottom
-                        anchors.bottomMargin: 2
-                        anchors.horizontalCenter: parent.horizontalCenter
-                        width: isSel ? 18 : 0
-                        height: 2
-                        radius: 1
-                        color: "#3B82F6"
-                        Behavior on width { NumberAnimation { duration: 300; easing.type: Easing.OutQuart } }
+                            Text {
+                                Layout.fillWidth: true
+                                text: model.name
+                                color: isSel ? "#FFFFFF" : (isHov ? "#F0F0F2" : "#D8D8DC")
+                                font.family: "Outfit"
+                                font.pixelSize: 12.5
+                                font.weight: isSel ? Font.DemiBold : Font.Normal
+                                elide: Text.ElideRight
+                                maximumLineCount: 1
+                            }
+
+                            Text {
+                                Layout.fillWidth: true
+                                text: model.sub || ""
+                                color: "#8A8A90"
+                                font.family: "Outfit"
+                                font.pixelSize: 9.5
+                                elide: Text.ElideRight
+                                maximumLineCount: 1
+                            }
+                        }
+
+                        // Kind tag
+                        Text {
+                            text: model.kind === "app" ? "\uf1c0" : (model.kind === "file" ? "\uf0c5" : "\uf1ec")
+                            color: (isSel ? "#5A86F6" : "#4A4A50")
+                            font.family: root.font
+                            font.pixelSize: 11
+                        }
                     }
                 }
 
                 MouseArea {
-                    id: appArea
+                    id: rowArea
                     anchors.fill: parent
                     hoverEnabled: true
                     cursorShape: Qt.PointingHandCursor
-                    onPressed: appCard.s = 0.9
-                    onReleased: appCard.s = 1.0
-                    onEntered: appListView.hoveredItemName = model.name
-                    onExited: { if (appListView.hoveredItemName === model.name) appListView.hoveredItemName = "" }
-                    onClicked: {
-                        root.displayState = 0; root.updateState();
-                        runCmd.command = ["bash", "-c", "gtk-launch " + model.exec + " > /dev/null 2>&1 || " + model.exec + " > /dev/null 2>&1 &"];
-                        runCmd.running = true;
-                    }
+                    onEntered: resultList.currentIndex = index
+                    onClicked: launchEntry(model)
                 }
             }
         }
